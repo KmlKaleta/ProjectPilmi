@@ -22,21 +22,24 @@ endif()
 # Ensure raylib is build as static libraries
 set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build Raylib as static libraries" FORCE)
 
-project(mygame)
+project("sheep_goes_devile")
 
 # Add libraries
 add_subdirectory(ThirdParty/raylib-6.0)
 add_subdirectory(ThirdParty/imgui-docking)
 add_subdirectory(ThirdParty/rlimgui)
 add_subdirectory(ThirdParty/fast-noise)
-
-
+add_subdirectory(ThirdParty/json-3.12.0)
 
 # MY_SOURCES is defined to be a list of all the source files for my game 
 # DON'T ADD THE SOURCES BY HAND, they are already added with this macro
 file(GLOB_RECURSE MY_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/Src/*.cpp")
 
-add_executable("${CMAKE_PROJECT_NAME}")
+add_executable("${CMAKE_PROJECT_NAME}" app.rc)
+
+set_target_properties("${CMAKE_PROJECT_NAME}" PROPERTIES
+	OUTPUT_NAME "Sheep Goes Devile"
+)
 
 set_property(TARGET "${CMAKE_PROJECT_NAME}" PROPERTY CXX_STANDARD 17)
 
@@ -87,4 +90,4 @@ target_include_directories("${CMAKE_PROJECT_NAME}" PUBLIC "${CMAKE_CURRENT_SOURC
 target_include_directories("${CMAKE_PROJECT_NAME}" PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/Src/Platform")
 
 # Link to libraries
-target_link_libraries("${CMAKE_PROJECT_NAME}" PRIVATE raylib_static imgui rlimgui fastNoiseSIMD)
+target_link_libraries("${CMAKE_PROJECT_NAME}" PRIVATE raylib_static imgui rlimgui fastNoiseSIMD nlohmann_json)

@@ -5,53 +5,57 @@
 
 int main()
 {
-    #if PRODUCTION_BUILD == 1
-	SetTraceLogLevel(LOG_NONE);
+#if PRODUCTION_BUILD == 1
+    SetTraceLogLevel(LOG_NONE);
 #endif // PRODUCTION_BUILD == 1
 
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+    InitWindow(1900, 900, "Sheep Goes Devile");
+    SetExitKey(KEY_NULL);
+    SetTargetFPS(240);
 
-	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-	InitWindow(1900, 900, "window name");
-	SetExitKey(KEY_NULL);
-	SetTargetFPS(240);
+    rlImGuiSetup(true);
 
-	rlImGuiSetup(true);
-
-	ImGuiIO& io = ImGui::GetIO();
-	io.FontGlobalScale = 2;
-	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+    ImGuiIO &io = ImGui::GetIO();
+    io.FontGlobalScale = 2;
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
     Gameplay gameplay;
-	if (!gameplay.init())
-	{
-		return 0;
-	}
+    AssetManager assetManager;
+    assetManager.LoadAll();
 
+    GameplayUpdateArgs updateArgs;
+    updateArgs.AssetManager = assetManager;
 
-	while (!WindowShouldClose())
-	{
-		BeginDrawing();
-		ClearBackground(BLACK);
+    if (!gameplay.Init(updateArgs))
+    {
+        return 0;
+    }
 
-		rlImGuiBegin();
+    while (!WindowShouldClose())
+    {
+        BeginDrawing();
+        ClearBackground(BLACK);
 
-		ImGui::PushStyleColor(ImGuiCol_WindowBg, {});
-		ImGui::PushStyleColor(ImGuiCol_DockingEmptyBg, {});
-		ImGui::DockSpaceOverViewport(ImGui::GetMainViewport()->ID);
-		ImGui::PopStyleColor(2);
+        rlImGuiBegin();
 
-		if (!gameplay.update())
-		{
-			CloseWindow();
-		}
+        ImGui::PushStyleColor(ImGuiCol_WindowBg, {});
+        ImGui::PushStyleColor(ImGuiCol_DockingEmptyBg, {});
+        ImGui::DockSpaceOverViewport(ImGui::GetMainViewport()->ID);
+        ImGui::PopStyleColor(2);
 
-		rlImGuiEnd();
-		EndDrawing();
-	}
+        if (!gameplay.Update(updateArgs))
+        {
+            CloseWindow();
+        }
 
-	rlImGuiShutdown();
-	CloseWindow();
-	gameplay.close();
+        rlImGuiEnd();
+        EndDrawing();
+    }
 
-	return 0;
+    rlImGuiShutdown();
+    CloseWindow();
+    gameplay.Close(updateArgs);
+
+    return 0;
 }
