@@ -1,0 +1,12 @@
+{
+    "name": "Grass",
+    "pivot": [
+        500.0,
+        35.0
+    ],
+    "rowCountMax": 1,
+    "rowCounts": [
+        1
+    ],
+    "scale": 0.5
+}

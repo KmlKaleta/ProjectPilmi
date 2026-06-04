@@ -1,28 +1,28 @@
-#include "Gameplay.h"
 #include <raylib.h>
-#include <imgui.h>
+#include "Gameplay.h"
 
-bool Gameplay::Init(GameplayUpdateArgs &args)
+bool Gameplay::Init(GameplayUpdateArgs& args)
 {
     args.Init();
 
     return true;
 }
 
-bool Gameplay::Update(GameplayUpdateArgs &args)
+bool Gameplay::Update(GameplayUpdateArgs& args)
 {
-    args.ImGuiManager.Update(args.GameManager, args.AssetManager);
-    
-    if (!args.ImGuiManager.ShowSprite)
+    if (!args.ImGuiManager.Enable)
     {
-        args.GameManager.Update(args.AssetManager);
+        args.EditorScene.Update(args.AssetManager);
+        args.EditorUi.BeforeEditor(args.EditorScene, args.AssetManager.Sprites);
     }
+
+    args.ImGuiManager.AfterGame(args.EditorScene, args.AssetManager);
 
     DrawFPS(10, 10);
     return true;
 }
 
-bool Gameplay::Close(GameplayUpdateArgs &args)
+bool Gameplay::Close(GameplayUpdateArgs& args)
 {
     return true;
 }

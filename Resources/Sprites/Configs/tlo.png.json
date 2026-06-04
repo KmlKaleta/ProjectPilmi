@@ -1,0 +1,12 @@
+{
+    "name": "Background",
+    "pivot": [
+        1220.0,
+        720.0
+    ],
+    "rowCountMax": 1,
+    "rowCounts": [
+        1
+    ],
+    "scale": 1.0
+}

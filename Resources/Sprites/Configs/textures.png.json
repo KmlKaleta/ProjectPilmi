@@ -1,0 +1,16 @@
+{
+    "name": "TextureBlocks",
+    "pivot": [
+        0.0,
+        0.0
+    ],
+    "rowCountMax": 54,
+    "rowCounts": [
+        54,
+        54,
+        54,
+        54,
+        54
+    ],
+    "scale": 1.0
+}

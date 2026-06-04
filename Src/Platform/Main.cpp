@@ -10,6 +10,8 @@ int main()
 #endif // PRODUCTION_BUILD == 1
 
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+    SetConfigFlags(FLAG_WINDOW_ALWAYS_RUN);
+
     InitWindow(1900, 900, "Sheep Goes Devile");
     SetExitKey(KEY_NULL);
     SetTargetFPS(240);

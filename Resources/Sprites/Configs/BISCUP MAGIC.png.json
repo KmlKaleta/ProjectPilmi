@@ -1,0 +1,13 @@
+{
+    "name": "Biscup",
+    "pivot": [
+        35.0,
+        111.0
+    ],
+    "rowCountMax": 4,
+    "rowCounts": [
+        4,
+        1
+    ],
+    "scale": 0.15000000596046448
+}

@@ -1,25 +1,29 @@
 #pragma once
 #include "AssetManager.h"
-#include "GameManager.h"
+#include "EditorScene.h"
+#include "EditorUI.h"
 #include "ImGuiManager.h"
 
 struct GameplayUpdateArgs
 {
     AssetManager AssetManager;
-    GameManager GameManager;
+    EditorScene EditorScene;
+    EditorUi EditorUi;
     ImGuiManager ImGuiManager;
 
     void Init()
     {
-        GameManager.Init();
+        EditorScene.Init(AssetManager);
+        ImGuiManager.Init(AssetManager);
+        EditorUi.Init();
     }
 };
 
 struct Gameplay
 {
-    bool Init(GameplayUpdateArgs& args);
+    static bool Init(GameplayUpdateArgs &args);
 
-    bool Update(GameplayUpdateArgs& args);
+    static bool Update(GameplayUpdateArgs &args);
 
-    bool Close(GameplayUpdateArgs& args);
+    static bool Close(GameplayUpdateArgs &args);
 };

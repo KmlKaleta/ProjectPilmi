@@ -9,7 +9,7 @@ struct AnimationData
 
     int Animation = 0;
 
-    void Update(float deltaTime, int frameCount)
+    void Update(const float deltaTime, const int frameCount)
     {
         T += deltaTime;
         while (T >= TMax)
@@ -19,7 +19,7 @@ struct AnimationData
         }
     }
 
-    void SetAnimation(int animation)
+    void SetAnimation(const int animation)
     {
         if (Animation == animation)
         {

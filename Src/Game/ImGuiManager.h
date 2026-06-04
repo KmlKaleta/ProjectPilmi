@@ -1,23 +1,24 @@
 #pragma once
-#include "SpriteData.h"
+#include "ImGuiSpriteEditor.h"
 
-struct GameManager;
+struct EditorScene;
 struct AssetManager;
 
 struct ImGuiManager
 {
-    bool Enable = true;
-
-    bool ShowSprite = false;
-    Vector2 SpritePosition = {};
-    int SpriteIndex = {};
-    int Row = {};
-    int Column = {};
-    Camera2D SpriteEditorCamera = {};
+    bool Enable = false;
     float Zoom = 1;
+    ImGuiSpriteEditor SpriteEditor;
+    int ActivePanel = 0;
 
-    void Update(GameManager &gameManager, AssetManager &assetManager);
+    void AfterGame(EditorScene &editor, AssetManager &assetManager);
 
-private:
-    void SpriteEditorWindow(GameManager &gameManager, AssetManager &assetManager);
+    void Init(const AssetManager& assetManager);
+
+    enum
+    {
+        PANEL_SPRITE_EDITOR = 0,
+
+        PANEL_COUNT
+    };
 };
