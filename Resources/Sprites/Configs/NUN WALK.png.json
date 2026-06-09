@@ -1,11 +1,11 @@
 {
     "name": "Nun",
-    "pivot": [
-        37.0,
-        107.0
-    ],
-    "rowCountMax": 4,
-    "rowCounts": [
+    "pivot": {
+        "x": 37.0,
+        "y": 107.0
+    },
+    "row_count_max": 4,
+    "row_counts": [
         4,
         1
     ],

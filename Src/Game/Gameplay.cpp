@@ -13,7 +13,7 @@ bool Gameplay::Update(GameplayUpdateArgs& args)
     if (!args.ImGuiManager.Enable)
     {
         args.EditorScene.Update(args.AssetManager);
-        args.EditorUi.BeforeEditor(args.EditorScene, args.AssetManager.Sprites);
+        args.EditorUi.AfterEditor(args.EditorScene, args.AssetManager);
     }
 
     args.ImGuiManager.AfterGame(args.EditorScene, args.AssetManager);

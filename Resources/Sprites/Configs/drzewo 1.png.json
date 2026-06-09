@@ -1,11 +1,11 @@
 {
     "name": "Tree1",
-    "pivot": [
-        77.0,
-        190.0
-    ],
-    "rowCountMax": 1,
-    "rowCounts": [
+    "pivot": {
+        "x": 77.0,
+        "y": 190.0
+    },
+    "row_count_max": 1,
+    "row_counts": [
         1
     ],
     "scale": 0.20000000298023224

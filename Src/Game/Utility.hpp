@@ -6,12 +6,6 @@
 #define SHEEP_GOES_DEVILE_UTILITY_H
 
 #include <string>
-#include <fstream>
-
-#include "nlohmann/json.hpp"
-#include "nlohmann/json_fwd.hpp"
-
-using JSON = nlohmann::json;
 
 inline uint64_t StringToHash(const std::string& str)
 {
@@ -24,36 +18,6 @@ inline uint64_t StringToHash(const std::string& str)
     }
 
     return hash;
-}
-
-inline JSON ReadJson(const char* path, const char* defaultJson)
-{
-    std::ifstream f(path);
-    if (!f.is_open())
-    {
-        return JSON::parse(defaultJson);
-    }
-
-    JSON j = JSON::parse(f, nullptr, false);
-    f.close();
-
-    return j;
-}
-
-inline void SaveJson(const JSON& j, const char* path)
-{
-    std::string temp{path};
-    temp += ".temp";
-    std::ofstream f(temp);
-    if (!f.is_open())
-    {
-        return;
-    }
-
-    f << j.dump(4);
-    f.close();
-
-    std::filesystem::rename(temp, path);
 }
 
 #endif //SHEEP_GOES_DEVILE_UTILITY_H

@@ -1,11 +1,11 @@
 {
     "name": "Biscup",
-    "pivot": [
-        35.0,
-        111.0
-    ],
-    "rowCountMax": 4,
-    "rowCounts": [
+    "pivot": {
+        "x": 35.0,
+        "y": 111.0
+    },
+    "row_count_max": 4,
+    "row_counts": [
         4,
         1
     ],

@@ -1,11 +1,11 @@
 {
     "name": "Glass",
-    "pivot": [
-        16.0,
-        16.0
-    ],
-    "rowCountMax": 1,
-    "rowCounts": [
+    "pivot": {
+        "x": 16.0,
+        "y": 16.0
+    },
+    "row_count_max": 1,
+    "row_counts": [
         1
     ],
     "scale": 1.0

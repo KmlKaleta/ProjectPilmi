@@ -1,11 +1,11 @@
 {
     "name": "TextureBlocks",
-    "pivot": [
-        0.0,
-        0.0
-    ],
-    "rowCountMax": 54,
-    "rowCounts": [
+    "pivot": {
+        "x": 0.0,
+        "y": 0.0
+    },
+    "row_count_max": 54,
+    "row_counts": [
         54,
         54,
         54,

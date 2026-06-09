@@ -24,10 +24,12 @@ int main()
 
     Gameplay gameplay;
     AssetManager assetManager;
-    assetManager.LoadAll();
+    EditorScene editorScene;
+    assetManager.LoadAll(editorScene);
 
     GameplayUpdateArgs updateArgs;
     updateArgs.AssetManager = assetManager;
+    updateArgs.EditorScene = editorScene;
 
     if (!gameplay.Init(updateArgs))
     {

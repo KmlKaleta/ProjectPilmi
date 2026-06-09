@@ -1,0 +1,79 @@
+{
+    "renderers": [
+        {
+            "component_data": {
+                "strength": 1.0
+            },
+            "component_type": 2,
+            "flip": false,
+            "position": {
+                "x": -104.0,
+                "y": 3.0
+            },
+            "scale": 1.0,
+            "sprite": 16126107349726488271,
+            "tex_x": 0,
+            "tex_y": 0
+        },
+        {
+            "component_data": {
+                "speed": 100.0
+            },
+            "component_type": 1,
+            "flip": false,
+            "position": {
+                "x": 141.0,
+                "y": -30.0
+            },
+            "scale": 1.0,
+            "sprite": 7855930009076857766,
+            "tex_x": 0,
+            "tex_y": 0
+        },
+        {
+            "component_data": {
+                "speed": 100.0
+            },
+            "component_type": 1,
+            "flip": false,
+            "position": {
+                "x": -9.0,
+                "y": -28.0
+            },
+            "scale": 1.0,
+            "sprite": 12423977446818936113,
+            "tex_x": 0,
+            "tex_y": 0
+        },
+        {
+            "component_data": {
+                "speed": 100.0
+            },
+            "component_type": 1,
+            "flip": false,
+            "position": {
+                "x": -185.0,
+                "y": -19.0
+            },
+            "scale": 1.0,
+            "sprite": 5720244842583859402,
+            "tex_x": 0,
+            "tex_y": 0
+        },
+        {
+            "component_data": {
+                "speed": 100.0
+            },
+            "component_type": 1,
+            "flip": false,
+            "position": {
+                "x": -366.0,
+                "y": -28.0
+            },
+            "scale": 0.9989908933639526,
+            "sprite": 11131867878286177340,
+            "tex_x": 0,
+            "tex_y": 0
+        }
+    ]
+}

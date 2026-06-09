@@ -1,7 +1,7 @@
 ﻿//
 // Created by Kamil on 26.05.2026.
 //
-#include "SpriteManager.h"
+#include "AssetManagement/SpriteManager.h"
 #include "Renderer.h"
 
 void Renderer::Render(const SpriteManager& spritesManager) const
@@ -16,6 +16,31 @@ Rectangle Renderer::GetBounds(const SpriteManager& spritesManager) const
     return sprite.GetBounds(Position, LocalScale);
 }
 
+void Renderer::ClampTex(const SpriteManager& spriteManager)
+{
+    TexY = std::clamp(TexY, 0, static_cast<int>(spriteManager.FromId(Sprite).RowCounts.size()) - 1);
+    TexX = std::clamp(TexX, 0, spriteManager.FromId(Sprite).RowCounts[TexY] - 1);
+}
+
+void to_json(JSON& j, const Renderer& renderer)
+{
+    j["sprite"] = renderer.Sprite;
+    j["position"] = renderer.Position;
+    j["scale"] = renderer.LocalScale;
+    j["flip"] = renderer.Flip;
+    j["tex_x"] = renderer.TexX;
+    j["tex_y"] = renderer.TexY;
+}
+
+void from_json(const JSON& j, Renderer& renderer)
+{
+    ReadJsonValue(renderer.Sprite, j, "sprite", {});
+    ReadJsonValue(renderer.Position, j, "position", {});
+    ReadJsonValue(renderer.LocalScale, j, "scale", 1.f);
+    ReadJsonValue(renderer.Flip, j, "flip", false);
+    ReadJsonValue(renderer.TexX, j, "texX", 0);
+    ReadJsonValue(renderer.TexY, j, "texY", 0);
+}
 
 // void Render(const Vector2 position, const int x = 0, const int y = 0, const bool flip = false,
 //                 const float scale = 1, const Color tint = WHITE) const

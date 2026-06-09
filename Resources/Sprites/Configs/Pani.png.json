@@ -1,11 +1,11 @@
 {
     "name": "Lady",
-    "pivot": [
-        38.0,
-        112.0
-    ],
-    "rowCountMax": 4,
-    "rowCounts": [
+    "pivot": {
+        "x": 38.0,
+        "y": 112.0
+    },
+    "row_count_max": 4,
+    "row_counts": [
         4,
         1
     ],

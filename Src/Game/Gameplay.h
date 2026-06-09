@@ -1,6 +1,6 @@
 #pragma once
-#include "AssetManager.h"
-#include "EditorScene.h"
+#include "AssetManagement/AssetManager.h"
+#include "Editor/EditorScene.h"
 #include "EditorUI.h"
 #include "ImGuiManager.h"
 
@@ -13,7 +13,7 @@ struct GameplayUpdateArgs
 
     void Init()
     {
-        EditorScene.Init(AssetManager);
+        EditorScene.Init();
         ImGuiManager.Init(AssetManager);
         EditorUi.Init();
     }

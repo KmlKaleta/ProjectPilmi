@@ -1,6 +1,5 @@
 #pragma once
-#include <raylib.h>
-#include <cstdint>
+#include "RaylibJSON.hpp"
 
 struct SpriteManager;
 
@@ -16,4 +15,10 @@ struct Renderer
     void Render(const SpriteManager& assetManager) const;
 
     Rectangle GetBounds(const SpriteManager& assetManager) const;
+
+    void ClampTex(const SpriteManager& spriteManager);
 };
+
+void to_json(JSON& j, const Renderer& renderer);
+
+void from_json(const JSON& j, Renderer& renderer);
