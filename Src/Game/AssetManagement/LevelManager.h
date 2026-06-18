@@ -8,9 +8,10 @@
 #include <vector>
 #include <string>
 #include "ComponentData.h"
+#include "GameState.h"
 
 
-struct EditorScene;
+struct EditorSceneOld;
 
 struct LevelMetadata
 {
@@ -29,6 +30,8 @@ struct LevelData
 
     ComponentStorage Components;
 
+    std::vector<GameState> InitActions;
+    std::vector<GameState> UpdateActions;
 private:
     std::vector<Renderer> Renderers;
 };
@@ -42,11 +45,11 @@ struct LevelManager
     std::vector<LevelData> Data = {};
     std::vector<LevelMetadata> Metadata = {};
 
-    void LoadAll(EditorScene& editor);
+    void LoadAll(EditorSceneOld& editor);
 
-    void Load(EditorScene& editor, int index) const;
+    void Load(EditorSceneOld& editor, int index) const;
 
-    void Save(const EditorScene& editor);
+    void Save(const EditorSceneOld& editor);
 
     void Reload();
 };

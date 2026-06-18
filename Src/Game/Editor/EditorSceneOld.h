@@ -1,5 +1,5 @@
-﻿#ifndef SHEEP_GOES_DEVILE_EDITOR_SCENE_H
-#define SHEEP_GOES_DEVILE_EDITOR_SCENE_H
+﻿#ifndef SHEEP_GOES_DEVILE_EDITOR_SCENE_OLD_H
+#define SHEEP_GOES_DEVILE_EDITOR_SCENE_OLD_H
 
 #include "raylib.h"
 #include "../Renderer.h"
@@ -7,12 +7,13 @@
 #include "EditorComponents.h"
 #include <vector>
 
+#include "EditorStates.h"
 #include "EditorRenderers.h"
 
 
 struct AssetManager;
 
-struct EditorScene
+struct EditorSceneOld
 {
     Camera2D Camera = {};
     int State = 0;
@@ -20,6 +21,7 @@ struct EditorScene
     EditorPalette Palette;
     EditorRenderers RenderersEditor;
     EditorComponents Components;
+    EditorStates States;
     size_t CurrentLevel = 0;
 
     void Init();
@@ -32,7 +34,10 @@ struct EditorScene
     {
         EDITOR_PALETTE = 0,
         EDITOR_RENDERERS,
-        EDITOR_COMPONENTS
+        EDITOR_COMPONENTS,
+        EDITOR_ACTIONS,
+
+        EDITOR_COUNT
     };
 };
 

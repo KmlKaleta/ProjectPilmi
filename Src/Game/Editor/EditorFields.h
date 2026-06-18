@@ -5,6 +5,7 @@
 #ifndef SHEEP_GOES_DEVILE_EDITOR_FIELDS_H
 #define SHEEP_GOES_DEVILE_EDITOR_FIELDS_H
 #include "JSON.h"
+#include "raylib.h"
 
 struct Range
 {
@@ -25,5 +26,17 @@ private:
 void to_json(JSON& j, const Range& r);
 
 void from_json(const JSON& j, Range& r);
+
+
+struct EntitySelector
+{
+    size_t Index = 0;
+    bool IsValid = false;
+};
+
+struct Vector2Selector
+{
+    Vector2 Value = {};
+};
 
 #endif //SHEEP_GOES_DEVILE_EDITOR_FIELDS_H

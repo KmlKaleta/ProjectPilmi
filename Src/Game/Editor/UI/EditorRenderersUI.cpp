@@ -2,13 +2,13 @@
 // Created by Kamil on 04.06.2026.
 //
 #include "EditorRenderersUI.h"
-#include "Editor/EditorScene.h"
+#include "Editor/EditorSceneOld.h"
 #include <raygui.h>
 
 #include "LevelManager.h"
 #include "Range.hpp"
 
-float EditorRenderersUI::GetHeight(const EditorScene& editor, const float padding) const
+float EditorRenderersUI::GetHeight(const EditorSceneOld& editor, const float padding) const
 {
     if (!editor.RenderersEditor.AnySelected)
     {
@@ -19,7 +19,7 @@ float EditorRenderersUI::GetHeight(const EditorScene& editor, const float paddin
 }
 
 void EditorRenderersUI::Draw(const float width, const float contentX, float contentY, const float padding,
-                             EditorScene& editor, LevelData& levelData, const SpriteManager& sprites) const
+                             EditorSceneOld& editor, LevelData& levelData, const SpriteManager& sprites) const
 {
     if (!editor.RenderersEditor.AnySelected)
     {

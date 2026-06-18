@@ -1,6 +1,6 @@
 #include "AssetManager.h"
 
-void AssetManager::LoadAll(EditorScene& editor)
+void AssetManager::LoadAll(EditorSceneOld& editor)
 {
     Sprites.LoadAll();
     Icons.LoadAll();

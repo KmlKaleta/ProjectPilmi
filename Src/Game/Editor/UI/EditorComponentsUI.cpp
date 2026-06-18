@@ -5,12 +5,13 @@
 
 #include <string>
 
-#include "EditorScene.h"
+#include "EditorSceneOld.h"
 #include "raygui.h"
 #include "ComponentData.h"
 #include "LevelManager.h"
+#include "RayGui/Range.hpp"
 
-float EditorComponentsUI::GetHeight(const EditorScene& editor, const float padding) const
+float EditorComponentsUI::GetHeight(const EditorSceneOld& editor, const float padding) const
 {
     if (!editor.RenderersEditor.AnySelected)
     {
@@ -31,18 +32,19 @@ constexpr const char* ComponentNames = {
 void DrawRange(const char* name, Range& range, Rectangle rect, float padding)
 {
     float value = range.Get();
-    GuiSlider(rect, name, TextFormat("%s: %.2f", name, value), &value, range.Min, range.Max);
+    FloatSlider(rect, value, range.Min, range.Max, padding);
     range.Set(value);
 }
 
 void EditorComponentsUI::Draw(const float width, const float contentX, float contentY, const float padding,
-                              const EditorScene& editor, LevelData& level) const
+                              const EditorSceneOld& editor, LevelData& level) const
 {
     if (!editor.RenderersEditor.AnySelected)
     {
         GuiLabel({contentX, contentY, width, 20}, "No Renderer Selected");
         return;
     }
+
     auto componentData = level.Components.GetComponent(editor.RenderersEditor.GetSelectedRenderer());
     int value = componentData.Type;
     std::string comboStr = ComponentNames;

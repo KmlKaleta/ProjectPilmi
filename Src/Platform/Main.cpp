@@ -1,7 +1,44 @@
 #include <raylib.h>
 #include <rlImGui.h>
 #include <imgui.h>
-#include <Gameplay.h>
+
+#include "EditorWindow.h"
+
+void ImGuiDockingSetup()
+{
+    const ImGuiViewport* viewport = ImGui::GetMainViewport();
+
+    ImGui::SetNextWindowPos(viewport->Pos);
+    ImGui::SetNextWindowSize(viewport->Size);
+    ImGui::SetNextWindowViewport(viewport->ID);
+
+    // Remove host padding
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+
+    constexpr ImGuiWindowFlags flags =
+            ImGuiWindowFlags_NoDocking |
+            ImGuiWindowFlags_NoTitleBar |
+            ImGuiWindowFlags_NoCollapse |
+            ImGuiWindowFlags_NoResize |
+            ImGuiWindowFlags_NoMove |
+            ImGuiWindowFlags_NoBringToFrontOnFocus |
+            ImGuiWindowFlags_NoNavFocus |
+            ImGuiWindowFlags_NoBackground;
+
+    ImGui::Begin("DockSpaceHost", nullptr, flags);
+
+    ImGui::DockSpace(
+        ImGui::GetID("MainDockSpace"),
+        ImVec2(0, 0),
+        ImGuiDockNodeFlags_PassthruCentralNode
+    );
+
+    ImGui::End();
+
+    ImGui::PopStyleVar(3);
+}
 
 int main()
 {
@@ -13,25 +50,24 @@ int main()
     SetConfigFlags(FLAG_WINDOW_ALWAYS_RUN);
 
     InitWindow(1900, 900, "Sheep Goes Devile");
+    SetWindowMinSize(600, 400);
     SetExitKey(KEY_NULL);
     SetTargetFPS(240);
 
     rlImGuiSetup(true);
 
-    ImGuiIO &io = ImGui::GetIO();
+    ImGuiIO& io = ImGui::GetIO();
     io.FontGlobalScale = 2;
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
-    Gameplay gameplay;
-    AssetManager assetManager;
-    EditorScene editorScene;
-    assetManager.LoadAll(editorScene);
+    //Gameplay gameplay;
 
-    GameplayUpdateArgs updateArgs;
-    updateArgs.AssetManager = assetManager;
-    updateArgs.EditorScene = editorScene;
+    //GameplayUpdateArgs updateArgs;
+    //updateArgs.AssetManager.LoadAll(updateArgs.EditorScene);
 
-    if (!gameplay.Init(updateArgs))
+    EditorWindow editor;
+
+    if (!editor.Init())
     {
         return 0;
     }
@@ -45,10 +81,11 @@ int main()
 
         ImGui::PushStyleColor(ImGuiCol_WindowBg, {});
         ImGui::PushStyleColor(ImGuiCol_DockingEmptyBg, {});
-        ImGui::DockSpaceOverViewport(ImGui::GetMainViewport()->ID);
         ImGui::PopStyleColor(2);
 
-        if (!gameplay.Update(updateArgs))
+        ImGuiDockingSetup();
+
+        if (!editor.Update())
         {
             CloseWindow();
         }
@@ -59,7 +96,7 @@ int main()
 
     rlImGuiShutdown();
     CloseWindow();
-    gameplay.Close(updateArgs);
+    editor.Close();
 
     return 0;
 }

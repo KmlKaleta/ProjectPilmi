@@ -1,9 +1,9 @@
 #include "ImGuiManager.h"
 #include <imgui.h>
 
-#include "EditorScene.h"
+#include "EditorSceneOld.h"
 
-void ImGuiManager::AfterGame(EditorScene &editor, AssetManager &assetManager)
+void ImGuiManager::AfterGame(EditorSceneOld &editor, AssetManager &assetManager)
 {
     if (IsKeyPressed(KEY_F10))
     {

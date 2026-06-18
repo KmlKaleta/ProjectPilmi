@@ -2,12 +2,12 @@
 // Created by Kamil on 26.05.2026.
 //
 
-#include "EditorScene.h"
+#include "EditorSceneOld.h"
 #include "AssetManagement/AssetManager.h"
 #include "raygui.h"
 #include "EditorSceneWrapper.h"
 
-void EditorScene::Update(AssetManager& assetManager)
+void EditorSceneOld::Update(AssetManager& assetManager)
 {
     const Vector2 mouseScreenPos = GetMousePosition();
     const Vector2 mousePos = GetScreenToWorld2D(mouseScreenPos, Camera);
@@ -30,19 +30,21 @@ void EditorScene::Update(AssetManager& assetManager)
         case EDITOR_COMPONENTS:
             RenderersEditor.Update(mousePos, CanInteract, levelData, assetManager.Sprites);
             break;
+        case  EDITOR_ACTIONS:
+            States.Update(mousePos, CanInteract, levelData);
         default:
             break;
     }
     EndMode2D();
 }
 
-void EditorScene::Reset()
+void EditorSceneOld::Reset()
 {
-    *this = EditorScene();
+    *this = EditorSceneOld();
     Init();
 }
 
-void EditorScene::Init()
+void EditorSceneOld::Init()
 {
     Camera.target = {0, 0};
     Camera.rotation = 0;

@@ -3,7 +3,7 @@
 #include "../SpriteData.h"
 
 struct AssetManager;
-struct EditorScene;
+struct EditorSceneOld;
 
 struct ImGuiSpriteEditor
 {
@@ -14,5 +14,5 @@ struct ImGuiSpriteEditor
     Camera2D Camera = {};
     float ScaleFactor = 1;
 
-    void AfterGame(EditorScene& editor, AssetManager& assetManager);
+    void AfterGame(EditorSceneOld& editor, AssetManager& assetManager);
 };

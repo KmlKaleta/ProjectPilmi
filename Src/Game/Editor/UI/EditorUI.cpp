@@ -3,19 +3,20 @@
 //
 #include "EditorUI.h"
 #include "AssetManagement/SpriteManager.h"
-#include "../EditorScene.h"
+#include "../EditorSceneOld.h"
 #include <style_dark.h>
 
 #include "AssetManagement/AssetManager.h"
 #include "raygui.h"
 
-void EditorUi::Init() const
+void EditorUi::Init()
 {
     GuiLoadStyleDark();
+    Window.Position = {100, 100};
 }
 
 
-void HandleRendererSelection(EditorScene& editor, LevelData& levelData, const SpriteManager& sprites)
+void HandleRendererSelection(EditorSceneOld& editor, LevelData& levelData, const SpriteManager& sprites)
 {
     auto [x, y] = editor.RenderersEditor.SelectionClickPosition;
     y += 1;
@@ -39,7 +40,7 @@ void HandleRendererSelection(EditorScene& editor, LevelData& levelData, const Sp
     }
 }
 
-void EditorUi::AfterEditor(EditorScene& editor, AssetManager& assetManager)
+void EditorUi::AfterEditor(EditorSceneOld& editor, AssetManager& assetManager)
 {
     editor.CanInteract = !CheckCollisionPointRec(GetMousePosition(), {
                                                      Window.Position.x, Window.Position.y,
@@ -54,18 +55,22 @@ void EditorUi::AfterEditor(EditorScene& editor, AssetManager& assetManager)
     constexpr float sliderWidth = 10;
     constexpr float padding = 5;
     const float width = Window.Size.x - padding - padding - sliderWidth;
+    auto& levelData = assetManager.Levels.Data[editor.CurrentLevel];
 
     float contentHeight = 30;
     switch (editor.State)
     {
-        case EditorScene::EDITOR_PALETTE:
+        case EditorSceneOld::EDITOR_PALETTE:
             contentHeight += PaletteUI.GetHeight(width, assetManager.Sprites, padding);
             break;
-        case EditorScene::EDITOR_RENDERERS:
+        case EditorSceneOld::EDITOR_RENDERERS:
             contentHeight += RenderersUI.GetHeight(editor, padding);
             break;
-        case EditorScene::EDITOR_COMPONENTS:
+        case EditorSceneOld::EDITOR_COMPONENTS:
             contentHeight += ComponentsUI.GetHeight(editor, padding);
+            break;
+        case EditorSceneOld::EDITOR_ACTIONS:
+            contentHeight += ActionsUI.GetHeight(editor, levelData);
             break;
         default: break;
     }
@@ -76,25 +81,27 @@ void EditorUi::AfterEditor(EditorScene& editor, AssetManager& assetManager)
     contentX += padding;
     contentY += padding;
 
-    auto levelData = assetManager.Levels.Data[editor.CurrentLevel];
     if (Window.StartDrawing("Editor Window", contentRect))
     {
         GuiComboBox({contentX, contentY, width, 20},
-                    "Sprite Palette;Entity Editor;Components Editor",
+                    "Sprite Palette;Entity Editor;Components Editor;Actions Editor",
                     &editor.State);
         contentY += 20 + padding;
         switch (editor.State)
         {
-            case EditorScene::EDITOR_PALETTE:
+            case EditorSceneOld::EDITOR_PALETTE:
                 PaletteUI.Draw(width, contentX, contentY, padding, editor.Palette, assetManager.Sprites);
                 break;
-            case EditorScene::EDITOR_RENDERERS:
+            case EditorSceneOld::EDITOR_RENDERERS:
                 RenderersUI.Draw(width, contentX, contentY, padding, editor,
                                  levelData, assetManager.Sprites);
                 break;
-            case EditorScene::EDITOR_COMPONENTS:
+            case EditorSceneOld::EDITOR_COMPONENTS:
                 ComponentsUI.Draw(width, contentX, contentY, padding, editor,
                                   levelData);
+                break;
+            case EditorSceneOld::EDITOR_ACTIONS:
+                ActionsUI.Draw(contentX, contentY, width, padding, editor, levelData);
                 break;
             default: break;
         }
@@ -107,7 +114,7 @@ void EditorUi::AfterEditor(EditorScene& editor, AssetManager& assetManager)
         return;
     }
 
-    if (editor.State == EditorScene::EDITOR_RENDERERS || editor.State == EditorScene::EDITOR_COMPONENTS)
+    if (editor.State == EditorSceneOld::EDITOR_RENDERERS || editor.State == EditorSceneOld::EDITOR_COMPONENTS)
     {
         HandleRendererSelection(editor, levelData, assetManager.Sprites);
     } else

@@ -2,10 +2,10 @@
 #include <imgui.h>
 #include <misc/cpp/imgui_stdlib.h>
 
-#include "EditorScene.h"
+#include "EditorSceneOld.h"
 #include "AssetManagement/AssetManager.h"
 
-void ImGuiSpriteEditor::AfterGame(EditorScene& editor, AssetManager& assetManager)
+void ImGuiSpriteEditor::AfterGame(EditorSceneOld& editor, AssetManager& assetManager)
 {
     SpriteManager& spritesManager = assetManager.Sprites;
     const auto index = std::abs(Index) % spritesManager.Data.size();

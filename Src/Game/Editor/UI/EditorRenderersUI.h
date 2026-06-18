@@ -5,14 +5,14 @@
 #ifndef SHEEP_GOES_DEVILE_EDITOR_RENDERERS_UI_H
 #define SHEEP_GOES_DEVILE_EDITOR_RENDERERS_UI_H
 struct LevelData;
-struct EditorScene;
+struct EditorSceneOld;
 struct SpriteManager;
 
 struct EditorRenderersUI
 {
-    float GetHeight(const EditorScene& editor, float padding) const;
+    float GetHeight(const EditorSceneOld& editor, float padding) const;
 
-    void Draw(float width, float contentX, float contentY, float padding, EditorScene& editor, LevelData& levelData,
+    void Draw(float width, float contentX, float contentY, float padding, EditorSceneOld& editor, LevelData& levelData,
               const SpriteManager& sprites) const;
 };
 #endif //SHEEP_GOES_DEVILE_EDITOR_RENDERERS_UI_H

@@ -5,29 +5,28 @@
 #ifndef SHEEP_GOES_DEVILE_EDITOR_UI_H
 #define SHEEP_GOES_DEVILE_EDITOR_UI_H
 
+#include "EditorStatesUI.h"
 #include "EditorComponentsUI.h"
 #include "EditorPaletteUI.h"
 #include "EditorRenderersUI.h"
 #include "LevelDataUI.h"
 #include "../../RayGui/FloatingWindow.hpp"
 
-struct EditorPalette;
-struct SpriteData;
-struct SpriteManager;
 struct AssetManager;
-struct EditorScene;
 
 struct EditorUi
 {
     FloatingWindow Window;
+
     EditorRenderersUI RenderersUI;
     EditorPaletteUI PaletteUI;
     LevelDataUI LevelDataUI;
     EditorComponentsUI ComponentsUI;
+    EditorStatesUI ActionsUI;
 
-    void Init() const;
+    void Init();
 
-    void AfterEditor(EditorScene& editor, AssetManager& assetManager);
+    void AfterEditor(EditorSceneOld& editor, AssetManager& assetManager);
 };
 
 #endif //SHEEP_GOES_DEVILE_EDITOR_UI_H

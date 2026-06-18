@@ -29,6 +29,7 @@ add_subdirectory(ThirdParty/imgui-docking)
 add_subdirectory(ThirdParty/rlimgui)
 add_subdirectory(ThirdParty/json-3.12.0)
 add_subdirectory(ThirdParty/raygui-4.0)
+add_subdirectory(ThirdParty/entt-3.16.0)
 
 add_library(visit_struct INTERFACE)
 
@@ -108,19 +109,14 @@ elseif (APPLE OR UNIX) # macOS / Linux
     endif ()
 endif ()
 
-
 target_include_directories("${CMAKE_PROJECT_NAME}" PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/Src/Game")
 target_include_directories("${CMAKE_PROJECT_NAME}" PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/Src/Game/AssetManagement")
 target_include_directories("${CMAKE_PROJECT_NAME}" PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/Src/Game/Editor")
 target_include_directories("${CMAKE_PROJECT_NAME}" PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/Src/Game/Editor/UI")
 target_include_directories("${CMAKE_PROJECT_NAME}" PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/Src/Game/RayGui")
+
+target_include_directories("${CMAKE_PROJECT_NAME}" PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/Src/Editor")
+
 target_include_directories("${CMAKE_PROJECT_NAME}" PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/Src/Platform")
 
-
-# Link to libraries
-#target_include_directories(${CMAKE_PROJECT_NAME}
-#        PRIVATE
-#        ${CMAKE_SOURCE_DIR}/ThirdParty/visit_struct-1.2.0
-#)
-
-target_link_libraries("${CMAKE_PROJECT_NAME}" PRIVATE raylib_static imgui rlimgui nlohmann_json raygui visit_struct)
+target_link_libraries("${CMAKE_PROJECT_NAME}" PRIVATE raylib_static imgui rlimgui nlohmann_json raygui visit_struct EnTT)

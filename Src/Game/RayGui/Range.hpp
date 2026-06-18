@@ -5,7 +5,7 @@
 #include <raylib.h>
 #include <raygui.h>
 
-void FloatSlider(Rectangle rect, float& value, const float min, const float max, const float padding = 5)
+inline void FloatSlider(Rectangle rect, float& value, const float min, const float max, const float padding = 5)
 {
     if (GuiButton({rect.x, rect.y, 20, rect.height}, "#118#"))
     {
@@ -23,7 +23,7 @@ void FloatSlider(Rectangle rect, float& value, const float min, const float max,
     }
 }
 
-void IntField(Rectangle rect, int& value, const char* name, const float padding = 5)
+inline void IntField(Rectangle rect, int& value, const char* name, const float padding = 5)
 {
     const auto nameWidth = static_cast<float>(MeasureText(name, 20));
 

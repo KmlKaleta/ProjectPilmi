@@ -6,7 +6,7 @@
 #define SHEEP_GOES_DEVILE_LEVEL_DATA_UI_H
 
 struct LevelManager;
-struct EditorScene;
+struct EditorSceneOld;
 struct Rectangle;
 
 struct LevelDataUI
@@ -17,6 +17,6 @@ struct LevelDataUI
 
     float GetHeight() const;
 
-    void Draw(EditorScene& editor, LevelManager& levelManager) const;
+    void Draw(EditorSceneOld& editor, LevelManager& levelManager) const;
 };
 #endif //SHEEP_GOES_DEVILE_LEVEL_DATA_UI_H

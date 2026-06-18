@@ -1,7 +1,7 @@
 #pragma once
 #include "ImGuiSpriteEditor.h"
 
-struct EditorScene;
+struct EditorSceneOld;
 struct AssetManager;
 
 struct ImGuiManager
@@ -11,7 +11,7 @@ struct ImGuiManager
     ImGuiSpriteEditor SpriteEditor;
     int ActivePanel = 0;
 
-    void AfterGame(EditorScene &editor, AssetManager &assetManager);
+    void AfterGame(EditorSceneOld &editor, AssetManager &assetManager);
 
     void Init(const AssetManager& assetManager);
 

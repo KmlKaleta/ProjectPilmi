@@ -2,7 +2,7 @@
 // Created by Kamil on 04.06.2026.
 //
 #include "LevelManager.h"
-#include "Editor/EditorScene.h"
+#include "Editor/EditorSceneOld.h"
 #include "JSON.h"
 
 Renderer& LevelData::GetRenderer(const size_t index)
@@ -81,7 +81,7 @@ void from_json(const JSON& j, LevelData& level)
     }
 }
 
-void LevelManager::LoadAll(EditorScene& editor)
+void LevelManager::LoadAll(EditorSceneOld& editor)
 {
     Metadata.clear();
     Data.clear();
@@ -115,13 +115,13 @@ void LevelManager::LoadAll(EditorScene& editor)
     Load(editor, 0);
 }
 
-void LevelManager::Load(EditorScene& editor, const int index) const
+void LevelManager::Load(EditorSceneOld& editor, const int index) const
 {
     editor.Reset();
     editor.CurrentLevel = index;
 }
 
-void LevelManager::Save(const EditorScene& editor)
+void LevelManager::Save(const EditorSceneOld& editor)
 {
     const std::string s = RESOURCES_PATH "Levels/" + Metadata[editor.CurrentLevel].Name + ".json";
     SaveJson(Data[editor.CurrentLevel], s.c_str());

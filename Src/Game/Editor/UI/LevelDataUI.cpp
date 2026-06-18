@@ -2,7 +2,7 @@
 // Created by Kamil on 04.06.2026.
 //
 #include "AssetManagement/LevelManager.h"
-#include "Editor/EditorScene.h"
+#include "Editor/EditorSceneOld.h"
 #include "LevelDataUI.h"
 #include <raygui.h>
 
@@ -14,10 +14,10 @@ Rectangle LevelDataUI::GetRect() const
 
 float LevelDataUI::GetHeight() const
 {
-    return 20 + 5 + 20 + 5 + 20;
+    return 20 + 5 + 20 + 5 + 20+ 5 + 20;
 }
 
-void LevelDataUI::Draw(EditorScene& editor, LevelManager& levelManager) const
+void LevelDataUI::Draw(EditorSceneOld& editor, LevelManager& levelManager) const
 {
     std::string levelCombo;
     for (const auto& [Name] : levelManager.Metadata)
@@ -27,7 +27,7 @@ void LevelDataUI::Draw(EditorScene& editor, LevelManager& levelManager) const
 
     levelCombo.pop_back();
 
-    const float x = GetScreenWidth() - Width;
+    const float x = static_cast<float>(GetScreenWidth()) - Width;
     int index = static_cast<int>(editor.CurrentLevel);
     GuiComboBox({x, 0, Width, 20}, levelCombo.c_str(), &index);
     if (index != editor.CurrentLevel)
@@ -47,4 +47,8 @@ void LevelDataUI::Draw(EditorScene& editor, LevelManager& levelManager) const
         levelManager.Load(editor, static_cast<int>(levelManager.Data.size()) - 1);
     }
 
+    if (GuiButton({x, 75, Width, 20}, "Play"))
+    {
+        // TODO playmode
+    }
 }

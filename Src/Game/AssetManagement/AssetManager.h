@@ -10,7 +10,7 @@ struct AssetManager
     IconsManager Icons;
     LevelManager Levels;
 
-    void LoadAll(EditorScene& editor);
+    void LoadAll(EditorSceneOld& editor);
 
     void Reload();
 
