@@ -1,10 +1,46 @@
-#include <raylib.h>
-#include <rlImGui.h>
-#include <imgui.h>
-
+﻿//
+// Created by Kamil on 18.06.2026.
+//
+#include "raylib.h"
+#include "imgui.h"
+#include "rlImGui.h"
 #include "EditorWindow.h"
 
+void ImGuiDockingSetup()
+{
+    const ImGuiViewport* viewport = ImGui::GetMainViewport();
 
+    ImGui::SetNextWindowPos(viewport->Pos);
+    ImGui::SetNextWindowSize(viewport->Size);
+    ImGui::SetNextWindowViewport(viewport->ID);
+
+    // Remove host padding
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+
+    constexpr ImGuiWindowFlags flags =
+            ImGuiWindowFlags_NoDocking |
+            ImGuiWindowFlags_NoTitleBar |
+            ImGuiWindowFlags_NoCollapse |
+            ImGuiWindowFlags_NoResize |
+            ImGuiWindowFlags_NoMove |
+            ImGuiWindowFlags_NoBringToFrontOnFocus |
+            ImGuiWindowFlags_NoNavFocus |
+            ImGuiWindowFlags_NoBackground;
+
+    ImGui::Begin("DockSpaceHost", nullptr, flags);
+
+    ImGui::DockSpace(
+        ImGui::GetID("MainDockSpace"),
+        ImVec2(0, 0),
+        ImGuiDockNodeFlags_PassthruCentralNode
+    );
+
+    ImGui::End();
+
+    ImGui::PopStyleVar(3);
+}
 
 int main()
 {

@@ -11,7 +11,7 @@
 #include "AnimationData.h"
 #include "include/visit_struct/visit_struct.hpp"
 
-#define ComponentNamesMacro(X) \
+#define RequiredComponentNamesMacro(X) \
 X(COMPONENT_MOVEMENT, MovementComponent) \
 X(COMPONENT_PARALLAX, ParallaxComponent)
 
@@ -26,7 +26,7 @@ struct ComponentData
     {
         COMPONENT_NONE = 0,
 #define X(e, v) e,
-        ComponentNamesMacro(X)
+        RequiredComponentNamesMacro(X)
 #undef X
         COMPONENT_COUNT
     };
@@ -71,7 +71,7 @@ struct ComponentStorage
     void AddComponent(int type);
 
 #define X(e, v) v& Get##v##Data(size_t index);
-    ComponentNamesMacro(X)
+    RequiredComponentNamesMacro(X)
 #undef X
 
 private:
@@ -79,7 +79,7 @@ private:
 
     std::vector<ComponentData> Components;
 #define X(e, v) std::vector<v> v##Vector;
-    ComponentNamesMacro(X)
+    RequiredComponentNamesMacro(X)
 #undef X
 };
 

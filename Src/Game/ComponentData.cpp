@@ -71,7 +71,7 @@ break;
 
     switch (type)
     {
-        ComponentNamesMacro(X)
+        RequiredComponentNamesMacro(X)
         default:
             break;
     }
@@ -108,7 +108,7 @@ AddElement(Index, v##Vector); \
 break;
     switch (value)
     {
-        ComponentNamesMacro(X)
+        RequiredComponentNamesMacro(X)
         default:
             Index = 0;
             break;
@@ -128,7 +128,7 @@ AddElement(index, v##Vector); \
 break;
     switch (type)
     {
-        ComponentNamesMacro(X)
+        RequiredComponentNamesMacro(X)
         default:
             break;
     }
@@ -142,5 +142,5 @@ break;
         assert(index < v##Vector.size()); \
         return v##Vector[index]; \
     }
-ComponentNamesMacro(X)
+RequiredComponentNamesMacro(X)
 #undef X
