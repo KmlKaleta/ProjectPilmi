@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - image rotate
+*   raylib [textures.png] example - image rotate
 *
 *   Example complexity rating: [★★☆☆] 2/4
 *
@@ -27,9 +27,9 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - image rotate");
+    InitWindow(screenWidth, screenHeight, "raylib [textures.png] example - image rotate");
 
-    // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
+    // NOTE: Textures.png MUST be loaded after Window initialization (OpenGL context is required)
     Image image45 = LoadImage("resources/raylib_logo.png");
     Image image90 = LoadImage("resources/raylib_logo.png");
     Image imageNeg90 = LoadImage("resources/raylib_logo.png");
@@ -56,7 +56,7 @@ int main(void)
         //----------------------------------------------------------------------------------
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) || IsKeyPressed(KEY_RIGHT))
         {
-            currentTexture = (currentTexture + 1)%NUM_TEXTURES; // Cycle between the textures
+            currentTexture = (currentTexture + 1)%NUM_TEXTURES; // Cycle between the textures.png
         }
         //----------------------------------------------------------------------------------
 

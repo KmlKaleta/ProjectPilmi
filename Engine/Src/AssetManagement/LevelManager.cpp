@@ -3,10 +3,35 @@
 //
 #include "LevelManager.h"
 
+void to_json(JSON& j, const LevelData& level)
+{
+    j["entities"] = level.Entities;
+}
+
+void from_json(const JSON& j, LevelData& level)
+{
+    if (j.contains("entities"))
+    {
+        from_json(j["entities"], level.Entities);
+    }
+}
+
+LevelData& LevelManager::CurrentLevel()
+{
+    return Data[Ids[CurrentLevelId]];
+}
+
+void LevelManager::Load(const UUID level)
+{
+    CurrentLevelId = level;
+}
+
 void LevelManager::LoadAll()
 {
-    std::filesystem::path path = RESOURCES_PATH;
-    path += "Levels/";
+    Ids.clear();
+    Data.clear();
+
+    const std::filesystem::path path = RESOURCES_PATH "Levels/";
     for (const auto& entry : std::filesystem::directory_iterator(path))
     {
         if (!entry.is_regular_file())
@@ -20,19 +45,82 @@ void LevelManager::LoadAll()
             continue;
         }
 
-        from_json(map, Entities);
-        return;
-    }
-}
+        if (!map.contains("id"))
+        {
+            continue;
+        }
 
-void LevelManager::Load()
-{
+        auto& idJson = map["id"];
+        if (!idJson.is_number_integer() || !idJson.is_number_unsigned())
+        {
+            continue;
+        }
+
+        const UUID id = idJson;
+        if (id == 0)
+        {
+            continue;
+        }
+
+        const size_t index = Data.size();
+        Ids[id] = index;
+        Data.emplace_back();
+        from_json(map, Data[index]);
+        Metadata.push_back(entryPath.stem().string());
+    }
+
+    if (Ids.empty())
+    {
+        assert(Data.empty());
+        assert(Metadata.empty());
+
+        const UUID id = UUIDFactory().Get();
+        Ids[id] = 0;
+        Data.emplace_back();
+        Metadata.emplace_back("New Level");
+    }
+
+    CurrentLevelId = Ids.begin()->first;
 }
 
 void LevelManager::Save()
 {
-    const std::string s = RESOURCES_PATH "Levels/" "Test" ".json";
-    SaveJson(Entities, s.c_str());
+    const size_t index = Ids[CurrentLevelId];
+    const std::string path = RESOURCES_PATH "Levels/" + Metadata[index] + ".json";
+    JSON j = Data[index];
+    j["id"] = CurrentLevelId;
+    SaveJson(j, path.c_str());
+}
+
+void LevelManager::Rename(const std::string& newName)
+{
+    const size_t index = Ids[CurrentLevelId];
+    auto& levelName = Metadata[index];
+
+    if (newName == levelName)
+    {
+        return;
+    }
+
+    const auto currentPath = RESOURCES_PATH "Levels/" + levelName + ".json";
+    if (!std::filesystem::exists(currentPath))
+    {
+        levelName = newName;
+        return;
+    }
+
+    std::filesystem::rename(currentPath,
+                            RESOURCES_PATH "Levels/" + newName + ".json");
+    levelName = newName;
+}
+
+void LevelManager::Create()
+{
+    const UUID id = UUIDFactory().Get();
+    Ids[id] = Data.size();
+    Data.emplace_back();
+    Metadata.emplace_back("New Level");
+    CurrentLevelId = id;
 }
 
 // #include "LevelManager.h"

@@ -2,7 +2,7 @@
 #define SHEEP_GOES_DEVILE_EDITOR_SCENE_OLD_H
 
 #include "raylib.h"
-#include "../Renderer.h"
+#include "../../../Engine/Src/Renderer.h"
 #include "EditorPalette.h"
 #include "EditorComponents.h"
 #include <vector>

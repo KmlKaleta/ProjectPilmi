@@ -1139,7 +1139,7 @@ static void AndroidCommandCallback(struct android_app *app, int32_t cmd)
         {
             // Detach OpenGL context and destroy display surface
             // NOTE 1: This case is used when the user exits the app without closing it, context is detached to ensure everything is recoverable upon resuming
-            // NOTE 2: Detaching context before destroying display surface avoids losing our resources (textures, shaders, VBOs...)
+            // NOTE 2: Detaching context before destroying display surface avoids losing our resources (textures.png, shaders, VBOs...)
             // NOTE 3: In some cases (too many context loaded), OS could unload context automatically... :(
             if (platform.device != EGL_NO_DISPLAY)
             {

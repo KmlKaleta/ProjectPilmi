@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - sprite explosion
+*   raylib [textures.png] example - sprite explosion
 *
 *   Example complexity rating: [★★☆☆] 2/4
 *
@@ -28,7 +28,7 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - sprite explosion");
+    InitWindow(screenWidth, screenHeight, "raylib [textures.png] example - sprite explosion");
 
     InitAudioDevice();
 

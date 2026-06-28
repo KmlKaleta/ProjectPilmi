@@ -34,4 +34,17 @@ void ReadJsonValue(T& value, const JSON& j, const char* key, const T& defaultVal
     }
 }
 
+template<typename T>
+void ReadJsonValue(T& value, const JSON& j, const T& defaultValue)
+{
+    value = defaultValue;
+    try
+    {
+        value = j.get<T>();
+    } catch (const std::exception& e)
+    {
+        std::cerr << "[JSON] Invalid value for key: " << " (" << e.what() << ")\n";
+    }
+}
+
 #endif //SHEEP_GOES_DEVILE_JSON_HPP

@@ -11,6 +11,7 @@ struct EntityStorage;
 
 struct EditorHierarchy
 {
+    std::vector<entt::entity> Order;
 };
 
 #endif //SHEEP_GOES_DEVILE_EDITOR_HIERARCHY_H

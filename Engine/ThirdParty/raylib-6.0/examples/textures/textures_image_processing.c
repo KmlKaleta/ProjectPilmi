@@ -1,10 +1,10 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - image processing
+*   raylib [textures.png] example - image processing
 *
 *   Example complexity rating: [★★★☆] 3/4
 *
-*   NOTE: Images are loaded in CPU memory (RAM); textures are loaded in GPU memory (VRAM)
+*   NOTE: Images are loaded in CPU memory (RAM); textures.png are loaded in GPU memory (VRAM)
 *
 *   Example originally created with raylib 1.4, last time updated with raylib 3.5
 *
@@ -55,9 +55,9 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - image processing");
+    InitWindow(screenWidth, screenHeight, "raylib [textures.png] example - image processing");
 
-    // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
+    // NOTE: Textures.png MUST be loaded after Window initialization (OpenGL context is required)
 
     Image imOrigin = LoadImage("resources/parrots.png");   // Loaded in CPU memory (RAM)
     ImageFormat(&imOrigin, PIXELFORMAT_UNCOMPRESSED_R8G8B8A8);         // Format image to RGBA 32bit (required for texture update) <-- ISSUE

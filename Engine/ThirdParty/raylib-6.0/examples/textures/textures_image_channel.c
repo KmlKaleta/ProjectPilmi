@@ -1,8 +1,8 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - image channel
+*   raylib [textures.png] example - image channel
 *
-*   NOTE: Images are loaded in CPU memory (RAM); textures are loaded in GPU memory (VRAM)
+*   NOTE: Images are loaded in CPU memory (RAM); textures.png are loaded in GPU memory (VRAM)
 *
 *   Example complexity rating: [★★☆☆] 2/4
 *
@@ -29,7 +29,7 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - image channel");
+    InitWindow(screenWidth, screenHeight, "raylib [textures.png] example - image channel");
 
     Image fudesumiImage = LoadImage("resources/fudesumi.png");
 

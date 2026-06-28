@@ -287,7 +287,7 @@ int main(void)
 
                 DrawGrid(10, 2.0f);
 
-                // Use a shader to handle the depth buffer issue with transparent textures
+                // Use a shader to handle the depth buffer issue with transparent textures.png
                 // NOTE: more info at https://bedroomcoders.co.uk/posts/198
                 BeginShaderMode(alphaDiscard);
 

@@ -82,9 +82,9 @@ int main(void)
 
             BeginShaderMode(shader);
 
-                // WARNING: Additional textures (sampler2D) are enabled for ALL draw calls in the batch,
-                // but EndShaderMode() forces batch drawing and resets active textures, this way
-                // other textures (sampler2D) can be activated on consequent drawings (if required)
+                // WARNING: Additional textures.png (sampler2D) are enabled for ALL draw calls in the batch,
+                // but EndShaderMode() forces batch drawing and resets active textures.png, this way
+                // other textures.png (sampler2D) can be activated on consequent drawings (if required)
                 // The downside of this approach is that SetShaderValue() must be called inside the loop,
                 // to be set again after every EndShaderMode() reset
                 SetShaderValueTexture(shader, texBlueLoc, texBlue);

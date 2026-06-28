@@ -7,7 +7,7 @@
 #include <vector>
 
 #include "EditorComponents.h"
-#include "Renderer.h"
+#include "../../Engine/Src/Renderer.h"
 
 // struct EditorSceneWrapper
 // {

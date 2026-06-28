@@ -35,7 +35,7 @@ int main(void)
 
     InitWindow(screenWidth, screenHeight, "raylib [text] example - font sdf");
 
-    // NOTE: Textures/Fonts MUST be loaded after Window initialization (OpenGL context is required)
+    // NOTE: Textures.png/Fonts MUST be loaded after Window initialization (OpenGL context is required)
 
     const char msg[50] = "Signed Distance Fields";
 

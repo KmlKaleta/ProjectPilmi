@@ -1447,7 +1447,7 @@ cgltf_size cgltf_write(const cgltf_options* options, char* buffer, cgltf_size si
 
 	if (data->textures_count > 0)
 	{
-		cgltf_write_line(context, "\"textures\": [");
+		cgltf_write_line(context, "\"textures.png\": [");
 		for (cgltf_size i = 0; i < data->textures_count; ++i)
 		{
 			cgltf_write_texture(context, data->textures + i);

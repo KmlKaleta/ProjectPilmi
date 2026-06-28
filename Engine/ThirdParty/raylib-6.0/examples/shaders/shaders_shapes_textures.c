@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [shaders] example - shapes textures
+*   raylib [shaders] example - shapes textures.png
 *
 *   Example complexity rating: [★★☆☆] 2/4
 *
@@ -38,7 +38,7 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [shaders] example - shapes textures");
+    InitWindow(screenWidth, screenHeight, "raylib [shaders] example - shapes textures.png");
 
     Texture2D fudesumi = LoadTexture("resources/fudesumi.png");
 
@@ -73,7 +73,7 @@ int main(void)
             DrawCircleLines(80, 340, 80, DARKBLUE);
 
 
-            // Activate our custom shader to be applied on next shapes/textures drawings
+            // Activate our custom shader to be applied on next shapes/textures.png drawings
             BeginShaderMode(shader);
 
                 DrawText("USING CUSTOM SHADER", 190, 40, 10, RED);
@@ -97,7 +97,7 @@ int main(void)
 
             DrawPoly((Vector2){430, 320}, 6, 80, 0, BROWN);
 
-            // Activate our custom shader to be applied on next shapes/textures drawings
+            // Activate our custom shader to be applied on next shapes/textures.png drawings
             BeginShaderMode(shader);
 
                 DrawTexture(fudesumi, 500, -30, WHITE);    // Using custom shader

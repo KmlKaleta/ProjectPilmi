@@ -232,7 +232,7 @@
 *                         REDESIGNED: GuiTextInputBox() to support password
 *
 *       3.1 (12-Jan-2022) REVIEWED: Default style for consistency (aligned with rGuiLayout v2.5 tool)
-*                         REVIEWED: GuiLoadStyle() to support compressed font atlas image data and unload previous textures
+*                         REVIEWED: GuiLoadStyle() to support compressed font atlas image data and unload previous textures.png
 *                         REVIEWED: External icons usage logic
 *                         REVIEWED: GuiLine() for centered alignment when including text
 *                         RENAMED: Multiple controls properties definitions to prepend RAYGUI_

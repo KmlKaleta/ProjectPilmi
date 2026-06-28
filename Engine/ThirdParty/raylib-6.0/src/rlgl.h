@@ -217,7 +217,7 @@
     #define RL_DEFAULT_BATCH_DRAWCALLS             256      // Default number of batch draw calls (by state changes: mode, texture)
 #endif
 #ifndef RL_DEFAULT_BATCH_MAX_TEXTURE_UNITS
-    #define RL_DEFAULT_BATCH_MAX_TEXTURE_UNITS       4      // Maximum number of textures units that can be activated on batch drawing (SetShaderValueTexture())
+    #define RL_DEFAULT_BATCH_MAX_TEXTURE_UNITS       4      // Maximum number of textures.png units that can be activated on batch drawing (SetShaderValueTexture())
 #endif
 
 // Internal Matrix stack
@@ -488,14 +488,14 @@ typedef enum {
 
 // Color blending modes (pre-defined)
 typedef enum {
-    RL_BLEND_ALPHA = 0,                 // Blend textures considering alpha (default)
-    RL_BLEND_ADDITIVE,                  // Blend textures adding colors
-    RL_BLEND_MULTIPLIED,                // Blend textures multiplying colors
-    RL_BLEND_ADD_COLORS,                // Blend textures adding colors (alternative)
-    RL_BLEND_SUBTRACT_COLORS,           // Blend textures subtracting colors (alternative)
-    RL_BLEND_ALPHA_PREMULTIPLY,         // Blend premultiplied textures considering alpha
-    RL_BLEND_CUSTOM,                    // Blend textures using custom src/dst factors (use rlSetBlendFactors())
-    RL_BLEND_CUSTOM_SEPARATE            // Blend textures using custom src/dst factors (use rlSetBlendFactorsSeparate())
+    RL_BLEND_ALPHA = 0,                 // Blend textures.png considering alpha (default)
+    RL_BLEND_ADDITIVE,                  // Blend textures.png adding colors
+    RL_BLEND_MULTIPLIED,                // Blend textures.png multiplying colors
+    RL_BLEND_ADD_COLORS,                // Blend textures.png adding colors (alternative)
+    RL_BLEND_SUBTRACT_COLORS,           // Blend textures.png subtracting colors (alternative)
+    RL_BLEND_ALPHA_PREMULTIPLY,         // Blend premultiplied textures.png considering alpha
+    RL_BLEND_CUSTOM,                    // Blend textures.png using custom src/dst factors (use rlSetBlendFactors())
+    RL_BLEND_CUSTOM_SEPARATE            // Blend textures.png using custom src/dst factors (use rlSetBlendFactorsSeparate())
 } rlBlendMode;
 
 // Shader location point type
@@ -644,7 +644,7 @@ RLAPI void rlDisableVertexAttribute(unsigned int index); // Disable vertex attri
 RLAPI void rlEnableStatePointer(int vertexAttribType, void *buffer); // Enable attribute state pointer
 RLAPI void rlDisableStatePointer(int vertexAttribType); // Disable attribute state pointer
 
-// Textures state
+// Textures.png state
 RLAPI void rlActiveTextureSlot(int slot);               // Select and active a texture slot
 RLAPI void rlEnableTexture(unsigned int id);            // Enable texture
 RLAPI void rlDisableTexture(void);                      // Disable texture
@@ -704,8 +704,8 @@ RLAPI void rlSetBlendFactorsSeparate(int glSrcRGB, int glDstRGB, int glSrcAlpha,
 // Functions Declaration - rlgl functionality
 //------------------------------------------------------------------------------------
 // rlgl initialization functions
-RLAPI void rlglInit(int width, int height);             // Initialize rlgl (buffers, shaders, textures, states)
-RLAPI void rlglClose(void);                             // De-initialize rlgl (buffers, shaders, textures)
+RLAPI void rlglInit(int width, int height);             // Initialize rlgl (buffers, shaders, textures.png, states)
+RLAPI void rlglClose(void);                             // De-initialize rlgl (buffers, shaders, textures.png)
 RLAPI void rlLoadExtensions(void *loader);              // Load OpenGL extensions (loader function required)
 RLAPI void *rlGetProcAddress(const char *procName);     // Get OpenGL procedure address
 RLAPI int rlGetVersion(void);                           // Get current OpenGL version
@@ -748,7 +748,7 @@ RLAPI void rlDrawVertexArrayElements(int offset, int count, const void *buffer);
 RLAPI void rlDrawVertexArrayInstanced(int offset, int count, int instances); // Draw vertex array (currently active vao) with instancing
 RLAPI void rlDrawVertexArrayElementsInstanced(int offset, int count, const void *buffer, int instances); // Draw vertex array elements with instancing
 
-// Textures management
+// Textures.png management
 RLAPI unsigned int rlLoadTexture(const void *data, int width, int height, int format, int mipmapCount); // Load texture data
 RLAPI unsigned int rlLoadTextureDepth(int width, int height, bool useRenderBuffer); // Load depth texture/renderbuffer (to be attached to fbo)
 RLAPI unsigned int rlLoadTextureCubemap(const void *data, int size, int format, int mipmapCount); // Load texture cubemap data
@@ -1113,11 +1113,11 @@ typedef struct rlglData {
     struct {
         bool vao;                           // VAO support (OpenGL ES2 could not support VAO extension) (GL_ARB_vertex_array_object)
         bool instancing;                    // Instancing supported (GL_ANGLE_instanced_arrays, GL_EXT_draw_instanced + GL_EXT_instanced_arrays)
-        bool texNPOT;                       // NPOT textures full support (GL_ARB_texture_non_power_of_two, GL_OES_texture_npot)
-        bool texDepth;                      // Depth textures supported (GL_ARB_depth_texture, GL_OES_depth_texture)
-        bool texDepthWebGL;                 // Depth textures supported WebGL specific (GL_WEBGL_depth_texture)
-        bool texFloat32;                    // float textures support (32 bit per channel) (GL_OES_texture_float)
-        bool texFloat16;                    // half float textures support (16 bit per channel) (GL_OES_texture_half_float)
+        bool texNPOT;                       // NPOT textures.png full support (GL_ARB_texture_non_power_of_two, GL_OES_texture_npot)
+        bool texDepth;                      // Depth textures.png supported (GL_ARB_depth_texture, GL_OES_depth_texture)
+        bool texDepthWebGL;                 // Depth textures.png supported WebGL specific (GL_WEBGL_depth_texture)
+        bool texFloat32;                    // float textures.png support (32 bit per channel) (GL_OES_texture_float)
+        bool texFloat16;                    // half float textures.png support (16 bit per channel) (GL_OES_texture_half_float)
         bool texCompDXT;                    // DDS texture compression support (GL_EXT_texture_compression_s3tc, GL_WEBGL_compressed_texture_s3tc, GL_WEBKIT_WEBGL_compressed_texture_s3tc)
         bool texCompETC1;                   // ETC1 texture compression support (GL_OES_compressed_ETC1_RGB8_texture, GL_WEBGL_compressed_texture_etc1)
         bool texCompETC2;                   // ETC2/EAC texture compression support (GL_ARB_ES3_compatibility)
@@ -2279,7 +2279,7 @@ static void GLAPIENTRY rlDebugMessageCallback(GLenum source, GLenum type, GLuint
 // Module Functions Definition - rlgl functionality
 //----------------------------------------------------------------------------------
 
-// Initialize rlgl: OpenGL extensions, default buffers/shaders/textures, OpenGL states
+// Initialize rlgl: OpenGL extensions, default buffers/shaders/textures.png, OpenGL states
 void rlglInit(int width, int height)
 {
     isGpuReady = true;
@@ -2577,8 +2577,8 @@ void rlLoadExtensions(void *loader)
             if ((glDrawArraysInstanced != NULL) && (glDrawElementsInstanced != NULL) && (glVertexAttribDivisor != NULL)) RLGL.ExtSupported.instancing = true;
         }
 
-        // Check NPOT textures support
-        // NOTE: Only check on OpenGL ES, OpenGL 3.3 has NPOT textures full support as core feature
+        // Check NPOT textures.png support
+        // NOTE: Only check on OpenGL ES, OpenGL 3.3 has NPOT textures.png full support as core feature
         if (strcmp(extList[i], (const char *)"GL_OES_texture_npot") == 0) RLGL.ExtSupported.texNPOT = true;
 
         // Check texture float support
@@ -2679,13 +2679,13 @@ void rlLoadExtensions(void *loader)
     // Show some basic info about GL supported features
     if (RLGL.ExtSupported.vao) TRACELOG(RL_LOG_INFO, "GL: VAO extension detected, VAO functions loaded successfully");
     else TRACELOG(RL_LOG_WARNING, "GL: VAO extension not found, VAO not supported");
-    if (RLGL.ExtSupported.texNPOT) TRACELOG(RL_LOG_INFO, "GL: NPOT textures extension detected, full NPOT textures supported");
-    else TRACELOG(RL_LOG_WARNING, "GL: NPOT textures extension not found, limited NPOT support (no-mipmaps, no-repeat)");
-    if (RLGL.ExtSupported.texCompDXT) TRACELOG(RL_LOG_INFO, "GL: DXT compressed textures supported");
-    if (RLGL.ExtSupported.texCompETC1) TRACELOG(RL_LOG_INFO, "GL: ETC1 compressed textures supported");
-    if (RLGL.ExtSupported.texCompETC2) TRACELOG(RL_LOG_INFO, "GL: ETC2/EAC compressed textures supported");
-    if (RLGL.ExtSupported.texCompPVRT) TRACELOG(RL_LOG_INFO, "GL: PVRT compressed textures supported");
-    if (RLGL.ExtSupported.texCompASTC) TRACELOG(RL_LOG_INFO, "GL: ASTC compressed textures supported");
+    if (RLGL.ExtSupported.texNPOT) TRACELOG(RL_LOG_INFO, "GL: NPOT textures.png extension detected, full NPOT textures.png supported");
+    else TRACELOG(RL_LOG_WARNING, "GL: NPOT textures.png extension not found, limited NPOT support (no-mipmaps, no-repeat)");
+    if (RLGL.ExtSupported.texCompDXT) TRACELOG(RL_LOG_INFO, "GL: DXT compressed textures.png supported");
+    if (RLGL.ExtSupported.texCompETC1) TRACELOG(RL_LOG_INFO, "GL: ETC1 compressed textures.png supported");
+    if (RLGL.ExtSupported.texCompETC2) TRACELOG(RL_LOG_INFO, "GL: ETC2/EAC compressed textures.png supported");
+    if (RLGL.ExtSupported.texCompPVRT) TRACELOG(RL_LOG_INFO, "GL: PVRT compressed textures.png supported");
+    if (RLGL.ExtSupported.texCompASTC) TRACELOG(RL_LOG_INFO, "GL: ASTC compressed textures.png supported");
     if (RLGL.ExtSupported.computeShader) TRACELOG(RL_LOG_INFO, "GL: Compute shaders supported");
     if (RLGL.ExtSupported.ssbo) TRACELOG(RL_LOG_INFO, "GL: Shader storage buffer objects supported");
 #endif
@@ -3117,8 +3117,8 @@ void rlDrawRenderBatch(rlRenderBatch *batch)
             glUniform4f(RLGL.State.currentShaderLocs[RL_SHADER_LOC_COLOR_DIFFUSE], 1.0f, 1.0f, 1.0f, 1.0f);
             glUniform1i(RLGL.State.currentShaderLocs[RL_SHADER_LOC_MAP_DIFFUSE], 0);  // Active default sampler2D: texture0
 
-            // Activate additional sampler textures
-            // Those additional textures will be common for all draw calls of the batch
+            // Activate additional sampler textures.png
+            // Those additional textures.png will be common for all draw calls of the batch
             for (int i = 0; i < RL_DEFAULT_BATCH_MAX_TEXTURE_UNITS; i++)
             {
                 if (RLGL.State.activeTextureId[i] > 0)
@@ -3129,7 +3129,7 @@ void rlDrawRenderBatch(rlRenderBatch *batch)
             }
 
             // Activate default sampler2D texture0 (one texture is always active for default batch shader)
-            // NOTE: Batch system accumulates calls by texture0 changes, additional textures are enabled for all the draw calls
+            // NOTE: Batch system accumulates calls by texture0 changes, additional textures.png are enabled for all the draw calls
             glActiveTexture(GL_TEXTURE0);
 
             for (int i = 0, vertexOffset = 0; i < batch->drawCounter; i++)
@@ -3160,7 +3160,7 @@ void rlDrawRenderBatch(rlRenderBatch *batch)
                 glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
             }
 
-            glBindTexture(GL_TEXTURE_2D, 0);    // Unbind textures
+            glBindTexture(GL_TEXTURE_2D, 0);    // Unbind textures.png
         }
 
         if (RLGL.ExtSupported.vao) glBindVertexArray(0); // Unbind VAO
@@ -3251,7 +3251,7 @@ bool rlCheckRenderBatchLimit(int vCount)
     return overflow;
 }
 
-// Textures data management
+// Textures.png data management
 //-----------------------------------------------------------------------------------------
 // Convert image data to OpenGL texture (returns OpenGL valid Id)
 unsigned int rlLoadTexture(const void *data, int width, int height, int format, int mipmapCount)
@@ -3261,7 +3261,7 @@ unsigned int rlLoadTexture(const void *data, int width, int height, int format, 
 
     glBindTexture(GL_TEXTURE_2D, 0);    // Free any old binding
 
-    // Check texture format support by OpenGL 1.1 (compressed textures not supported)
+    // Check texture format support by OpenGL 1.1 (compressed textures.png not supported)
 #if defined(GRAPHICS_API_OPENGL_11)
     if (format >= RL_PIXELFORMAT_COMPRESSED_DXT1_RGB)
     {
@@ -3358,7 +3358,7 @@ unsigned int rlLoadTexture(const void *data, int width, int height, int format, 
         mipOffset += mipSize; // Increment offset position to next mipmap
         if (data != NULL) dataPtr += mipSize; // Increment data pointer to next mipmap
 
-        // Security check for NPOT textures
+        // Security check for NPOT textures.png
         if (mipWidth < 1) mipWidth = 1;
         if (mipHeight < 1) mipHeight = 1;
     }
@@ -3399,7 +3399,7 @@ unsigned int rlLoadTexture(const void *data, int width, int height, int format, 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, mipmapCount - 1);
 
         // Check if the loaded texture with mipmaps is complete,
-        // uncomplete textures will draw in black if mipmap filtering is required
+        // uncomplete textures.png will draw in black if mipmap filtering is required
         //GLint complete = 0;
         //glGetTexParameteriv(GL_TEXTURE_2D, GL_TEXTURE_IMMUTABLE_FORMAT, &complete);
     }
@@ -3426,7 +3426,7 @@ unsigned int rlLoadTextureDepth(int width, int height, bool useRenderBuffer)
     if (!isGpuReady) { TRACELOG(RL_LOG_WARNING, "GL: GPU is not ready to load data, trying to load before InitWindow()?"); return id; }
 
 #if defined(GRAPHICS_API_OPENGL_33) || defined(GRAPHICS_API_OPENGL_ES2)
-    // In case depth textures were not supported, force renderbuffer usage
+    // In case depth textures.png were not supported, force renderbuffer usage
     if (!RLGL.ExtSupported.texDepth) useRenderBuffer = true;
 
     // NOTE: Letting the implementation to choose the best bit-depth
@@ -3479,7 +3479,7 @@ unsigned int rlLoadTextureDepth(int width, int height, bool useRenderBuffer)
         TRACELOG(RL_LOG_INFO, "TEXTURE: [ID %i] Depth renderbuffer loaded successfully (%i bits)", id, (RLGL.ExtSupported.maxDepthBits >= 24)? RLGL.ExtSupported.maxDepthBits : 16);
     }
 #elif defined(GRAPHICS_API_OPENGL_SOFTWARE)
-    // NOTE: Renderbuffers are the same type of object as textures in rlsw
+    // NOTE: Renderbuffers are the same type of object as textures.png in rlsw
     // WARNING: Ensure that the depth format is the one specified at rlsw compilation
     glGenRenderbuffers(1, &id);
     glBindRenderbuffer(GL_RENDERBUFFER, id);
@@ -3560,7 +3560,7 @@ unsigned int rlLoadTextureCubemap(const void *data, int size, int format, int mi
                 mipSize /= 2;
                 if (data != NULL) dataPtr += dataSize*6; // Increment data pointer to next mipmap
 
-                // Security check for NPOT textures
+                // Security check for NPOT textures.png
                 if (mipSize < 1) mipSize = 1;
 
                 dataSize = rlGetPixelDataSize(mipSize, mipSize, format);
@@ -3839,7 +3839,7 @@ unsigned char *rlReadScreenPixels(int width, int height)
 // Framebuffer management (fbo)
 //-----------------------------------------------------------------------------------------
 // Load a framebuffer to be used for rendering
-// NOTE: No textures attached
+// NOTE: No textures.png attached
 unsigned int rlLoadFramebuffer(void)
 {
     unsigned int fboId = 0;
@@ -3925,7 +3925,7 @@ bool rlFramebufferComplete(unsigned int id)
 }
 
 // Unload framebuffer from GPU memory
-// NOTE: All attached textures/cubemaps/renderbuffers are also deleted
+// NOTE: All attached textures.png/cubemaps/renderbuffers are also deleted
 void rlUnloadFramebuffer(unsigned int id)
 {
 #if (defined(GRAPHICS_API_OPENGL_33) || defined(GRAPHICS_API_OPENGL_ES2) || defined(GRAPHICS_API_OPENGL_SOFTWARE))

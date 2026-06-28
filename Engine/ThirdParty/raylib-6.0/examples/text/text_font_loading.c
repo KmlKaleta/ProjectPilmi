@@ -40,7 +40,7 @@ int main(void)
     // NOTE: raylib supports UTF-8 encoding, following list is actually codified as UTF8 internally
     const char msg[256] = "!#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHI\nJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmn\nopqrstuvwxyz{|}~¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓ\nÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷\nøùúûüýþÿ";
 
-    // NOTE: Textures/Fonts MUST be loaded after Window initialization (OpenGL context is required)
+    // NOTE: Textures.png/Fonts MUST be loaded after Window initialization (OpenGL context is required)
 
     // BMFont (AngelCode) : Font data and image atlas have been generated using external program
     Font fontBm = LoadFont("resources/pixantiqua.fnt"); // Requires "resources/pixantiqua.png"

@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - sprite button
+*   raylib [textures.png] example - sprite button
 *
 *   Example complexity rating: [★★☆☆] 2/4
 *
@@ -27,7 +27,7 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - sprite button");
+    InitWindow(screenWidth, screenHeight, "raylib [textures.png] example - sprite button");
 
     InitAudioDevice();      // Initialize audio device
 

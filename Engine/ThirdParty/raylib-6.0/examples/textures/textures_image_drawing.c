@@ -1,10 +1,10 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - image drawing
+*   raylib [textures.png] example - image drawing
 *
 *   Example complexity rating: [★★☆☆] 2/4
 *
-*   NOTE: Images are loaded in CPU memory (RAM); textures are loaded in GPU memory (VRAM)
+*   NOTE: Images are loaded in CPU memory (RAM); textures.png are loaded in GPU memory (VRAM)
 *
 *   Example originally created with raylib 1.4, last time updated with raylib 1.4
 *
@@ -27,9 +27,9 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - image drawing");
+    InitWindow(screenWidth, screenHeight, "raylib [textures.png] example - image drawing");
 
-    // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
+    // NOTE: Textures.png MUST be loaded after Window initialization (OpenGL context is required)
 
     Image cat = LoadImage("resources/cat.png");             // Load image in CPU memory (RAM)
     ImageCrop(&cat, (Rectangle){ 100, 10, 280, 380 });      // Crop an image piece

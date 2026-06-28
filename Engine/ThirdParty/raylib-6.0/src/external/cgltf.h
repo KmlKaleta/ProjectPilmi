@@ -6453,7 +6453,7 @@ static int cgltf_parse_json_root(cgltf_options* options, jsmntok_t const* tokens
 		{
 			i = cgltf_parse_json_images(options, tokens, i + 1, json_chunk, out_data);
 		}
-		else if (cgltf_json_strcmp(tokens + i, json_chunk, "textures") == 0)
+		else if (cgltf_json_strcmp(tokens + i, json_chunk, "textures.png") == 0)
 		{
 			i = cgltf_parse_json_textures(options, tokens, i + 1, json_chunk, out_data);
 		}

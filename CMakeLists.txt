@@ -19,67 +19,8 @@ project("sheep_goes_devile")
 
 # Add libraries
 add_subdirectory(Engine)
-add_subdirectory(Editor)
 add_subdirectory(App)
+add_subdirectory(EditorDependency)
+add_subdirectory(Editor)
+add_subdirectory(SpriteEditor)
 
-
-if (PRODUCTION_BUILD)
-    # Where the executable should be placed
-    set_target_properties(Game PROPERTIES
-            RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Game"
-    )
-
-    # Where the executable should be placed
-    set_target_properties(Editor PROPERTIES
-            RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Game"
-    )
-
-    # Copy Resources folder after build
-    add_custom_command(TARGET Game POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${CMAKE_SOURCE_DIR}/Resources"
-            "$<TARGET_FILE_DIR:Game>/Resources"
-    )
-
-    # Copy Resources folder after build
-    add_custom_command(TARGET Editor POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy_directory
-            "${CMAKE_SOURCE_DIR}/Resources"
-            "$<TARGET_FILE_DIR:Editor>/Resources"
-    )
-endif ()
-
-
-if (MSVC) # If using the VS compiler...
-
-    target_compile_definitions(engine PUBLIC _CRT_SECURE_NO_WARNINGS)
-
-    if (PRODUCTION_BUILD)
-        #YOU CAN REMOVE THE CONSOLE WITH THIS LINE!
-        set_target_properties(Game PROPERTIES
-                LINK_FLAGS "/SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup" #no console
-        )
-
-        set_target_properties(Editor PROPERTIES
-                LINK_FLAGS "/SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup" #no console
-        )
-    endif ()
-
-elseif (MINGW) # Windows / MinGW GCC/Clang
-    if (PRODUCTION_BUILD)
-        # Remove console on Windows under MinGW
-        target_link_options(Game PRIVATE
-                $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:GNU>>:-mwindows>
-        )
-
-        target_link_options(Editor PRIVATE
-                $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:GNU>>:-mwindows>
-        )
-    endif ()
-
-elseif (APPLE OR UNIX) # macOS / Linux
-    if (PRODUCTION_BUILD)
-        target_link_options(Game PRIVATE -s)
-        target_link_options(Editor PRIVATE -s)
-    endif ()
-endif ()

@@ -8,6 +8,6 @@
 void EditorApplicationUI::Draw(EditorApplication& editor) const
 {
     HierarchyUI.Draw(editor.Hierarchy, editor.Selection, editor.Assets);
-    SceneUI.Draw();
+    SceneUI.Draw(editor.Assets.Levels);
     ComponentsUI.Draw(editor.Selection, editor.Assets);
 }

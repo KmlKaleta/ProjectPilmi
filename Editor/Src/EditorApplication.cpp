@@ -6,11 +6,14 @@
 
 bool EditorApplication::Init()
 {
+    Assets.LoadAll();
+    Level.Init();
     return true;
 }
 
 bool EditorApplication::Update()
 {
+    Level.Update(Assets);
     return true;
 }
 

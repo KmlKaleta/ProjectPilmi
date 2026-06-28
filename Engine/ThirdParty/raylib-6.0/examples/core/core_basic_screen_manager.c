@@ -145,7 +145,7 @@ int main(void)
     // De-Initialization
     //--------------------------------------------------------------------------------------
 
-    // TODO: Unload all loaded data (textures, fonts, audio) here!
+    // TODO: Unload all loaded data (textures.png, fonts, audio) here!
 
     CloseWindow();        // Close window and OpenGL context
     //--------------------------------------------------------------------------------------

@@ -1208,9 +1208,9 @@ void UnloadModel(Model model)
     for (int i = 0; i < model.meshCount; i++) UnloadMesh(model.meshes[i]);
 
     // Unload materials maps
-    // NOTE: As the user could be sharing shaders and textures between models,
+    // NOTE: As the user could be sharing shaders and textures.png between models,
     // don't unload the material but free its maps,
-    // the user is responsible for freeing models shaders and textures
+    // the user is responsible for freeing models shaders and textures.png
     for (int i = 0; i < model.materialCount; i++) RL_FREE(model.materials[i].maps);
 
     // Unload arrays
@@ -2227,7 +2227,7 @@ Material LoadMaterialDefault(void)
     return material;
 }
 
-// Check if a material is valid (map textures loaded in GPU)
+// Check if a material is valid (map textures.png loaded in GPU)
 bool IsMaterialValid(Material material)
 {
     bool result = false;
@@ -2235,7 +2235,7 @@ bool IsMaterialValid(Material material)
     if ((material.maps != NULL) && // Validate material contain some map
         (material.shader.id > 0)) result = true; // Validate material shader is valid
 
-    // NOTE: Checking if available maps contain loaded textures does not determine if
+    // NOTE: Checking if available maps contain loaded textures.png does not determine if
     // a material is valid, there can be maps without a texture assigned, only properties
 
     return result;
@@ -3394,7 +3394,7 @@ Mesh GenMeshCubicmap(Image cubicmap, Vector3 cubeSize)
     Vector3 n6 = { 0.0f, 0.0f, 1.0f };
 
     // NOTE: Using texture rectangles to define different
-    // textures for top-bottom-front-back-right-left (6)
+    // textures.png for top-bottom-front-back-right-left (6)
     typedef struct RectangleF {
         float x;
         float y;
@@ -5403,8 +5403,8 @@ static Model LoadGLTF(const char *fileName)
 
         FEATURES:
           - Supports .gltf and .glb files
-          - Supports embedded (base64) or external textures
-          - Supports PBR metallic/roughness flow, loads material textures, values and colors
+          - Supports embedded (base64) or external textures.png
+          - Supports PBR metallic/roughness flow, loads material textures.png, values and colors
                      PBR specular/glossiness flow and extended texture flows not supported
           - Supports multiple meshes per model (every primitives is loaded as a separate mesh)
           - Supports basic animations
@@ -5467,7 +5467,7 @@ static Model LoadGLTF(const char *fileName)
         TRACELOG(LOG_INFO, "    > Materials count: %i (+1 default)", data->materials_count);
         TRACELOG(LOG_DEBUG, "    > Buffers count: %i", data->buffers_count);
         TRACELOG(LOG_DEBUG, "    > Images count: %i", data->images_count);
-        TRACELOG(LOG_DEBUG, "    > Textures count: %i", data->textures_count);
+        TRACELOG(LOG_DEBUG, "    > Textures.png count: %i", data->textures_count);
 
         // Force reading data buffers (fills buffer_view->buffer->data)
         // NOTE: If an uri is defined to base64 data or external path, it's automatically loaded

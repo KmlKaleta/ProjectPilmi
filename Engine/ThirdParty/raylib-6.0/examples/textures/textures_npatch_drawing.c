@@ -1,10 +1,10 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - npatch drawing
+*   raylib [textures.png] example - npatch drawing
 *
 *   Example complexity rating: [★★★☆] 3/4
 *
-*   NOTE: Images are loaded in CPU memory (RAM); textures are loaded in GPU memory (VRAM)
+*   NOTE: Images are loaded in CPU memory (RAM); textures.png are loaded in GPU memory (VRAM)
 *
 *   Example originally created with raylib 2.0, last time updated with raylib 2.5
 *
@@ -29,9 +29,9 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - npatch drawing");
+    InitWindow(screenWidth, screenHeight, "raylib [textures.png] example - npatch drawing");
 
-    // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
+    // NOTE: Textures.png MUST be loaded after Window initialization (OpenGL context is required)
     Texture2D nPatchTexture = LoadTexture("resources/ninepatch_button.png");
 
     Vector2 mousePosition = { 0 };

@@ -32,7 +32,7 @@ int main(void)
 
     InitWindow(screenWidth, screenHeight, "raylib [text] example - sprite fonts");
 
-    // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
+    // NOTE: Textures.png MUST be loaded after Window initialization (OpenGL context is required)
     Font fonts[MAX_FONTS] = { 0 };
 
     fonts[0] = LoadFont("resources/sprite_fonts/alagard.png");

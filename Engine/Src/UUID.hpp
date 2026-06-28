@@ -27,12 +27,12 @@ struct UUID
 
 inline void to_json(JSON& j, const UUID& id)
 {
-    j["value"] = id;
+    j = id.Value;
 }
 
 inline void from_json(const JSON& j, UUID& id)
 {
-    ReadJsonValue(id, j, "value", UUID());
+    ReadJsonValue(id.Value, j, uint64_t());
 }
 
 template<>

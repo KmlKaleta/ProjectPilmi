@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../SpriteData.h"
+#include "../../../Engine/Src/SpriteData.h"
 
 struct AssetManager;
 struct EditorSceneOld;

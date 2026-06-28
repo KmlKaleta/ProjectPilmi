@@ -56,7 +56,7 @@
 *
 *       #define SUPPORT_COMPRESSION_API     1
 *           Support CompressData() and DecompressData() functions, those functions use zlib implementation
-*           provided by stb_image and stb_image_write libraries, so, those libraries must be enabled on textures module
+*           provided by stb_image and stb_image_write libraries, so, those libraries must be enabled on textures.png module
 *           for linkage
 *
 *       #define SUPPORT_AUTOMATION_EVENTS   1
@@ -879,7 +879,7 @@ void ClearBackground(Color color)
 // Setup canvas (framebuffer) to start drawing
 void BeginDrawing(void)
 {
-    // WARNING: Previously to BeginDrawing() other render textures drawing could happen,
+    // WARNING: Previously to BeginDrawing() other render textures.png drawing could happen,
     // consequently the measure for update vs draw is not accurate (only the total frame time is accurate)
 
     CORE.Time.current = GetTime();      // Number of elapsed seconds since InitTimer()

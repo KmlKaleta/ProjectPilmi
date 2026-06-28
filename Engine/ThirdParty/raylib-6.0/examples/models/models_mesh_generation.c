@@ -76,7 +76,7 @@ int main(void)
 
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
         {
-            currentModel = (currentModel + 1)%NUM_MODELS; // Cycle between the textures
+            currentModel = (currentModel + 1)%NUM_MODELS; // Cycle between the textures.png
         }
 
         if (IsKeyPressed(KEY_RIGHT))

@@ -146,7 +146,7 @@ int main(void)
 
         EndTextureMode();
 
-        // Draw both views render textures to the screen side by side
+        // Draw both views render textures.png to the screen side by side
         BeginDrawing();
             ClearBackground(BLACK);
 

@@ -84,7 +84,7 @@
 //----------------------------------------------------------------------------------
 // raylib example info struct
 typedef struct {
-    char category[16];      // Example category: core, shapes, textures, text, models, shaders, audio
+    char category[16];      // Example category: core, shapes, textures.png, text, models, shaders, audio
     char name[128];         // Example name: <category>_name_part
     int stars;              // Example stars count: ★☆☆☆
     char verCreated[12];    // Example raylib creation version
@@ -152,7 +152,7 @@ typedef enum {
     OP_TESTLOG  = 9,        // Process available examples logs to generate report
 } rlExampleOperation;
 
-static const char *exCategories[REXM_MAX_EXAMPLE_CATEGORIES] = { "core", "shapes", "textures", "text", "models", "shaders", "audio" };
+static const char *exCategories[REXM_MAX_EXAMPLE_CATEGORIES] = { "core", "shapes", "textures.png", "text", "models", "shaders", "audio" };
 
 // Paths required for examples management
 // NOTE: Paths can be provided with environment variables
@@ -171,7 +171,7 @@ static const char *exVSProjectSolutionFile = NULL; // Env REXM_EXAMPLES_VS2022_S
 static int UpdateRequiredFiles(void);
 
 // Load examples collection information
-// NOTE 1: Load by category: "ALL", "core", "shapes", "textures", "text", "models", "shaders", audio"
+// NOTE 1: Load by category: "ALL", "core", "shapes", "textures.png", "text", "models", "shaders", audio"
 // NOTE 2: Sort examples list on request flag
 static rlExampleInfo *LoadExampleData(const char *filter, bool sort, int *exCount);
 static void UnloadExampleData(rlExampleInfo *exInfo);
@@ -584,7 +584,7 @@ int main(int argc, char *argv[])
                 int nextCategoryIndex = 0;
                 if (TextIsEqual(exCategory, "core")) nextCategoryIndex = 1;
                 else if (TextIsEqual(exCategory, "shapes")) nextCategoryIndex = 2;
-                else if (TextIsEqual(exCategory, "textures")) nextCategoryIndex = 3;
+                else if (TextIsEqual(exCategory, "textures.png")) nextCategoryIndex = 3;
                 else if (TextIsEqual(exCategory, "text")) nextCategoryIndex = 4;
                 else if (TextIsEqual(exCategory, "models")) nextCategoryIndex = 5;
                 else if (TextIsEqual(exCategory, "shaders")) nextCategoryIndex = 6;
@@ -1035,7 +1035,7 @@ int main(int argc, char *argv[])
                         if (nextCatIndex > (REXM_MAX_EXAMPLE_CATEGORIES - 1)) nextCatIndex = -1; // EOF
 
                         // Find position to add new example on list, just before the following category
-                        // Category order: core, shapes, textures, text, models, shaders, audio
+                        // Category order: core, shapes, textures.png, text, models, shaders, audio
                         int exListNextCatIndex = -1;
                         if (nextCatIndex != -1) exListNextCatIndex = TextFindIndex(exList, TextFormat("\n%s", exCategories[nextCatIndex])) + 1;
                         else exListNextCatIndex = exListLen; // EOF
@@ -1209,7 +1209,7 @@ int main(int argc, char *argv[])
                 // Validate: Example naming conventions: <category>/<category>_example_name, valid category
                 if ((TextFindIndex(exInfo->name, exInfo->category) == -1) ||
                     (!TextIsEqual(exInfo->category, "core") && !TextIsEqual(exInfo->category, "shapes") &&
-                     !TextIsEqual(exInfo->category, "textures") && !TextIsEqual(exInfo->category, "text") &&
+                     !TextIsEqual(exInfo->category, "textures.png") && !TextIsEqual(exInfo->category, "text") &&
                      !TextIsEqual(exInfo->category, "models") && !TextIsEqual(exInfo->category, "shaders") &&
                      !TextIsEqual(exInfo->category, "audio") && !TextIsEqual(exInfo->category, "others"))) exInfo->status |= VALID_INVALID_CATEGORY;
 
@@ -1887,7 +1887,7 @@ int main(int argc, char *argv[])
             printf("COMMANDS:\n\n");
             printf("    create <new_example_name>     : Creates an empty example, from internal template\n");
             printf("    add <example_name>            : Add existing example, category extracted from name\n");
-            printf("                                    Supported categories: core, shapes, textures, text, models\n");
+            printf("                                    Supported categories: core, shapes, textures.png, text, models\n");
             printf("    rename <old_examples_name> <new_example_name> : Rename an existing example\n");
             printf("    remove <example_name>         : Remove an existing example\n");
             printf("    build <example_name>          : Build example for Desktop and Web platforms\n");
@@ -1998,7 +1998,7 @@ static int UpdateRequiredFiles(void)
     mkwIndex += sprintf(mkwTextUpdated + mkwListStartIndex + mkwIndex, "all: $(CORE) $(SHAPES) $(TEXT) $(TEXTURES) $(MODELS) $(SHADERS) $(AUDIO)\n\n");
     mkwIndex += sprintf(mkwTextUpdated + mkwListStartIndex + mkwIndex, "core: $(CORE)\n");
     mkwIndex += sprintf(mkwTextUpdated + mkwListStartIndex + mkwIndex, "shapes: $(SHAPES)\n");
-    mkwIndex += sprintf(mkwTextUpdated + mkwListStartIndex + mkwIndex, "textures: $(TEXTURES)\n");
+    mkwIndex += sprintf(mkwTextUpdated + mkwListStartIndex + mkwIndex, "textures.png: $(TEXTURES)\n");
     mkwIndex += sprintf(mkwTextUpdated + mkwListStartIndex + mkwIndex, "text: $(TEXT)\n");
     mkwIndex += sprintf(mkwTextUpdated + mkwListStartIndex + mkwIndex, "models: $(MODELS)\n");
     mkwIndex += sprintf(mkwTextUpdated + mkwListStartIndex + mkwIndex, "shaders: $(SHADERS)\n");
@@ -2121,11 +2121,11 @@ static int UpdateRequiredFiles(void)
             mdIndex += sprintf(mdTextUpdated + mdListStartIndex + mdIndex,
                 "Examples using raylib shapes drawing functionality, provided by raylib [shapes](../src/rshapes.c) module.\n\n");
         }
-        else if (i == 2)    // "textures"
+        else if (i == 2)    // "textures.png"
         {
-            mdIndex += sprintf(mdTextUpdated + mdListStartIndex + mdIndex, TextFormat("\n### category: textures [%i]\n\n", exCollectionCount));
+            mdIndex += sprintf(mdTextUpdated + mdListStartIndex + mdIndex, TextFormat("\n### category: textures.png [%i]\n\n", exCollectionCount));
             mdIndex += sprintf(mdTextUpdated + mdListStartIndex + mdIndex,
-                "Examples using raylib textures functionality, including image/textures loading/generation and drawing, provided by raylib [textures](../src/rtextures.c) module.\n\n");
+                "Examples using raylib textures.png functionality, including image/textures.png loading/generation and drawing, provided by raylib [textures.png](../src/rtextures.c) module.\n\n");
         }
         else if (i == 3)    // "text"
         {
@@ -2278,7 +2278,7 @@ static rlExampleInfo *LoadExampleData(const char *filter, bool sort, int *exCoun
             if ((lines[i][0] != '#') &&
                 ((lines[i][0] == 'c') ||      // core
                  (lines[i][0] == 's') ||      // shapes, shaders
-                 (lines[i][0] == 't') ||      // textures, text
+                 (lines[i][0] == 't') ||      // textures.png, text
                  (lines[i][0] == 'm') ||      // models
                  (lines[i][0] == 'a')))       // audio
             {
@@ -2705,7 +2705,7 @@ static int AddVSProjectToSolution(const char *slnFile, const char *projFile, con
         TextFormat("\t\t{%s} = {6C82BAAE-BDDF-457D-8FA8-7E2490B07035}\n", uuid));
     else if (strcmp(category, "shapes") == 0) offsetIndex += sprintf(slnTextUpdated + offsetIndex,
         TextFormat("\t\t{%s} = {278D8859-20B1-428F-8448-064F46E1F021}\n", uuid));
-    else if (strcmp(category, "textures") == 0) offsetIndex += sprintf(slnTextUpdated + offsetIndex,
+    else if (strcmp(category, "textures.png") == 0) offsetIndex += sprintf(slnTextUpdated + offsetIndex,
         TextFormat("\t\t{%s} = {DA049009-21FF-4AC0-84E4-830DD1BCD0CE}\n", uuid));
     else if (strcmp(category, "text") == 0) offsetIndex += sprintf(slnTextUpdated + offsetIndex,
         TextFormat("\t\t{%s} = {8D3C83B7-F1E0-4C2E-9E34-EE5F6AB2502A}\n", uuid));
@@ -2903,7 +2903,7 @@ static void UpdateWebMetadata(const char *exHtmlPath, const char *exFilePath)
         char *exHtmlTextUpdated[6] = { 0 }; // Pointers to multiple updated text versions
 
         char exName[64] = { 0 };            // Example name: fileName without extension
-        char exCategory[16] = { 0 };        // Example category: core, shapes, text, textures, models, audio, shaders
+        char exCategory[16] = { 0 };        // Example category: core, shapes, text, textures.png, models, audio, shaders
         char exDescription[256] = { 0 };    // Example description: example text line #3
         char exTitle[64] = { 0 };           // Example title: fileName without extension, replacing underscores by spaces
 

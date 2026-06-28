@@ -41,7 +41,7 @@ int main(void)
     const char msg2[50] = "...and this is ANOTHER CUSTOM font...";
     const char msg3[50] = "...and a THIRD one! GREAT! :D";
 
-    // NOTE: Textures/Fonts MUST be loaded after Window initialization (OpenGL context is required)
+    // NOTE: Textures.png/Fonts MUST be loaded after Window initialization (OpenGL context is required)
     Font font1 = LoadFont("resources/custom_mecha.png");          // Font loading
     Font font2 = LoadFont("resources/custom_alagard.png");        // Font loading
     Font font3 = LoadFont("resources/custom_jupiter_crash.png");  // Font loading

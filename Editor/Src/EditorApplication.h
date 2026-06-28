@@ -6,12 +6,14 @@
 #define SHEEP_GOES_DEVILE_EDITOR_APPLICATION_H
 #include "AssetManager.h"
 #include "EditorHierarchy.h"
+#include "EditorLevel.h"
 #include "EntitySelection.h"
 
 struct EditorApplication
 {
     EntitySelection Selection;
     EditorHierarchy Hierarchy;
+    EditorLevel Level;
     AssetManager Assets;
 
     bool Init();

@@ -1,6 +1,6 @@
 /**********************************************************************************************
 *
-*   rtextures - Basic functions to load and draw textures
+*   rtextures - Basic functions to load and draw textures.png
 *
 *   CONFIGURATION:
 *       #define SUPPORT_MODULE_RTEXTURES    1
@@ -167,7 +167,7 @@
     #define RLTEXGPU_SHOW_LOG_INFO
     #define RLTEXGPU_IMPLEMENTATION
     #include "external/rltexgpu.h"
-// NOTE: Used to read compressed textures data (multiple formats support)
+// NOTE: Used to read compressed textures.png data (multiple formats support)
     #if defined(__GNUC__) // GCC and Clang
         #pragma GCC diagnostic pop
     #endif
@@ -1146,7 +1146,7 @@ Image ImageCopy(Image image)
         width /= 2;
         height /= 2;
 
-        // Security check for NPOT textures
+        // Security check for NPOT textures.png
         if (width < 1) width = 1;
         if (height < 1) height = 1;
     }
@@ -2371,7 +2371,7 @@ void ImageMipmaps(Image *image)
         if (mipWidth != 1) mipWidth /= 2;
         if (mipHeight != 1) mipHeight /= 2;
 
-        // Security check for NPOT textures
+        // Security check for NPOT textures.png
         if (mipWidth < 1) mipWidth = 1;
         if (mipHeight < 1) mipHeight = 1;
 
@@ -2404,7 +2404,7 @@ void ImageMipmaps(Image *image)
             mipWidth /= 2;
             mipHeight /= 2;
 
-            // Security check for NPOT textures
+            // Security check for NPOT textures.png
             if (mipWidth < 1) mipWidth = 1;
             if (mipHeight < 1) mipHeight = 1;
 
@@ -4212,7 +4212,7 @@ TextureCubemap LoadTextureCubemap(Image image, int layout)
             }
 
             // Convert image data to 6 faces in a vertical column, that's the optimum layout for loading
-            // NOTE: Image formatting does not work with compressed textures
+            // NOTE: Image formatting does not work with compressed textures.png
             faces = GenImageColor(size, size*6, MAGENTA);
             ImageFormat(&faces, image.format);
 
@@ -4363,8 +4363,8 @@ void UpdateTextureRec(Texture2D texture, Rectangle rec, const void *pixels)
 // Generate GPU mipmaps for a texture
 void GenTextureMipmaps(Texture2D *texture)
 {
-    // NOTE: NPOT textures support check inside function
-    // On WebGL (OpenGL ES 2.0) NPOT textures support is limited
+    // NOTE: NPOT textures.png support check inside function
+    // On WebGL (OpenGL ES 2.0) NPOT textures.png support is limited
     rlGenTextureMipmaps(texture->id, texture->width, texture->height, texture->format, &texture->mipmaps);
 }
 
@@ -4441,7 +4441,7 @@ void SetTextureWrap(Texture2D texture, int wrap)
     {
         case TEXTURE_WRAP_REPEAT:
         {
-            // NOTE: It only works if NPOT textures are supported, i.e. OpenGL ES 2.0 could not support it
+            // NOTE: It only works if NPOT textures.png are supported, i.e. OpenGL ES 2.0 could not support it
             rlTextureParameters(texture.id, RL_TEXTURE_WRAP_S, RL_TEXTURE_WRAP_REPEAT);
             rlTextureParameters(texture.id, RL_TEXTURE_WRAP_T, RL_TEXTURE_WRAP_REPEAT);
         } break;

@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - bunnymark
+*   raylib [textures.png] example - bunnymark
 *
 *   Example complexity rating: [★★★☆] 3/4
 *
@@ -42,7 +42,7 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - bunnymark");
+    InitWindow(screenWidth, screenHeight, "raylib [textures.png] example - bunnymark");
 
     // Load bunny texture
     Texture2D texBunny = LoadTexture("resources/raybunny.png");

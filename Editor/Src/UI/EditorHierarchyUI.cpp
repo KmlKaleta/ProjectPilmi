@@ -5,36 +5,77 @@
 #include "AssetManager.h"
 #include "imgui.h"
 #include "../EntitySelection.h"
+#include "../EditorHierarchy.h"
 
 
 void EditorHierarchyUI::Draw(EditorHierarchy& hierarchy, EntitySelection& selection, AssetManager& assetManager) const
 {
     ImGui::Begin("Hierarchy");
-    if (ImGui::Button("Add Entity"))
+
+    EntityStorage& storage = assetManager.Levels.CurrentLevel().Entities;
+
+    if (ImGui::Button("Add"))
     {
-        const auto entity = assetManager.Levels.Entities.CreateEntity(assetManager.UUIDFactory);
-        assetManager.Levels.Entities.Registry.get<TagComponent>(entity).Value = "Entity";
+        const auto entity = storage.CreateEntity(assetManager.UUIDFactory);
+        storage.Registry.get<TagComponent>(entity).Value = "Entity";
     }
 
     ImGui::SameLine();
 
-    if (ImGui::Button("Delete Entity"))
+    if (ImGui::Button("Delete") && selection.SelectedEntity != entt::null)
     {
-        assetManager.Levels.Entities.Registry.destroy(selection.SelectedEntity);
+        storage.Registry.destroy(selection.SelectedEntity);
+        selection.SelectedEntity = entt::null;
+    }
+
+    ImGui::SameLine();
+
+    if (ImGui::Button("Copy") && selection.SelectedEntity != entt::null)
+    {
+        entt::entity copied = storage.CreateEntity(assetManager.UUIDFactory);
+        storage.Registry.get<TagComponent>(copied).Value = storage.Registry.get<TagComponent>(selection.SelectedEntity).
+                Value;
+
+        const uint32_t order = storage.Registry.get<OrderComponent>(selection.SelectedEntity).Value + 1;
+        for (const auto e : storage.Registry.view<OrderComponent>())
+        {
+            if (auto& orderComponent = storage.Registry.get<OrderComponent>(e); orderComponent.Value >= order)
+            {
+                orderComponent.Value++;
+            }
+        }
+
+        storage.Registry.get<OrderComponent>(copied).Value = order;
+
+#define X(e, t) if (t * component = storage.Registry.try_get<t>(selection.SelectedEntity)) \
+        { \
+            storage.Registry.emplace<t>(copied, *component); \
+        }
+        AdditionalComponentNamesMacro(X)
+#undef X
+
+#define X(e, t) if (storage.Registry.all_of<t>(selection.SelectedEntity)) \
+        { \
+            storage.Registry.emplace<t>(copied); \
+        }
+        TagComponentNamesMacro(X)
+#undef X
     }
 
     ImGui::Separator();
 
-    const auto view = assetManager.Levels.Entities.Registry.view<const TagComponent, OrderComponent>(
+    const auto view = storage.Registry.view<const TagComponent, OrderComponent>(
         entt::exclude<EntityGroupChildComponent>);
-    std::vector order(view.begin(), view.end());
+    hierarchy.Order.assign(view.begin(), view.end());
 
-    std::sort(order.begin(), order.end(), [&](const auto& a, const auto& b)
+    std::sort(hierarchy.Order.begin(), hierarchy.Order.end(), [&](const auto& a, const auto& b)
     {
         return view.get<OrderComponent>(a).Value < view.get<OrderComponent>(b).Value;
     });
 
-    for (auto entity : order)
+    ImGui::BeginChild("hierarchy_child");
+
+    for (auto entity : hierarchy.Order)
     {
         const auto& [Tag] = view.get<TagComponent>(entity);
         auto& [Order] = view.get<OrderComponent>(entity);
@@ -72,8 +113,7 @@ void EditorHierarchyUI::Draw(EditorHierarchy& hierarchy, EntitySelection& select
 
         ImGui::SameLine();
 
-        if (const EntityGroupComponent* group = assetManager.Levels.Entities.Registry.try_get<
-            EntityGroupComponent>(entity))
+        if (const EntityGroupComponent* group = storage.Registry.try_get<EntityGroupComponent>(entity))
         {
             if (ImGui::CollapsingHeader(name))
             {
@@ -85,6 +125,8 @@ void EditorHierarchyUI::Draw(EditorHierarchy& hierarchy, EntitySelection& select
 
         ImGui::PopID();
     }
+
+    ImGui::EndChild();
 
     ImGui::End();
 }

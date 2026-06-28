@@ -6,6 +6,31 @@ add_executable(game app.rc)
 
 set_property(TARGET game PROPERTY CXX_STANDARD 17)
 
+if (MSVC) # If using the VS compiler...
+
+    target_compile_definitions(game PUBLIC _CRT_SECURE_NO_WARNINGS)
+
+    if (PRODUCTION_BUILD)
+        #YOU CAN REMOVE THE CONSOLE WITH THIS LINE!
+        set_target_properties(game PROPERTIES
+                LINK_FLAGS "/SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup" #no console
+        )
+    endif ()
+
+elseif (MINGW) # Windows / MinGW GCC/Clang
+    if (PRODUCTION_BUILD)
+        # Remove console on Windows under MinGW
+        target_link_options(game PRIVATE
+                $<$<AND:$<CONFIG:Release>,$<CXX_COMPILER_ID:GNU>>:-mwindows>
+        )
+    endif ()
+
+elseif (APPLE OR UNIX) # macOS / Linux
+    if (PRODUCTION_BUILD)
+        target_link_options(game PRIVATE -s)
+    endif ()
+endif ()
+
 target_compile_definitions(game PRIVATE
         $<$<CONFIG:Release>:PRODUCTION_BUILD=1>
         $<$<NOT:$<CONFIG:Release>>:PRODUCTION_BUILD=0>

@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - clipboard image
+*   raylib [textures.png] example - clipboard image
 *
 *   Example complexity rating: [★☆☆☆] 1/4
 *
@@ -34,7 +34,7 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - clipboard image");
+    InitWindow(screenWidth, screenHeight, "raylib [textures.png] example - clipboard image");
 
     TextureCollection collection[MAX_TEXTURE_COLLECTION] = { 0 };
     int currentCollectionIndex = 0;
@@ -49,7 +49,7 @@ int main(void)
         //----------------------------------------------------------------------------------
         if (IsKeyPressed(KEY_R))    // Reset image collection
         {
-            // Unload textures to avoid memory leaks
+            // Unload textures.png to avoid memory leaks
             for (int i = 0; i < MAX_TEXTURE_COLLECTION; i++) UnloadTexture(collection[i].texture);
 
             currentCollectionIndex = 0;

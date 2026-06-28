@@ -33,7 +33,7 @@ int main(void)
 
     const char msg[50] = "Loaded Font";
 
-    // NOTE: Textures/Fonts MUST be loaded after Window initialization (OpenGL context is required)
+    // NOTE: Textures.png/Fonts MUST be loaded after Window initialization (OpenGL context is required)
 
     // TTF Font loading with custom generation parameters
     Font font = LoadFontEx("resources/KAISG.ttf", 96, 0, 0);

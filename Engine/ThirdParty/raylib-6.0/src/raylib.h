@@ -913,14 +913,14 @@ typedef enum {
 
 // Color blending modes (pre-defined)
 typedef enum {
-    BLEND_ALPHA = 0,                // Blend textures considering alpha (default)
-    BLEND_ADDITIVE,                 // Blend textures adding colors
-    BLEND_MULTIPLIED,               // Blend textures multiplying colors
-    BLEND_ADD_COLORS,               // Blend textures adding colors (alternative)
-    BLEND_SUBTRACT_COLORS,          // Blend textures subtracting colors (alternative)
-    BLEND_ALPHA_PREMULTIPLY,        // Blend premultiplied textures considering alpha
-    BLEND_CUSTOM,                   // Blend textures using custom src/dst factors (use rlSetBlendFactors())
-    BLEND_CUSTOM_SEPARATE           // Blend textures using custom rgb/alpha separate src/dst factors (use rlSetBlendFactorsSeparate())
+    BLEND_ALPHA = 0,                // Blend textures.png considering alpha (default)
+    BLEND_ADDITIVE,                 // Blend textures.png adding colors
+    BLEND_MULTIPLIED,               // Blend textures.png multiplying colors
+    BLEND_ADD_COLORS,               // Blend textures.png adding colors (alternative)
+    BLEND_SUBTRACT_COLORS,          // Blend textures.png subtracting colors (alternative)
+    BLEND_ALPHA_PREMULTIPLY,        // Blend premultiplied textures.png considering alpha
+    BLEND_CUSTOM,                   // Blend textures.png using custom src/dst factors (use rlSetBlendFactors())
+    BLEND_CUSTOM_SEPARATE           // Blend textures.png using custom rgb/alpha separate src/dst factors (use rlSetBlendFactorsSeparate())
 } BlendMode;
 
 // Gesture
@@ -1344,7 +1344,7 @@ RLAPI bool CheckCollisionLines(Vector2 startPos1, Vector2 endPos1, Vector2 start
 RLAPI Rectangle GetCollisionRec(Rectangle rec1, Rectangle rec2);                                         // Get collision rectangle for two rectangles collision
 
 //------------------------------------------------------------------------------------
-// Texture Loading and Drawing Functions (Module: textures)
+// Texture Loading and Drawing Functions (Module: textures.png)
 //------------------------------------------------------------------------------------
 
 // Image loading functions
@@ -1631,7 +1631,7 @@ RLAPI Mesh GenMeshCubicmap(Image cubicmap, Vector3 cubeSize);                   
 // Material loading/unloading functions
 RLAPI Material *LoadMaterials(const char *fileName, int *materialCount);                    // Load materials from model file
 RLAPI Material LoadMaterialDefault(void);                                                   // Load default material (Supports: DIFFUSE, SPECULAR, NORMAL maps)
-RLAPI bool IsMaterialValid(Material material);                                              // Check if a material is valid (shader assigned, map textures loaded in GPU)
+RLAPI bool IsMaterialValid(Material material);                                              // Check if a material is valid (shader assigned, map textures.png loaded in GPU)
 RLAPI void UnloadMaterial(Material material);                                               // Unload material from GPU memory (VRAM)
 RLAPI void SetMaterialTexture(Material *material, int mapType, Texture2D texture);          // Set texture for a material map type (MATERIAL_MAP_DIFFUSE, MATERIAL_MAP_SPECULAR...)
 RLAPI void SetModelMeshMaterial(Model *model, int meshId, int materialId);                  // Set material for a mesh

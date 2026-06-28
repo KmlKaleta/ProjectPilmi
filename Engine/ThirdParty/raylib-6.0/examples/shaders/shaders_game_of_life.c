@@ -105,7 +105,7 @@ int main(void)
     const float resolution[2] = { (float)worldWidth, (float)worldHeight };
     SetShaderValue(shdrGameOfLife, resolutionLoc, resolution, SHADER_UNIFORM_VEC2);
 
-    // Define two textures: the current world and the previous world
+    // Define two textures.png: the current world and the previous world
     RenderTexture2D world1 = LoadRenderTexture(worldWidth, worldHeight);
     RenderTexture2D world2 = LoadRenderTexture(worldWidth, worldHeight);
     BeginTextureMode(world2);
@@ -116,7 +116,7 @@ int main(void)
     UpdateTextureRec(world2.texture, (Rectangle){ worldWidth/2.0f, worldHeight/2.0f, (float)(startPattern.width), (float)(startPattern.height) }, startPattern.data);
     UnloadImage(startPattern);
 
-    // Pointers to the two textures, to be swapped
+    // Pointers to the two textures.png, to be swapped
     RenderTexture2D *currentWorld = &world2;
     RenderTexture2D *previousWorld = &world1;
 

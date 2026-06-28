@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - srcrec dstrec
+*   raylib [textures.png] example - srcrec dstrec
 *
 *   Example complexity rating: [★★★☆] 3/4
 *
@@ -25,9 +25,9 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - srcrec dstrec");
+    InitWindow(screenWidth, screenHeight, "raylib [textures.png] example - srcrec dstrec");
 
-    // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
+    // NOTE: Textures.png MUST be loaded after Window initialization (OpenGL context is required)
 
     Texture2D scarfy = LoadTexture("resources/scarfy.png");        // Texture loading
 

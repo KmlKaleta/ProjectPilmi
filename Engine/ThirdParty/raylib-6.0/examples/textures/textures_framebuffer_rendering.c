@@ -1,6 +1,6 @@
 ﻿/*******************************************************************************************
 *
-*   raylib [textures] example - framebuffer rendering
+*   raylib [textures.png] example - framebuffer rendering
 *
 *   Example complexity rating: [★★☆☆] 2/4
 *
@@ -34,7 +34,7 @@ int main(void)
     const int screenHeight = 450;
     const int splitWidth = screenWidth/2;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - framebuffer rendering");
+    InitWindow(screenWidth, screenHeight, "raylib [textures.png] example - framebuffer rendering");
 
     // Camera to look at the 3D world
     Camera3D subjectCamera = { 0 };
@@ -52,7 +52,7 @@ int main(void)
     observerCamera.fovy = 45.0f;
     observerCamera.projection = CAMERA_PERSPECTIVE;
 
-    // Set up render textures
+    // Set up render textures.png
     RenderTexture2D observerTarget = LoadRenderTexture(splitWidth, screenHeight);
     Rectangle observerSource = { 0.0f, 0.0f, (float)observerTarget.texture.width, -(float)observerTarget.texture.height };
     Rectangle observerDest = { 0.0f, 0.0f, (float)splitWidth, (float)screenHeight };

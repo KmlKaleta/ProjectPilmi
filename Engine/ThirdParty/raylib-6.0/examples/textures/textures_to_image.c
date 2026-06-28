@@ -1,10 +1,10 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - to image
+*   raylib [textures.png] example - to image
 *
 *   Example complexity rating: [★☆☆☆] 1/4
 *
-*   NOTE: Images are loaded in CPU memory (RAM); textures are loaded in GPU memory (VRAM)
+*   NOTE: Images are loaded in CPU memory (RAM); textures.png are loaded in GPU memory (VRAM)
 *
 *   Example originally created with raylib 1.3, last time updated with raylib 4.0
 *
@@ -27,9 +27,9 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - to image");
+    InitWindow(screenWidth, screenHeight, "raylib [textures.png] example - to image");
 
-    // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
+    // NOTE: Textures.png MUST be loaded after Window initialization (OpenGL context is required)
 
     Image image = LoadImage("resources/raylib_logo.png");  // Load image data into CPU memory (RAM)
     Texture2D texture = LoadTextureFromImage(image);       // Image converted to texture, GPU memory (RAM -> VRAM)

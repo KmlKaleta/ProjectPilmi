@@ -1,10 +1,10 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - blend modes
+*   raylib [textures.png] example - blend modes
 *
 *   Example complexity rating: [★☆☆☆] 1/4
 *
-*   NOTE: Images are loaded in CPU memory (RAM); textures are loaded in GPU memory (VRAM)
+*   NOTE: Images are loaded in CPU memory (RAM); textures.png are loaded in GPU memory (VRAM)
 *
 *   Example originally created with raylib 3.5, last time updated with raylib 3.5
 *
@@ -29,9 +29,9 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - blend modes");
+    InitWindow(screenWidth, screenHeight, "raylib [textures.png] example - blend modes");
 
-    // NOTE: Textures MUST be loaded after Window initialization (OpenGL context is required)
+    // NOTE: Textures.png MUST be loaded after Window initialization (OpenGL context is required)
     Image bgImage = LoadImage("resources/cyberpunk_street_background.png");     // Loaded in CPU memory (RAM)
     Texture2D bgTexture = LoadTextureFromImage(bgImage);          // Image converted to texture, GPU memory (VRAM)
 

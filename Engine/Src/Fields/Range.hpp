@@ -51,13 +51,20 @@ private:
 template<typename T>
 void to_json(JSON& j, const Range<T>& r)
 {
-    j = r.Get();
+    j["value"] = r.Get();
+    j["min"] = r.Min;
+    j["max"] = r.Max;
 }
 
 template<typename T>
 void from_json(const JSON& j, Range<T>& r)
 {
-    r.Set(j.get<float>());
+    ReadJsonValue(r.Min, j, "min", r.Min);
+    ReadJsonValue(r.Max, j, "max", r.Max);
+
+    float value;
+    ReadJsonValue(value, j, "value", r.Min);
+    r.Set(value);
 }
 
 #endif //SHEEP_GOES_DEVILE_RANGE_HPP

@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - screen buffer
+*   raylib [textures.png] example - screen buffer
 *
 *   Example complexity rating: [★★☆☆] 2/4
 *
@@ -32,7 +32,7 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - screen buffer");
+    InitWindow(screenWidth, screenHeight, "raylib [textures.png] example - screen buffer");
 
     int imageWidth = screenWidth/SCALE_FACTOR;
     int imageHeight = screenHeight/SCALE_FACTOR;

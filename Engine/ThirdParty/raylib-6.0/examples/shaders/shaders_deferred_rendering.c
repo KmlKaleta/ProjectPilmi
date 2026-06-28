@@ -115,7 +115,7 @@ int main(void)
     // Activate the draw buffers for our framebufferId
     rlActiveDrawBuffers(3);
 
-    // Now we attach our textures to the framebufferId
+    // Now we attach our textures.png to the framebufferId
     rlFramebufferAttach(gBuffer.framebufferId, gBuffer.positionTextureId, RL_ATTACHMENT_COLOR_CHANNEL0, RL_ATTACHMENT_TEXTURE2D, 0);
     rlFramebufferAttach(gBuffer.framebufferId, gBuffer.normalTextureId, RL_ATTACHMENT_COLOR_CHANNEL1, RL_ATTACHMENT_TEXTURE2D, 0);
     rlFramebufferAttach(gBuffer.framebufferId, gBuffer.albedoSpecTextureId, RL_ATTACHMENT_COLOR_CHANNEL2, RL_ATTACHMENT_TEXTURE2D, 0);
@@ -130,7 +130,7 @@ int main(void)
 
     // Now we initialize the sampler2D uniform's in the deferred shader
     // We do this by setting the uniform's values to the texture units that
-    // we later bind our g-buffer textures to
+    // we later bind our g-buffer textures.png to
     rlEnableShader(deferredShader.id);
     int texUnitPosition = 0;
     int texUnitNormal = 1;
@@ -191,7 +191,7 @@ int main(void)
         if (IsKeyPressed(KEY_G)) { lights[2].enabled = !lights[2].enabled; }
         if (IsKeyPressed(KEY_B)) { lights[3].enabled = !lights[3].enabled; }
 
-        // Check key inputs to switch between G-buffer textures
+        // Check key inputs to switch between G-buffer textures.png
         if (IsKeyPressed(KEY_ONE)) mode = DEFERRED_POSITION;
         if (IsKeyPressed(KEY_TWO)) mode = DEFERRED_NORMAL;
         if (IsKeyPressed(KEY_THREE)) mode = DEFERRED_ALBEDO;
@@ -240,7 +240,7 @@ int main(void)
                     BeginMode3D(camera);
                         rlDisableColorBlend();
                         rlEnableShader(deferredShader.id);
-                            // Bind our g-buffer textures
+                            // Bind our g-buffer textures.png
                             // We are binding them to locations that we earlier set in sampler2D uniforms `gPosition`, `gNormal`,
                             // and `gAlbedoSpec`
                             rlActiveTextureSlot(texUnitPosition);
@@ -311,7 +311,7 @@ int main(void)
             }
 
             DrawText("Toggle lights keys: [Y][R][G][B]", 10, 40, 20, DARKGRAY);
-            DrawText("Switch G-buffer textures: [1][2][3][4]", 10, 70, 20, DARKGRAY);
+            DrawText("Switch G-buffer textures.png: [1][2][3][4]", 10, 70, 20, DARKGRAY);
 
             DrawFPS(10, 10);
 
@@ -329,7 +329,7 @@ int main(void)
     UnloadShader(deferredShader);
     UnloadShader(gbufferShader);
 
-    // Unload geometry buffer and all attached textures
+    // Unload geometry buffer and all attached textures.png
     rlUnloadFramebuffer(gBuffer.framebufferId);
     rlUnloadTexture(gBuffer.positionTextureId);
     rlUnloadTexture(gBuffer.normalTextureId);

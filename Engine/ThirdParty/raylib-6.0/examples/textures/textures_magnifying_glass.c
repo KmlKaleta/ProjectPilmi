@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib textures example - magnifying glass
+*   raylib textures.png example - magnifying glass
 *
 *   Example complexity rating: [★★★☆] 3/4
 *
@@ -28,7 +28,7 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - magnifying glass");
+    InitWindow(screenWidth, screenHeight, "raylib [textures.png] example - magnifying glass");
 
     Texture2D bunny = LoadTexture("resources/raybunny.png");
     Texture2D parrots = LoadTexture("resources/parrots.png");

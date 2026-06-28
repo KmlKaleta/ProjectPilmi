@@ -71,7 +71,7 @@ int main(void)
         //----------------------------------------------------------------------------------
         UpdateCamera(&camera, CAMERA_ORBITAL);
 
-        // Load new models/textures on drag&drop
+        // Load new models/textures.png on drag&drop
         if (IsFileDropped())
         {
             FilePathList droppedFiles = LoadDroppedFiles();

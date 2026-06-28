@@ -1,8 +1,8 @@
-﻿// //
-// // Created by Kamil on 30.05.2026.
-// //
-// #include "SpriteManager.h"
+﻿//
+// Created by Kamil on 30.05.2026.
 //
+#include "SpriteManager.h"
+
 // // static void MapSprite(SpriteData& sprite, SpriteMetadata& metadata, const JSON& data)
 // // {
 // //     auto value = data["name"];
@@ -121,3 +121,65 @@
 //         SaveJson(j, s.c_str());
 //     }
 // }
+
+void SpriteManager::LoadAll()
+{
+    const std::filesystem::path path = RESOURCES_PATH "Sprites/";
+    IterateDirectory(path);
+}
+
+void SpriteManager::IterateDirectory(const std::filesystem::path& path)
+{
+    for (const auto& entry : std::filesystem::directory_iterator(path))
+    {
+        const auto& entryPath = entry.path();
+        if (entry.is_directory())
+        {
+            IterateDirectory(entryPath);
+            continue;
+        }
+
+        const std::string& entryPathName = entryPath.string();
+        const Texture2D tex = LoadTexture(entryPath.string().c_str());
+        if (!IsTextureValid(tex))
+        {
+            UnloadTexture(tex);
+            continue;
+        }
+
+        if (!std::filesystem::exists(entryPathName + ".config.json"))
+        {
+            UnloadTexture(tex);
+            continue;
+        }
+
+        JSON j = ReadJson((entryPathName + ".config.json").c_str());
+        if (j.empty() || !j.contains("id"))
+        {
+            UnloadTexture(tex);
+            continue;
+        }
+
+        const auto& idJson = j["id"];
+        if (!idJson.is_number_integer() || !idJson.is_number_unsigned())
+        {
+            UnloadTexture(tex);
+            continue;
+        }
+
+        const UUID id = idJson;
+        if (id == 0)
+        {
+            UnloadTexture(tex);
+            continue;
+        }
+
+        SpriteData sprite;
+        ReadJsonValue(sprite, j, "sprite", sprite);
+        sprite.Tex = tex;
+
+        Metadata.push_back({entryPath.stem().string()});
+        Data.push_back(sprite);
+        Ids[id] = Data.size() - 1;
+    }
+}

@@ -1,10 +1,10 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - image kernel
+*   raylib [textures.png] example - image kernel
 *
 *   Example complexity rating: [★★★★] 4/4
 *
-*   NOTE: Images are loaded in CPU memory (RAM); textures are loaded in GPU memory (VRAM)
+*   NOTE: Images are loaded in CPU memory (RAM); textures.png are loaded in GPU memory (VRAM)
 *
 *   Example contributed by Karim Salem (@kimo-s) and reviewed by Ramon Santamaria (@raysan5)
 *
@@ -34,7 +34,7 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - image kernel");
+    InitWindow(screenWidth, screenHeight, "raylib [textures.png] example - image kernel");
 
     Image image = LoadImage("resources/cat.png"); // Loaded in CPU memory (RAM)
 

@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - background scrolling
+*   raylib [textures.png] example - background scrolling
 *
 *   Example complexity rating: [★☆☆☆] 1/4
 *
@@ -25,7 +25,7 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - background scrolling");
+    InitWindow(screenWidth, screenHeight, "raylib [textures.png] example - background scrolling");
 
     // NOTE: Be careful, background width must be equal or bigger than screen width
     // if not, texture should be draw more than two times for scrolling effect

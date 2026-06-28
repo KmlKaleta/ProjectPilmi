@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - image generation
+*   raylib [textures.png] example - image generation
 *
 *   Example complexity rating: [★★☆☆] 2/4
 *
@@ -29,7 +29,7 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - image generation");
+    InitWindow(screenWidth, screenHeight, "raylib [textures.png] example - image generation");
 
     Image verticalGradient = GenImageGradientLinear(screenWidth, screenHeight, 0, RED, BLUE);
     Image horizontalGradient = GenImageGradientLinear(screenWidth, screenHeight, 90, RED, BLUE);
@@ -76,7 +76,7 @@ int main(void)
         //----------------------------------------------------------------------------------
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT) || IsKeyPressed(KEY_RIGHT))
         {
-            currentTexture = (currentTexture + 1)%NUM_TEXTURES; // Cycle between the textures
+            currentTexture = (currentTexture + 1)%NUM_TEXTURES; // Cycle between the textures.png
         }
         //----------------------------------------------------------------------------------
 
@@ -113,7 +113,7 @@ int main(void)
     // De-Initialization
     //--------------------------------------------------------------------------------------
 
-    // Unload textures data (GPU VRAM)
+    // Unload textures.png data (GPU VRAM)
     for (int i = 0; i < NUM_TEXTURES; i++) UnloadTexture(textures[i]);
 
     CloseWindow();                // Close window and OpenGL context

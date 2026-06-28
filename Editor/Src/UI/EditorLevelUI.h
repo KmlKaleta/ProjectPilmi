@@ -4,11 +4,11 @@
 
 #ifndef SHEEP_GOES_DEVILE_EDITOR_LEVEL_UI_H
 #define SHEEP_GOES_DEVILE_EDITOR_LEVEL_UI_H
-#include "EditorUIPanel.h"
+struct LevelManager;
 
-struct EditorLevelUI : private EditorUIPanel
+struct EditorLevelUI
 {
-    void Draw() const;
+    void Draw(LevelManager& levels) const;
 };
 
 #endif //SHEEP_GOES_DEVILE_EDITOR_LEVEL_UI_H

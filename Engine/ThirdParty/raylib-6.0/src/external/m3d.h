@@ -503,7 +503,7 @@ typedef struct {
     M3D_INDEX numtmap;
     m3dti_t *tmap;              /* texture map indices */
     M3D_INDEX numtexture;
-    m3dtx_t *texture;           /* uncompressed textures */
+    m3dtx_t *texture;           /* uncompressed textures.png */
     M3D_INDEX numbone;
     m3db_t *bone;               /* bone hierarchy */
     M3D_INDEX numvertex;
@@ -2216,7 +2216,7 @@ M3D_INDEX _m3d_gettx(m3d_t *model, m3dread_t readfilecb, m3dfree_t freecb, char 
             if(!buff) return M3D_UNDEF;
         }
     }
-    /* add to textures array */
+    /* add to textures.png array */
     i = model->numtexture++;
     model->texture = (m3dtx_t*)M3D_REALLOC(model->texture, model->numtexture * sizeof(m3dtx_t));
     if(!model->texture) {
@@ -5383,7 +5383,7 @@ memerr: if(vrtxidx) M3D_FREE(vrtxidx);
         }
         /* procedural face */
         if(model->numinlined && model->inlined && !(flags & M3D_EXP_NOFACE)) {
-            /* all inlined assets which are not textures should be procedural surfaces */
+            /* all inlined assets which are not textures.png should be procedural surfaces */
             for(j = 0; j < model->numinlined; j++) {
                 if(!model->inlined[j].name || !*model->inlined[j].name || !model->inlined[j].length || !model->inlined[j].data ||
                  (model->inlined[j].data[1] == 'P' && model->inlined[j].data[2] == 'N' && model->inlined[j].data[3] == 'G'))
@@ -5961,7 +5961,7 @@ memerr: if(vrtxidx) M3D_FREE(vrtxidx);
         }
         /* procedural face */
         if(model->numinlined && model->inlined && !(flags & M3D_EXP_NOFACE)) {
-            /* all inlined assets which are not textures should be procedural surfaces */
+            /* all inlined assets which are not textures.png should be procedural surfaces */
             for(j = 0; j < model->numinlined; j++) {
                 if(!model->inlined[j].name || !model->inlined[j].name[0] || model->inlined[j].length < 4 ||
                     !model->inlined[j].data || (model->inlined[j].data[1] == 'P' && model->inlined[j].data[2] == 'N' &&

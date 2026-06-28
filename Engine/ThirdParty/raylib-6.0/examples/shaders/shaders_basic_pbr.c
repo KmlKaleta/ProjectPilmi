@@ -147,7 +147,7 @@ int main(void)
     car.materials[0].maps[MATERIAL_MAP_OCCLUSION].value = 1.0f;
     car.materials[0].maps[MATERIAL_MAP_EMISSION].color = (Color){ 255, 162, 0, 255 };
 
-    // Setup materials[0].maps default textures
+    // Setup materials[0].maps default textures.png
     car.materials[0].maps[MATERIAL_MAP_ALBEDO].texture = LoadTexture("resources/old_car_d.png");
     car.materials[0].maps[MATERIAL_MAP_METALNESS].texture = LoadTexture("resources/old_car_mra.png");
     car.materials[0].maps[MATERIAL_MAP_NORMAL].texture = LoadTexture("resources/old_car_n.png");

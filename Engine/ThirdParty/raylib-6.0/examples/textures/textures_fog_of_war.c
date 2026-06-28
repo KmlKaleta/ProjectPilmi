@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - fog of war
+*   raylib [textures.png] example - fog of war
 *
 *   Example complexity rating: [★★★☆] 3/4
 *
@@ -42,7 +42,7 @@ int main(void)
     int screenWidth = 800;
     int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - fog of war");
+    InitWindow(screenWidth, screenHeight, "raylib [textures.png] example - fog of war");
 
     Map map = { 0 };
     map.tilesX = 25;

@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   raylib [textures] example - particles blending
+*   raylib [textures.png] example - particles blending
 *
 *   Example complexity rating: [★☆☆☆] 1/4
 *
@@ -40,7 +40,7 @@ int main(void)
     const int screenWidth = 800;
     const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [textures] example - particles blending");
+    InitWindow(screenWidth, screenHeight, "raylib [textures.png] example - particles blending");
 
     // Particles pool, reuse them!
     Particle mouseTail[MAX_PARTICLES] = { 0 };

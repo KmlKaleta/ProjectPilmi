@@ -2432,7 +2432,7 @@ static inline void sw_texture_sample_linear(float *SW_RESTRICT color, const sw_t
     int x1 = x0 + 1;
     int y1 = y0 + 1;
 
-    // NOTE: If the textures are POT, avoid the division for SW_REPEAT
+    // NOTE: If the textures.png are POT, avoid the division for SW_REPEAT
 
     if (tex->sWrap == SW_CLAMP)
     {

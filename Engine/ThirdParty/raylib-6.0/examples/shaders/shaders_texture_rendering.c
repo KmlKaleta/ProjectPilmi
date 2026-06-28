@@ -64,7 +64,7 @@ int main(void)
 
             ClearBackground(RAYWHITE);
 
-            BeginShaderMode(shader);    // Enable our custom shader for next shapes/textures drawings
+            BeginShaderMode(shader);    // Enable our custom shader for next shapes/textures.png drawings
                 DrawTexture(texture, 0, 0, WHITE);  // Drawing BLANK texture, all rendering magic happens on shader
             EndShaderMode();            // Disable our custom shader, return to default shader
 

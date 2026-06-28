@@ -1,9 +1,11 @@
 ﻿cmake_minimum_required(VERSION 3.16)
 
+project(engine)
+
 # Ensure raylib is build as static libraries
 set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build Raylib as static libraries" FORCE)
 
-set(PRODUCTION_BUILD OFF CACHE BOOL "Production build")
+set(PRODUCTION_BUILD ON CACHE BOOL "Production build")
 
 add_subdirectory(ThirdParty/raylib-6.0)
 add_subdirectory(ThirdParty/json-3.12.0)

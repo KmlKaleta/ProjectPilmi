@@ -1,6 +1,6 @@
 /**********************************************************************************************
 *
-*   rltexgpu v1.2 - GPU compressed textures loading and saving
+*   rltexgpu v1.2 - GPU compressed textures.png loading and saving
 *
 *   DESCRIPTION:
 *
@@ -509,17 +509,17 @@ void *rl_load_ktx_from_memory(const unsigned char *file_data, unsigned int file_
     typedef struct {
         char id[12];                            // Identifier: "«KTX 11»\r\n\x1A\n"
         unsigned int endianness;                // Little endian: 0x01 0x02 0x03 0x04
-        unsigned int gl_type;                   // For compressed textures, glType must equal 0
+        unsigned int gl_type;                   // For compressed textures.png, glType must equal 0
         unsigned int gl_type_size;              // For compressed texture data, usually 1
-        unsigned int gl_format;                 // For compressed textures is 0
+        unsigned int gl_format;                 // For compressed textures.png is 0
         unsigned int gl_internal_format;        // Compressed internal format
         unsigned int gl_base_internal_format;   // Same as glFormat (RGB, RGBA, ALPHA...)
         unsigned int width;                     // Texture image width in pixels
         unsigned int height;                    // Texture image height in pixels
-        unsigned int depth;                     // For 2D textures is 0
+        unsigned int depth;                     // For 2D textures.png is 0
         unsigned int elements;                  // Number of array elements, usually 0
         unsigned int faces;                     // Cubemap faces, for no-cubemap = 1
-        unsigned int mipmap_levels;             // Non-mipmapped textures = 1
+        unsigned int mipmap_levels;             // Non-mipmapped textures.png = 1
         unsigned int key_value_data_size;       // Used to encode any arbitrary data...
     } ktx_header;
 
@@ -573,17 +573,17 @@ int rl_save_ktx(const char *file_name, void *data, int width, int height, int fo
     typedef struct {
         char id[12];                            // Identifier: "«KTX 11»\r\n\x1A\n"         // KTX 2.0: "«KTX 20»\r\n\x1A\n"
         unsigned int endianness;                // Little endian: 0x01 0x02 0x03 0x04
-        unsigned int gl_type;                   // For compressed textures, glType must equal 0
+        unsigned int gl_type;                   // For compressed textures.png, glType must equal 0
         unsigned int gl_type_size;              // For compressed texture data, usually 1
-        unsigned int gl_format;                 // For compressed textures is 0
+        unsigned int gl_format;                 // For compressed textures.png is 0
         unsigned int gl_internal_format;        // Compressed internal format
         unsigned int gl_base_internal_format;   // Same as glFormat (RGB, RGBA, ALPHA...)   // KTX 2.0: UInt32 vkFormat
         unsigned int width;                     // Texture image width in pixels
         unsigned int height;                    // Texture image height in pixels
-        unsigned int depth;                     // For 2D textures is 0
+        unsigned int depth;                     // For 2D textures.png is 0
         unsigned int elements;                  // Number of array elements, usually 0
         unsigned int faces;                     // Cubemap faces, for no-cubemap = 1
-        unsigned int mipmap_levels;             // Non-mipmapped textures = 1
+        unsigned int mipmap_levels;             // Non-mipmapped textures.png = 1
         unsigned int key_value_data_size;       // Used to encode any arbitrary data...     // KTX 2.0: UInt32 levelOrder - ordering of the mipmap levels, usually 0
                                                                                             // KTX 2.0: UInt32 supercompressionScheme - 0 (None), 1 (Crunch CRN), 2 (Zlib DEFLATE)...
         // KTX 2.0 defines additional header elements...

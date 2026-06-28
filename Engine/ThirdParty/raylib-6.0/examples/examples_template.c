@@ -6,7 +6,7 @@
 
     1. File naming: <module>_<description> - Lower case filename, words separated by underscore,
        no more than 3-4 words in total to describe the example. <module> referes to the primary
-       raylib module the example is more related with (code, shapes, textures, models, shaders, raudio)
+       raylib module the example is more related with (code, shapes, textures.png, models, shaders, raudio)
        i.e: core_input_multitouch, shapes_lines_bezier, shaders_palette_switch
 
     2. Follow below template structure, example info should list the module, the short description
