@@ -6,6 +6,14 @@ add_executable(game app.rc)
 
 set_property(TARGET game PROPERTY CXX_STANDARD 17)
 
+if (MSVC)
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Release>:Release>")
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+    add_compile_options(/arch:AVX2) #make sure SIMD optimizations take place
+else ()
+    add_compile_options(-mavx2 -mfma) # make sure SIMD optimizations take place, but on linux and other platforms
+endif ()
+
 if (MSVC) # If using the VS compiler...
 
     target_compile_definitions(game PUBLIC _CRT_SECURE_NO_WARNINGS)

@@ -22,7 +22,7 @@ struct EntityStorage
 
         Registry.emplace<IDComponent>(entity, IDComponent{id});
         Registry.emplace<TagComponent>(entity, TagComponent{"No Name"});
-        Registry.emplace<OrderComponent>(entity, EntityMap.size());
+        Registry.emplace<OrderComponent>(entity, OrderComponent{static_cast<uint32_t>(EntityMap.size())});
 
         EntityMap[id] = entity;
         return entity;

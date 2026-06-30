@@ -29,7 +29,8 @@ X(ENTITY_GROUP, EntityGroupComponent) \
 X(ENTITY_GROUP_CHILD, EntityGroupChildComponent) \
 X(ORDER, OrderComponent)
 
-#define TagComponentNamesMacro(X)
+#define TagComponentNamesMacro(X) \
+X(MyTag, MyTagComponent)
 
 #define AllComponentNamesMacro(X) \
     RequiredComponentNamesMacro(X) \
@@ -201,5 +202,7 @@ struct AnimatorComponent
 void to_json(JSON& j, const AnimatorComponent& component);
 
 void from_json(const JSON& j, AnimatorComponent& component);
+
+struct MyTagComponent{};
 
 #endif //SHEEP_GOES_DEVILE_COMPONENTS_H

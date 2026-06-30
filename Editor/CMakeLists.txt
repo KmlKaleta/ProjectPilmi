@@ -6,6 +6,14 @@ add_executable(editor app.rc)
 
 set_property(TARGET editor PROPERTY CXX_STANDARD 17)
 
+if (MSVC)
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Release>:Release>")
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+    add_compile_options(/arch:AVX2) #make sure SIMD optimizations take place
+else ()
+    add_compile_options(-mavx2 -mfma) # make sure SIMD optimizations take place, but on linux and other platforms
+endif ()
+
 target_compile_definitions(editor PRIVATE
         $<$<CONFIG:Release>:PRODUCTION_BUILD=1>
         $<$<NOT:$<CONFIG:Release>>:PRODUCTION_BUILD=0>

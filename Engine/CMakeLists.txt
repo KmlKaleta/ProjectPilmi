@@ -5,7 +5,12 @@ project(engine)
 # Ensure raylib is build as static libraries
 set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build Raylib as static libraries" FORCE)
 
-set(PRODUCTION_BUILD ON CACHE BOOL "Production build")
+#! ! ! ! ! ! !
+#set this to ON instead of OFF to ship the game!
+#basically this will change the RESOURCES_PATH to be the local path
+#! ! ! ! ! ! !
+#delete the out folder after changing if visual studio doesn't recognize the change
+set(PRODUCTION_BUILD OFF CACHE BOOL "Production build")
 
 add_subdirectory(ThirdParty/raylib-6.0)
 add_subdirectory(ThirdParty/json-3.12.0)
