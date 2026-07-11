@@ -7,6 +7,12 @@ add_executable(editor app.rc)
 set_property(TARGET editor PROPERTY CXX_STANDARD 17)
 
 if (MSVC)
+    target_compile_options(editor PRIVATE /utf-8)
+else()
+    target_compile_options(editor PRIVATE -finput-charset=UTF-8 -fexec-charset=UTF-8)
+endif()
+
+if (MSVC)
     set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Release>:Release>")
     set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
     add_compile_options(/arch:AVX2) #make sure SIMD optimizations take place

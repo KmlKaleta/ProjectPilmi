@@ -25,6 +25,8 @@ int main()
 
     ImGuiIO& io = ImGui::GetIO();
     io.FontGlobalScale = 2;
+    ImFont* font = io.Fonts->AddFontFromFileTTF(RESOURCES_PATH "Pangolin-Regular.ttf");
+
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
     EditorWindow editor;
@@ -34,7 +36,7 @@ int main()
         return 0;
     }
 
-    while (!WindowShouldClose())
+    while (true)
     {
         BeginDrawing();
         ClearBackground(BLACK);
@@ -44,20 +46,26 @@ int main()
         ImGui::PushStyleColor(ImGuiCol_WindowBg, {});
         ImGui::PushStyleColor(ImGuiCol_DockingEmptyBg, {});
         ImGui::PopStyleColor(2);
+        ImGui::PushFont(font);
 
         ImGui::DockingSetup();
 
         if (!editor.Update())
         {
-            CloseWindow();
+            break;
         }
+
+        ImGui::PopFont();
 
         rlImGuiEnd();
         EndDrawing();
     }
 
     rlImGuiShutdown();
-    CloseWindow();
+    if (!WindowShouldClose())
+    {
+        CloseWindow();
+    }
     editor.Close();
 
     return 0;

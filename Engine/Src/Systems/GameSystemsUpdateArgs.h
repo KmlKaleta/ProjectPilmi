@@ -11,7 +11,8 @@ struct GameSystemsUpdateArgs
 {
     entt::registry& Registry;
     float DeltaTime;
-    const AssetManager& Assets;
+    const Vector2 MouseWorldPosition;;
+    AssetManager& Assets;
     const WorldScreenBounds& ScreenBounds;
 };
 

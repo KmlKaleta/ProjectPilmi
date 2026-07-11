@@ -13,9 +13,10 @@ void Gameplay::Init()
     Camera.zoom = 1;
 }
 
+// ReSharper disable once CppDFAConstantFunctionResult
 void Gameplay::Update(AssetManager& assetManager)
 {
-    ClearBackground(ORANGE);
+    ClearBackground(BLACK);
 
     Camera.offset = {static_cast<float>(GetScreenWidth()) / 2, static_cast<float>(GetScreenHeight()) / 2};
     BeginMode2D(Camera);
@@ -23,14 +24,21 @@ void Gameplay::Update(AssetManager& assetManager)
     LevelData& level = assetManager.Levels.CurrentLevel();
 
     const WorldScreenBounds bounds{Camera};
+
     GameSystemsUpdateArgs args{
         level.Entities.Registry,
         GetFrameTime(),
+        GetScreenToWorld2D(GetMousePosition(), Camera),
         assetManager,
         bounds
     };
 
     Systems.Update(args);
+
+    if (WindowShouldClose())
+    {
+        return;
+    }
 
     EndMode2D();
 }

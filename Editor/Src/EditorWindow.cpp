@@ -2,6 +2,7 @@
 // Created by Kamil on 16.06.2026.
 //
 #include "EditorWindow.h"
+#include "EditorUndoRedo.hpp"
 
 bool EditorWindow::Init()
 {
@@ -10,12 +11,9 @@ bool EditorWindow::Init()
 
 bool EditorWindow::Update()
 {
-    if (Editor.Update())
-    {
-        Ui.Draw(Editor);
-        return true;
-    }
-    return false;
+    auto context = UndoRedoContext{Editor.Assets.Levels.CurrentLevel().Entities, Editor.Selection, Editor.Assets};
+    Ui.Draw(Editor, context);
+    return Editor.Update(context);
 }
 
 void EditorWindow::Close()

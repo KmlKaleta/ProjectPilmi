@@ -14,11 +14,11 @@ namespace ImGui
 {
     void DockingSetup();
 
-    void WorldPositionEdit(const char* label, WorldPosition* position);
-
-    void RendererEdit(const char* label, Renderer* renderer, const SpriteManager& sprites);
-
-    void SpriteDataEdit(const char* label, SpriteData* spriteData);
+    // void WorldPositionEdit(const char* label, WorldPosition* position);
+    //
+    // void RendererEdit(const char* label, Renderer* renderer, const SpriteManager& sprites);
+    //
+    // void SpriteDataEdit(const char* label, SpriteData* spriteData);
 }
 
 #endif //SHEEP_GOES_DEVILE_IM_GUI_EXTENSIONS_H

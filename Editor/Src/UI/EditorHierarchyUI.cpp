@@ -6,86 +6,61 @@
 #include "imgui.h"
 #include "../EntitySelection.h"
 #include "../EditorHierarchy.h"
+#include "../EditorUndoRedo.hpp"
+#include "../UndoRecorder.hpp"
 
-
-void EditorHierarchyUI::Draw(EditorHierarchy& hierarchy, EntitySelection& selection, AssetManager& assetManager) const
+void EditorHierarchyUI::Draw(EditorHierarchy& hierarchy, EntitySelection& selection, AssetManager& assetManager,
+                             EditorUndoRedo& undoRedo) const
 {
     ImGui::Begin("Hierarchy");
 
     EntityStorage& storage = assetManager.Levels.CurrentLevel().Entities;
+    const auto selectedEntity = storage.GetEntity(selection.SelectedEntity);
 
     if (ImGui::Button("Add"))
     {
-        const auto entity = storage.CreateEntity(assetManager.UUIDFactory);
-        storage.Registry.get<TagComponent>(entity).Value = "Entity";
+        RecordEntityCreation(undoRedo, storage, assetManager.UUIDFactory);
     }
 
     ImGui::SameLine();
 
-    if (ImGui::Button("Delete") && selection.SelectedEntity != entt::null)
+    if (ImGui::Button("Delete") && selection.SelectedEntity != 0)
     {
-        storage.Registry.destroy(selection.SelectedEntity);
-        selection.SelectedEntity = entt::null;
+        RecordEntityDeletion(undoRedo, storage, selection);
     }
 
     ImGui::SameLine();
 
-    if (ImGui::Button("Copy") && selection.SelectedEntity != entt::null)
+    if (ImGui::Button("Copy") && selection.SelectedEntity != 0)
     {
-        entt::entity copied = storage.CreateEntity(assetManager.UUIDFactory);
-        storage.Registry.get<TagComponent>(copied).Value = storage.Registry.get<TagComponent>(selection.SelectedEntity).
-                Value;
-
-        const uint32_t order = storage.Registry.get<OrderComponent>(selection.SelectedEntity).Value + 1;
-        for (const auto e : storage.Registry.view<OrderComponent>())
-        {
-            if (auto& orderComponent = storage.Registry.get<OrderComponent>(e); orderComponent.Value >= order)
-            {
-                orderComponent.Value++;
-            }
-        }
-
-        storage.Registry.get<OrderComponent>(copied).Value = order;
-
-#define X(e, t) if (t * component = storage.Registry.try_get<t>(selection.SelectedEntity)) \
-        { \
-            storage.Registry.emplace<t>(copied, *component); \
-        }
-        AdditionalComponentNamesMacro(X)
-#undef X
-
-#define X(e, t) if (storage.Registry.all_of<t>(selection.SelectedEntity)) \
-        { \
-            storage.Registry.emplace<t>(copied); \
-        }
-        TagComponentNamesMacro(X)
-#undef X
+        RecordEntityCopy(undoRedo, storage, assetManager.UUIDFactory, selectedEntity);
     }
 
     ImGui::Separator();
 
     const auto view = storage.Registry.view<const TagComponent, OrderComponent>(
         entt::exclude<EntityGroupChildComponent>);
-    hierarchy.Order.assign(view.begin(), view.end());
+
+    hierarchy.Order.assign(storage.EntityMap.begin(), storage.EntityMap.end());
 
     std::sort(hierarchy.Order.begin(), hierarchy.Order.end(), [&](const auto& a, const auto& b)
     {
-        return view.get<OrderComponent>(a).Value < view.get<OrderComponent>(b).Value;
+        return view.get<OrderComponent>(std::get<1>(a)).Value < view.get<OrderComponent>(std::get<1>(b)).Value;
     });
 
     ImGui::BeginChild("hierarchy_child");
 
-    for (auto entity : hierarchy.Order)
+    for (const auto& entityId : hierarchy.Order)
     {
+        const auto& [id, entity] = entityId;
         const auto& [Tag] = view.get<TagComponent>(entity);
         auto& [Order] = view.get<OrderComponent>(entity);
 
         ImGui::PushID(static_cast<int>(entity));
 
-        if (ImGui::Selectable(("##" + Tag).c_str(), entity == selection.SelectedEntity,
-                              ImGuiSelectableFlags_AllowOverlap))
+        if (ImGui::Selectable(("##" + Tag).c_str(), id == selection.SelectedEntity, ImGuiSelectableFlags_AllowOverlap))
         {
-            selection.SelectedEntity = entity;
+            RecordEntitySelection(undoRedo, selection, id);
         }
 
 
@@ -93,7 +68,7 @@ void EditorHierarchyUI::Draw(EditorHierarchy& hierarchy, EntitySelection& select
         if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_None))
         {
             // Set payload to carry the index of our item (could be anything)
-            ImGui::SetDragDropPayload("hierarchy_drag", &entity, sizeof(entt::entity));
+            ImGui::SetDragDropPayload("hierarchy_drag", &id, sizeof(UUID));
             // Display preview (could be anything, e.g. when dragging an image we could decide to display
             // the filename and a small preview of the image, etc.)
             ImGui::Text(name);
@@ -104,9 +79,10 @@ void EditorHierarchyUI::Draw(EditorHierarchy& hierarchy, EntitySelection& select
         {
             if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("hierarchy_drag"))
             {
-                assert(payload->DataSize == sizeof(entity));
-                const entt::entity draggedEntity = *static_cast<const entt::entity *>(payload->Data);
-                std::swap(Order, view.get<OrderComponent>(draggedEntity).Value);
+                assert(payload->DataSize == sizeof(UUID));
+                const UUID draggedEntity = *static_cast<const UUID *>(payload->Data);
+                std::swap(Order, view.get<OrderComponent>(storage.GetEntity(draggedEntity)).Value);
+                undoRedo.AddAction(SwapEntityPayload{id, draggedEntity});
             }
             ImGui::EndDragDropTarget();
         }

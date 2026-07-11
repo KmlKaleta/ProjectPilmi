@@ -7,9 +7,10 @@
 
 struct AssetManager;
 struct EntitySelection;
+struct EditorUndoRedo;
 
 struct EditorComponentsUI
 {
-    void Draw(const EntitySelection& selection, AssetManager& assetManager) const;
+    void Draw(const EntitySelection& selection, AssetManager& assetManager, EditorUndoRedo& undoRedo) const;
 };
 #endif //SHEEP_GOES_DEVILE_EDITOR_COMPONENTS_UI_H

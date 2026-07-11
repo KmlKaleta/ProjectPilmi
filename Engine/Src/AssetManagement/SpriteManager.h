@@ -5,6 +5,7 @@
 #ifndef SHEEP_GOES_DEVILE_SPRITES_MANAGER_H
 #define SHEEP_GOES_DEVILE_SPRITES_MANAGER_H
 #include <string>
+#include <utility>
 #include <vector>
 #include <unordered_map>
 
@@ -14,6 +15,9 @@
 struct SpriteMetadata
 {
     std::string Name;
+
+    SpriteMetadata() = default;
+    SpriteMetadata(std::string  name) : Name(std::move(name)) {}
 };
 
 void to_json(JSON& j, const SpriteMetadata& metadata);

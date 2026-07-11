@@ -1,0 +1,31 @@
+{
+    "entities": [
+        {
+            "EntityId": 8347327407076900940,
+            "MainMenuComponent": {},
+            "OrderComponent": 0,
+            "RendererComponent": {
+                "order": 0,
+                "renderer": {
+                    "flip": false,
+                    "position": {
+                        "anchor": 4,
+                        "value": {
+                            "x": 0.0,
+                            "y": 0.0
+                        }
+                    },
+                    "scale": 0.8333333134651184,
+                    "sprite": 12158023348458245399,
+                    "tex_x": 0,
+                    "tex_y": 0
+                }
+            },
+            "TagComponent": {
+                "value": "Menu screen"
+            },
+            "id": 0
+        }
+    ],
+    "id": 14570317446693507966
+}

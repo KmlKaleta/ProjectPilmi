@@ -15,71 +15,100 @@ struct EntityStorage
     entt::registry Registry = {};
     std::unordered_map<UUID, entt::entity> EntityMap = {};
 
+    entt::entity GetEntity(const UUID id) const
+    {
+        const auto& it = EntityMap.find(id);
+        if (it == EntityMap.end())
+            return entt::null;
+
+        return it->second;
+    }
+
     entt::entity CreateEntity(UUIDFactory& factory)
     {
-        const entt::entity entity = Registry.create();
-        const auto id = factory.Get();
+        return  CreateEntity(factory.Get());
+    }
 
-        Registry.emplace<IDComponent>(entity, IDComponent{id});
-        Registry.emplace<TagComponent>(entity, TagComponent{"No Name"});
+    entt::entity CreateEntity(const UUID id)
+    {
+        const entt::entity entity = Registry.create();
+        Registry.emplace<TagComponent>(entity, TagComponent{"Entity"});
         Registry.emplace<OrderComponent>(entity, OrderComponent{static_cast<uint32_t>(EntityMap.size())});
 
         EntityMap[id] = entity;
         return entity;
     }
 
-    void AddEntity(UUIDFactory& factory, entt::entity entity)
+    void AddEntity(const UUID id, const entt::entity entity)
     {
-        IDComponent& idComponent = Registry.get_or_emplace<IDComponent>(entity);
-        if (idComponent.Value == 0)
-        {
-            idComponent.Value = factory.Get();
-        }
-
         TagComponent& tagComponent = Registry.get_or_emplace<TagComponent>(entity);
         if (IsNullOrWhiteSpace(tagComponent.Value))
         {
-            tagComponent.Value = "No Name";
+            tagComponent.Value = "Entity";
         }
 
-        OrderComponent& orderComponent = Registry.get_or_emplace<OrderComponent>(entity);
+        EntityMap[id] = entity;
+    }
 
-        EntityMap[idComponent.Value] = entity;
+    void DestroyEntity(const UUID id)
+    {
+        if (const entt::entity entity = GetEntity(id); entity != entt::null)
+        {
+            Registry.destroy(entity);
+            EntityMap.erase(id);
+        }
     }
 };
 
 inline void to_json(JSON& out, const EntityStorage& storage)
 {
-    JSON array = JSON::array();
-    const auto view = storage.Registry.view<entt::entity>();
-    for (const auto entity : view)
+    // Map to hold entity JSON data dynamically by their ID
+    std::unordered_map<entt::id_type, JSON> entity_map;
+
+    // 1. Serialize Standard Components
+#define X(e, t) \
+if (auto* pool = storage.Registry.storage<t>()) { \
+for (auto [entity, component] : pool->each()) { \
+entity_map[entt::to_integral(entity)][#t] = component; \
+} \
+}
+    AllComponentNamesMacro(X)
+#undef X
+
+    // 2. Serialize Tag Components
+#define X(e, t) \
+if (auto* pool = storage.Registry.storage<t>()) { \
+for(auto [entity] : pool->each()) { \
+entity_map[entt::to_integral(entity)]["tags"].emplace_back(#t); \
+} \
+}
+    TagComponentNamesMacro(X)
+#undef X
+
+    for (const auto& [uuid, entity] : storage.EntityMap) {
+        auto integral_id = entt::to_integral(entity);
+
+        entity_map[integral_id]["EntityId"] = uuid;
+    }
+
+    // 3. Collect into your final JSON array
+    JSON final_array = JSON::array();
+    for (auto& [id, json_obj] : entity_map)
     {
-        JSON& j = array.emplace_back(JSON::object());
-#define  X(e, t) if (const auto* component = storage.Registry.try_get<t>(entity)) \
-    { \
-        j[#t] = *component; \
+        // EnTT entities must keep track of their ID during serialization
+        json_obj["id"] = id;
+        final_array.push_back(std::move(json_obj));
     }
-        AllComponentNamesMacro(X)
-#undef X
-
-        JSON& tags = j["tags"] = JSON::array();
-
-#define X(e, t) if (storage.Registry.all_of<t>(entity)) \
-    { \
-        tags.emplace_back(#t); \
-    }
-        TagComponentNamesMacro(X)
-#undef X
-    }
-    out = array;
+    out = final_array;
 }
 
-inline IDComponent GetIdComponent(UUIDFactory& factory, const JSON& j)
+inline UUID GetId(UUIDFactory& factory, const JSON& j)
 {
     uint64_t value;
     const UUID d = factory.Get();
-    ReadJsonValue(value, j, "IDComponent", d.Value);
-    return IDComponent{value};
+    ReadJsonValue(value, j, "EntityId", d.Value);
+
+    return value == 0 ? d : UUID{value};
 }
 
 inline TagComponent GetTagComponent(const JSON& j)
@@ -102,35 +131,44 @@ inline void from_json(const JSON& j, EntityStorage& storage)
 
         const entt::entity entity = storage.Registry.create();
 
-#define X(e, t) if (entityJson.contains(#t)) \
-            { \
-                t component{}; \
-                ReadJsonValue(component, entityJson, #t, component); \
-                storage.Registry.emplace<t>(entity, component); \
-            }
+        // 1. Optimized Data Components (Single JSON lookup via .find())
+#define X(e, t) \
+if (auto it = entityJson.find(#t); it != entityJson.end()) \
+{ \
+t component{}; \
+/* Pass the found sub-iterator directly to your reader if possible, */ \
+/* or keep using ReadJsonValue(component, entityJson, #t, component); */ \
+ReadJsonValue(component, entityJson, #t, component); \
+storage.Registry.emplace<t>(entity, component); \
+}
         AllComponentNamesMacro(X)
 #undef X
-        if (entityJson.contains("tags"))
+
+        // 2. Optimized Tags via Compile-Time Map
+        if (auto it = entityJson.find("tags"); it != entityJson.end() && it->is_array())
         {
-            JSON tags = entityJson["tags"];
-            if (tags.is_array() && !tags.empty())
+            for (const auto& tag : *it)
             {
-                for (const auto& tag : tags)
+                if (!tag.is_string()) continue;
+
+                std::string tagString = tag.get<std::string>();
+
+                // We create a fast lookup function using a switch or static map inside a lambda
+                auto emplace_tag_by_name = [&](const std::string& name, entt::entity ent)
                 {
-                    if (tag.is_string())
-                    {
-                        std::string tagString = tag;
-#define X(e, t) if (tagString == #t) \
-    { \
-        storage.Registry.emplace<t>(entity); \
-    }
-                        TagComponentNamesMacro(X)
+                    // Using an internal macro to build a clean string-to-type dispatcher
+#define X(e, t) if (name == #t) { storage.Registry.emplace<t>(ent); return; }
+                    TagComponentNamesMacro(X)
 #undef X
-                    }
-                }
+                };
+
+                emplace_tag_by_name(tagString, entity);
             }
         }
-        storage.AddEntity(factory, entity);
+
+        const UUID id = GetId(factory, entityJson);
+
+        storage.AddEntity(id, entity);
     }
 }
 

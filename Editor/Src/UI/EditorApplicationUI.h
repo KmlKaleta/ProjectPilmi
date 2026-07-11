@@ -7,16 +7,19 @@
 #include "EditorComponentsUI.h"
 #include "EditorHierarchyUI.h"
 #include "EditorLevelUI.h"
+#include "EditorMenuUI.h"
 
 struct EditorApplication;
+struct UndoRedoContext;
 
 struct EditorApplicationUI
 {
     EditorLevelUI SceneUI;
     EditorHierarchyUI HierarchyUI;
     EditorComponentsUI ComponentsUI;
+    EditorMenuUI MenuUI;
 
-    void Draw(EditorApplication& editor) const;
+    void Draw(EditorApplication& editor, UndoRedoContext& ctx) const;
 };
 
 #endif //SHEEP_GOES_DEVILE_EDITOR_APPLICATION_UI_H

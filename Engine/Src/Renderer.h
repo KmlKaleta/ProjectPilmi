@@ -1,12 +1,13 @@
 #pragma once
 #include "Fields/WorldPosition.hpp"
 #include "UUID.hpp"
+#include "Fields/SpriteSelector.hpp"
 
 struct SpriteManager;
 
 struct Renderer
 {
-    UUID Sprite{};
+    SpriteSelector Sprite{};
     WorldPosition Position = {};
     float LocalScale = 1;
     bool Flip = false;

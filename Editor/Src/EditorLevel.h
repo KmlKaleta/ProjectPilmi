@@ -4,6 +4,7 @@
 
 #ifndef SHEEP_GOES_DEVILE_EDITOR_SCENE_H
 #define SHEEP_GOES_DEVILE_EDITOR_SCENE_H
+#include "EntitySelection.h"
 #include "raylib.h"
 #include "Systems/EditorSystems.h"
 
@@ -16,7 +17,7 @@ struct EditorLevel
 
     void Init();
 
-    void Update(AssetManager& assetManager);
+    void Update(AssetManager& assetManager, const EntitySelection& selection);
 };
 
 #endif //SHEEP_GOES_DEVILE_EDITOR_SCENE_H

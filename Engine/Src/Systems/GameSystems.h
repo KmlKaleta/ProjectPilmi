@@ -10,13 +10,17 @@
 #include "PatrolSystem.h"
 #include "RenderingSystem.h"
 #include "RoundSystem.h"
+#include "ScaleToScreenSystem.h"
+#include "MainMenuSystem.h"
 
 #define GameSystemsMacro(X) \
     X(ParallaxSystem) \
     X(PatrolSystem) \
     X(RenderingSystem) \
     X(RoundSystem) \
-    X(AnimationSystem)
+    X(AnimationSystem) \
+    X(ScaleToScreenSystem) \
+    X(MainMenuSystem)
 
 struct GameSystemsUpdateArgs;
 

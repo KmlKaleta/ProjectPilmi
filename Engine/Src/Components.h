@@ -13,7 +13,6 @@
 #include "Fields/WorldPosition.hpp"
 
 #define RequiredComponentNamesMacro(X) \
-X(ID, IDComponent) \
 X(TAG, TagComponent)
 
 #define AdditionalComponentNamesMacro(X) \
@@ -22,7 +21,9 @@ X(RENDERER, RendererComponent) \
 X(MOVE_SPEED, MoveSpeedComponent) \
 X(PATROL, PatrolComponent) \
 X(ROUND, RoundComponent) \
-X(ANIMATOR, AnimatorComponent)
+X(ANIMATOR, AnimatorComponent) \
+X(MAIN_MENU, MainMenuComponent) \
+X(TEXT, TextComponent)
 
 #define UtilityComponentNamesMacro(X) \
 X(ENTITY_GROUP, EntityGroupComponent) \
@@ -30,7 +31,7 @@ X(ENTITY_GROUP_CHILD, EntityGroupChildComponent) \
 X(ORDER, OrderComponent)
 
 #define TagComponentNamesMacro(X) \
-X(MyTag, MyTagComponent)
+X(SCALE_TO_SCREEN, ScaleToScreenTag)
 
 #define AllComponentNamesMacro(X) \
     RequiredComponentNamesMacro(X) \
@@ -79,19 +80,6 @@ enum class ComponentType
 
     COUNT
 };
-
-struct IDComponent
-{
-    UUID Value;
-};
-
-void to_json(JSON& j, const IDComponent& component);
-
-void from_json(const JSON& j, IDComponent& component);
-
-bool operator==(const IDComponent& lhs, const IDComponent& rhs);
-
-bool operator!=(const IDComponent& lhs, const IDComponent& rhs);
 
 struct TagComponent
 {
@@ -203,6 +191,40 @@ void to_json(JSON& j, const AnimatorComponent& component);
 
 void from_json(const JSON& j, AnimatorComponent& component);
 
-struct MyTagComponent{};
+struct ScaleToScreenTag{};
+
+struct MainMenuComponent
+{
+    enum class Panel
+    {
+        MainMenu,
+        Settings,
+        Credits
+    };
+
+    Panel CurrentPanel = Panel::MainMenu;
+};
+
+void to_json(JSON& j, const MainMenuComponent& component);
+
+void from_json(const JSON& j, MainMenuComponent& component);
+
+struct TextComponent
+{
+    enum class Alignment
+    {
+        Left,
+        Center,
+        Right
+    };
+
+    WorldPosition Position;
+    int FontSize = 16;
+    std::string Value;
+};
+
+void to_json(JSON& j, const TextComponent& component);
+
+void from_json(const JSON& j, TextComponent& component);
 
 #endif //SHEEP_GOES_DEVILE_COMPONENTS_H

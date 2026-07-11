@@ -4,10 +4,15 @@
 
 #ifndef SHEEP_GOES_DEVILE_ENTITY_SELECTION_H
 #define SHEEP_GOES_DEVILE_ENTITY_SELECTION_H
-#include "entt/entt.hpp"
+#include "UUID.hpp"
+
+struct EntityStorage;
+struct EditorUndoRedo;
 
 struct EntitySelection
 {
-    entt::entity SelectedEntity = entt::null;
+    UUID SelectedEntity = 0;
+
+    void HandleInputs(EntityStorage& storage, EditorUndoRedo& undoRedo);
 };
 #endif //SHEEP_GOES_DEVILE_ENTITY_SELECTION_H

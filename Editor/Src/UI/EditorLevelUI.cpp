@@ -6,9 +6,11 @@
 #include "AssetManager.h"
 #include "imgui.h"
 #include "StringUtility.hpp"
+#include "../EditorUndoRedo.hpp"
 #include "misc/cpp/imgui_stdlib.h"
+#include "../UndoRecorder.hpp"
 
-void EditorLevelUI::Draw(LevelManager& levels) const
+void EditorLevelUI::Draw(LevelManager& levels, EditorUndoRedo& undoRedo) const
 {
     ImGui::Begin("Scene");
 
@@ -16,7 +18,7 @@ void EditorLevelUI::Draw(LevelManager& levels) const
     ImGui::InputText("##", &levelName);
     if (ImGui::IsItemDeactivatedAfterEdit() && !IsNullOrWhiteSpace(levelName))
     {
-        levels.Rename(levelName);
+        RecordChangeSceneName(undoRedo, levels, levelName);
     }
 
     if (ImGui::Button("Save"))
@@ -28,7 +30,7 @@ void EditorLevelUI::Draw(LevelManager& levels) const
 
     if (ImGui::Button("Create New"))
     {
-        levels.Create();
+        RecordSceneCreation(undoRedo, levels);
     }
 
     if (ImGui::Button("Load level"))
@@ -42,11 +44,18 @@ void EditorLevelUI::Draw(LevelManager& levels) const
         {
             if (ImGui::Selectable(levels.Metadata[index].c_str(), levels.CurrentLevelId == id))
             {
-                levels.Load(id);
+                RecordSceneChange(undoRedo, levels, id);
             }
         }
 
         ImGui::EndPopup();
+    }
+
+    ImGui::SameLine();
+
+    if (ImGui::Button("Delete"))
+    {
+        levels.Delete();
     }
 
     ImGui::End();

@@ -28,6 +28,12 @@ add_library(engine STATIC
         ${ENGINE_SOURCES}
 )
 
+add_library(visit_struct INTERFACE)
+
+target_include_directories(visit_struct INTERFACE
+        ThirdParty/visit_struct-1.2.0
+)
+
 if(PRODUCTION_BUILD)
 
     target_compile_definitions(engine PUBLIC
@@ -61,4 +67,5 @@ target_link_libraries(engine PUBLIC
         nlohmann_json
         raygui
         EnTT
+        visit_struct
 )

@@ -25,6 +25,8 @@ int main()
 
     ImGuiIO& io = ImGui::GetIO();
     io.FontGlobalScale = 2;
+    ImFont* font = io.Fonts->AddFontFromFileTTF(RESOURCES_PATH "Pangolin-Regular.ttf");
+
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
     SpriteEditorApplication editor;
@@ -44,6 +46,7 @@ int main()
         ImGui::PushStyleColor(ImGuiCol_WindowBg, {});
         ImGui::PushStyleColor(ImGuiCol_DockingEmptyBg, {});
         ImGui::PopStyleColor(2);
+        ImGui::PushFont(font);
 
         ImGui::DockingSetup();
 
@@ -51,6 +54,8 @@ int main()
         {
             CloseWindow();
         }
+
+        ImGui::PopFont();
 
         rlImGuiEnd();
         EndDrawing();

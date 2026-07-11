@@ -51,21 +51,6 @@ SpriteData SpriteData::FromTextureCenter(const Texture2D& texture, const int x, 
     return spriteData;
 }
 
-bool SpriteData::operator==(const SpriteData& other) const
-{
-    return
-        Tex.id == other.Tex.id &&
-        Scale == other.Scale &&
-        Pivot == other.Pivot &&
-        RowCounts == other.RowCounts &&
-        RowCountMax == other.RowCountMax;
-}
-
-bool SpriteData::operator!=(const SpriteData& other) const
-{
-    return !(*this == other);
-}
-
 void to_json(JSON& j, const SpriteData& sprite)
 {
     j["scale"] = sprite.Scale;
@@ -81,7 +66,7 @@ void from_json(const JSON& j, SpriteData& sprite)
     ReadJsonValue(sprite.RowCounts, j, "row_counts", {});
     if (sprite.RowCounts.empty())
     {
-        sprite.RowCounts.push_back(1);
+        sprite.RowCounts.emplace_back(1);
     }
 
     ReadJsonValue(sprite.RowCountMax, j, "row_count_max", 1);

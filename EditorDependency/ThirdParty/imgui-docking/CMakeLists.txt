@@ -11,8 +11,6 @@ target_sources(imgui PRIVATE
 "imgui/misc/cpp/imgui_stdlib.cpp"
 )
 
-
-message("imgui")
 message("imgui")
 
 target_include_directories(imgui PUBLIC

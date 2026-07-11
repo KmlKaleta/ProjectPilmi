@@ -8,9 +8,10 @@
 struct AssetManager;
 struct EditorHierarchy;
 struct EntitySelection;
+struct EditorUndoRedo;
 
 struct EditorHierarchyUI
 {
-    void Draw(EditorHierarchy& hierarchy, EntitySelection& selection, AssetManager& assetManager) const;
+    void Draw(EditorHierarchy& hierarchy, EntitySelection& selection, AssetManager& assetManager, EditorUndoRedo& undoRedo) const;
 };
 #endif //SHEEP_GOES_DEVILE_EDITOR_HIERARCHY_UI_H

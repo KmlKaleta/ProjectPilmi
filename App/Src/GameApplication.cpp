@@ -13,6 +13,11 @@ bool GameApplication::Init()
 bool GameApplication::Update()
 {
     Gameplay.Update(Assets);
+    if (WindowShouldClose())
+    {
+        return false;
+    }
+    DrawFPS(10, 10);
     return true;
 }
 

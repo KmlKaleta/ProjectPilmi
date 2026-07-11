@@ -7,10 +7,12 @@
 #include "EditorApplication.h"
 #include "Ui/EditorApplicationUI.h"
 
+struct UndoRedoContext;
+
 struct EditorWindow
 {
     EditorApplication Editor;
-    EditorApplicationUI Ui;
+    EditorApplicationUI Ui{};
 
     bool Init();
     bool Update();

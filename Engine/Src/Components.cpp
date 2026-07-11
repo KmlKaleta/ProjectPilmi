@@ -4,26 +4,6 @@
 #include "Components.h"
 #include "raymath.h"
 
-void to_json(JSON& j, const IDComponent& component)
-{
-    j["value"] = component.Value;
-}
-
-void from_json(const JSON& j, IDComponent& component)
-{
-    ReadJsonValue(component.Value.Value, j, "value", uint64_t());
-}
-
-bool operator==(const IDComponent& lhs, const IDComponent& rhs)
-{
-    return lhs.Value == rhs.Value;
-}
-
-bool operator!=(const IDComponent& lhs, const IDComponent& rhs)
-{
-    return !(lhs == rhs);
-}
-
 void to_json(JSON& j, const TagComponent& component)
 {
     j["value"] = component.Value;
@@ -105,7 +85,7 @@ void to_json(JSON& j, const EntityGroupComponent& component)
     j = JSON::array();
     for (const auto& [ID] : component.Entities)
     {
-        j.push_back(ID);
+        j.emplace_back(ID);
     }
 }
 
@@ -122,7 +102,7 @@ void from_json(const JSON& j, EntityGroupComponent& component)
         from_json(ID, id);
 
         if (id != 0){
-            component.Entities.push_back({id});
+            component.Entities.emplace_back(id);
         }
     }
 }
@@ -182,4 +162,23 @@ void from_json(const JSON& j, AnimatorComponent& component)
 {
     ReadJsonValue(component.Animation, j, "animation", component.Animation);
     ReadJsonValue(component.FrameTime, j, "frame_time", component.FrameTime);
+}
+
+void to_json(JSON& j, const MainMenuComponent& component)
+{
+    j = JSON::object();
+}
+
+void from_json(const JSON& j, MainMenuComponent& component)
+{
+}
+
+void to_json(JSON& j, const TextComponent& component)
+{
+    j = component.Value;
+}
+
+void from_json(const JSON& j, TextComponent& component)
+{
+    ReadJsonValue(component.Value, j, std::string("####"));
 }

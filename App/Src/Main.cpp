@@ -18,29 +18,31 @@ int main()
     SetExitKey(KEY_NULL);
     SetTargetFPS(240);
 
-    GameApplication editor;
+    GameApplication app;
 
-    if (!editor.Init())
+    if (!app.Init())
     {
         return 0;
     }
 
-    while (!WindowShouldClose())
+    while (true)
     {
         BeginDrawing();
         ClearBackground(BLACK);
 
-
-        if (!editor.Update())
+        if (!app.Update())
         {
-            CloseWindow();
+            break;
         }
 
         EndDrawing();
     }
 
-    CloseWindow();
-    editor.Close();
+    if (!WindowShouldClose())
+    {
+        CloseWindow();
+    }
+    app.Close();
 
     return 0;
 }

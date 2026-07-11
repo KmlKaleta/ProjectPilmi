@@ -9,6 +9,12 @@
 struct LevelData
 {
     EntityStorage Entities;
+
+    LevelData() = default;
+    LevelData(LevelData&&) = default;
+    LevelData& operator=(LevelData&&) = default;
+
+    LevelData Copy() const;
 };
 
 void to_json(JSON& j, const LevelData& level);
@@ -32,6 +38,8 @@ struct LevelManager
     void Save();
 
     void Rename(const std::string& newName);
+
+    void Delete();
 
     void Create();
 };

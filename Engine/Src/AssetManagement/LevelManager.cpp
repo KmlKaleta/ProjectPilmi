@@ -16,6 +16,32 @@ void from_json(const JSON& j, LevelData& level)
     }
 }
 
+LevelData LevelData::Copy() const
+{
+    LevelData data;
+    for (const auto& [id, entity] : Entities.EntityMap)
+    {
+        const entt::entity newEntity = data.Entities.Registry.create();
+#define X(e,t) \
+if (auto* component = Entities.Registry.try_get<t>(entity)) \
+{ \
+data.Entities.Registry.emplace<t>(newEntity, *component); \
+}
+        AllComponentNamesMacro(X)
+#undef X
+
+#define X(e,t) \
+if (Entities.Registry.all_of<t>(entity)) \
+{ \
+data.Entities.Registry.emplace<t>(newEntity); \
+}
+TagComponentNamesMacro(X)
+        data.Entities.AddEntity(id, newEntity);
+#undef X
+    }
+    return data;
+}
+
 LevelData& LevelManager::CurrentLevel()
 {
     return Data[Ids[CurrentLevelId]];
@@ -66,7 +92,7 @@ void LevelManager::LoadAll()
         Ids[id] = index;
         Data.emplace_back();
         from_json(map, Data[index]);
-        Metadata.push_back(entryPath.stem().string());
+        Metadata.emplace_back(entryPath.stem().string());
     }
 
     if (Ids.empty())
@@ -112,6 +138,24 @@ void LevelManager::Rename(const std::string& newName)
     std::filesystem::rename(currentPath,
                             RESOURCES_PATH "Levels/" + newName + ".json");
     levelName = newName;
+}
+
+void LevelManager::Delete()
+{
+    const size_t index = Ids[CurrentLevelId];
+    const std::string path = RESOURCES_PATH "Levels/" + Metadata[index] + ".json";
+    std::filesystem::remove(path);
+    Data.erase(Data.begin() + static_cast<long>(index));
+    Metadata.erase(Metadata.begin() + static_cast<long>(index));
+    Ids.erase(CurrentLevelId);
+
+    if (Ids.empty())
+    {
+        Create();
+        return;
+    }
+
+    CurrentLevelId = Ids.begin()->first;
 }
 
 void LevelManager::Create()

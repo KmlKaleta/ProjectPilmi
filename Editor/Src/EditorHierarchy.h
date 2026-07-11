@@ -6,12 +6,13 @@
 #define SHEEP_GOES_DEVILE_EDITOR_HIERARCHY_H
 #include <vector>
 #include <entt/entt.hpp>
+#include "UUID.hpp"
 
 struct EntityStorage;
 
 struct EditorHierarchy
 {
-    std::vector<entt::entity> Order;
+    std::vector<std::tuple<UUID, entt::entity>> Order;
 };
 
 #endif //SHEEP_GOES_DEVILE_EDITOR_HIERARCHY_H

@@ -178,8 +178,8 @@ void SpriteManager::IterateDirectory(const std::filesystem::path& path)
         ReadJsonValue(sprite, j, "sprite", sprite);
         sprite.Tex = tex;
 
-        Metadata.push_back({entryPath.stem().string()});
-        Data.push_back(sprite);
+        Metadata.emplace_back(entryPath.stem().string());
+        Data.emplace_back(sprite);
         Ids[id] = Data.size() - 1;
     }
 }

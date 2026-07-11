@@ -5,9 +5,11 @@
 
 #include "../EditorApplication.h"
 
-void EditorApplicationUI::Draw(EditorApplication& editor) const
+void EditorApplicationUI::Draw(EditorApplication& editor, UndoRedoContext& ctx) const
 {
-    HierarchyUI.Draw(editor.Hierarchy, editor.Selection, editor.Assets);
-    SceneUI.Draw(editor.Assets.Levels);
-    ComponentsUI.Draw(editor.Selection, editor.Assets);
+    HierarchyUI.Draw(editor.Hierarchy, editor.Selection, editor.Assets, editor.UndoRedo);
+    SceneUI.Draw(editor.Assets.Levels, editor.UndoRedo);
+    ComponentsUI.Draw(editor.Selection, editor.Assets, editor.UndoRedo);
+
+    MenuUI.Draw(editor.UndoRedo, ctx);
 }

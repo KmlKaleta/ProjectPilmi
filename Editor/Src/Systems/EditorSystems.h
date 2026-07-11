@@ -8,13 +8,17 @@
 #include "Systems/RenderingSystem.h"
 #include "PatrolVisualizationSystem.h"
 #include "RoundVisualizationSystem.h"
+#include "Systems/MainMenuSystem.h"
 #include "Systems/ParallaxSystem.h"
+#include "Systems/ScaleToScreenSystem.h"
 
 #define EditorSystemsMacro(X) \
     X(ParallaxSystem) \
     X(RenderingSystem) \
     X(PatrolVisualizationSystem) \
-    X(RoundVisualizationSystem)
+    X(RoundVisualizationSystem) \
+    X(ScaleToScreenSystem) \
+    X(MainMenuSystem)
 
 struct GameSystemsUpdateArgs;
 
