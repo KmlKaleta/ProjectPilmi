@@ -2,7 +2,7 @@
 // Created by Kamil on 18.06.2026.
 //
 #include "Components.h"
-#include "raymath.h"
+#include "RaylibJSON.hpp"
 
 void to_json(JSON& j, const TagComponent& component)
 {
@@ -101,7 +101,8 @@ void from_json(const JSON& j, EntityGroupComponent& component)
         UUID id{};
         from_json(ID, id);
 
-        if (id != 0){
+        if (id != 0)
+        {
             component.Entities.emplace_back(id);
         }
     }
@@ -164,13 +165,40 @@ void from_json(const JSON& j, AnimatorComponent& component)
     ReadJsonValue(component.FrameTime, j, "frame_time", component.FrameTime);
 }
 
+void to_json(JSON& j, const MainMenuText& text)
+{
+    j["position"] = text.Position;
+    j["scale"] = text.Scale;
+    j["color"] = ColorNormalize(text.Color);
+}
+
 void to_json(JSON& j, const MainMenuComponent& component)
 {
-    j = JSON::object();
+    j["title_scale"] = component.TitleScale;
+    j["sheep"] = component.SheepText;
+    j["goes"] = component.GoesText;
+    j["devile"] = component.DevileText;
+}
+
+void from_json(const JSON& j, MainMenuText& text)
+{
+    ReadJsonValue(text.Position, j, "position", text.Position);
+    ReadJsonValue(text.Scale, j, "scale", text.Scale);
+    Vector4 col = ColorNormalize(BLACK);
+    ReadJsonValue(col, j, "color", col);
+    col.x = static_cast<float>(std::abs(static_cast<int>(col.x)) % 255);
+    col.y = static_cast<float>(std::abs(static_cast<int>(col.y)) % 255);
+    col.z = static_cast<float>(std::abs(static_cast<int>(col.z)) % 255);
+    col.w = static_cast<float>(std::abs(static_cast<int>(col.w)) % 255);
+    text.Color = ColorFromNormalized(col);
 }
 
 void from_json(const JSON& j, MainMenuComponent& component)
 {
+    ReadJsonValue(component.TitleScale, j, "title_scale", component.TitleScale);
+    ReadJsonValue(component.SheepText, j, "sheep", component.SheepText);
+    ReadJsonValue(component.GoesText, j, "goes", component.GoesText);
+    ReadJsonValue(component.DevileText, j, "devile", component.DevileText);
 }
 
 void to_json(JSON& j, const TextComponent& component)

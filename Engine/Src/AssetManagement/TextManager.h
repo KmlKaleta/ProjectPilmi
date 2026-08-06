@@ -6,14 +6,23 @@
 #define SHEEP_GOES_DEVILE_TEXT_MANAGER_H
 #include "JSON.h"
 #include "raylib.h"
+#include "include/visit_struct/visit_struct.hpp"
 
 #define LanguageMacro(X) \
-    X(English) \
-    X(Polish)
+    X(English, EN) \
+    X(Polish, PL)
 
 enum class Language
 {
-#define X(l) l,
+#define X(l, e) l,
+    LanguageMacro(X)
+#undef X
+    COUNT
+};
+
+enum class LanguageExtension
+{
+#define X(l, e) e,
     LanguageMacro(X)
 #undef X
     COUNT
@@ -27,6 +36,8 @@ struct MenuText
     std::string Exit;
     std::string Back;
 };
+
+VISITABLE_STRUCT(MenuText, Play, Settings, Credits, Exit, Back);
 
 void from_json(const JSON& j, MenuText& text);
 
@@ -46,4 +57,7 @@ struct TextManager
 
     void LoadAll(Language language);
 };
+
+VISITABLE_STRUCT(TextManager, MainMenu);
+
 #endif //SHEEP_GOES_DEVILE_TEXT_MANAGER_H

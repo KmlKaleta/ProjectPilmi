@@ -16,17 +16,15 @@ std::string GetLocatedString(const JSON& j, const char* key, const char* default
 
 void from_json(const JSON& j, MenuText& text)
 {
-    text.Play = GetLocatedString(j, "Play", "Play");
-    text.Settings = GetLocatedString(j, "Settings", "Settings");
-    text.Credits = GetLocatedString(j, "Credits", "Credits");
-    text.Exit = GetLocatedString(j, "Exit", "Exit");
-    text.Back = GetLocatedString(j, "Back", "Back");
+    visit_struct::for_each(text, [&](const char* name, std::string& value)
+    {
+        value = GetLocatedString(j, name, name);
+    });
 }
 
 void from_json(const JSON& j, LanguageList& text)
 {
-    int i = 0;
-#define X(l) text.Value[i] = GetLocatedString(j, #l, #l); i++;
+#define X(l, e) text.Value[static_cast<int>(Language::l)] = GetLocatedString(j, #l, #l);
     LanguageMacro(X)
 #undef X
 }
@@ -50,15 +48,17 @@ void TextManager::LoadAll(const Language language)
     }
 
     Languages = ReadJson(RESOURCES_PATH "Lang/LanguageList.json");
-    switch (language)
+    const char* languageExtension[] = {
+#define X(l, e) #e,
+        LanguageMacro(X)
+#undef X
+    };
+    const std::string extension = languageExtension[static_cast<int>(language)];
+
+    visit_struct::for_each(*this, [&](const char* name, auto& value)
     {
-        case Language::English:
-        default:
-            MainMenu = ReadJson(RESOURCES_PATH "Lang/EN/MainMenu.json");
-            break;
-        case Language::Polish:
-            MainMenu = ReadJson(RESOURCES_PATH "Lang/PL/MainMenu.json");
-            break;
-    }
+        value = ReadJson((RESOURCES_PATH + ("Lang/" + extension + "/" + name) + ".json").c_str());
+    });
+
     CurrentLanguage = language;
 }

@@ -17,7 +17,7 @@ VISITABLE_STRUCT(MoveSpeedComponent, Value);
 VISITABLE_STRUCT(PatrolComponent, From, To, Reversed);
 VISITABLE_STRUCT(RoundComponent, Center, Radius);
 VISITABLE_STRUCT(AnimatorComponent, Animation, FrameTime);
-VISITABLE_STRUCT(MainMenuComponent, CurrentPanel);
+VISITABLE_STRUCT(MainMenuComponent, CurrentPanel, TitleScale, SheepText, GoesText, DevileText);
 VISITABLE_STRUCT(TextComponent, Position, FontSize, Value);
 
 // other

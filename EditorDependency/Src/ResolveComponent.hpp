@@ -96,6 +96,14 @@ bool ResolveComponent(const char* fieldName, T& component, AssetManager& assetMa
             }
             ImGui::EndPopup();
         }
+    } else if constexpr (std::is_same_v<type, Color>)
+    {
+        Vector4 arr = ColorNormalize(component);
+        ImGui::ColorPicker4(label, &arr.x);
+        component = ColorFromNormalized(arr);
+    } else if constexpr (is_hide<T>::value)
+    {
+        // Hidden no exception
     } else if constexpr (visit_struct::traits::is_visitable<type>())
     {
         visit_struct::for_each(component, [&](const char* fName, auto& fValue)

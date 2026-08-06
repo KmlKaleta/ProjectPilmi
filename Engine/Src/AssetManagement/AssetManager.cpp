@@ -6,4 +6,5 @@ void AssetManager::LoadAll()
     // Icons.LoadAll();
     Levels.LoadAll();
     Text.LoadAll(Language::English);
+    Audio.LoadAll();
 }

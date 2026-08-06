@@ -39,6 +39,21 @@ struct EntityStorage
         return entity;
     }
 
+    void ValidOrders()
+    {
+        const auto& view = Registry.view<OrderComponent>();
+        std::vector<OrderComponent*> orders;
+        for (const auto& entity : view)
+        {
+            orders.emplace_back(&Registry.get<OrderComponent>(entity));
+        }
+        std::sort(orders.begin(), orders.end(), [](const auto& a, const auto& b) { return a->Value < b->Value; });
+        for (size_t i = 0; i < orders.size(); i++)
+        {
+            orders[i]->Value = i;
+        }
+    }
+
     void AddEntity(const UUID id, const entt::entity entity)
     {
         TagComponent& tagComponent = Registry.get_or_emplace<TagComponent>(entity);
@@ -95,8 +110,6 @@ entity_map[entt::to_integral(entity)]["tags"].emplace_back(#t); \
     JSON final_array = JSON::array();
     for (auto& [id, json_obj] : entity_map)
     {
-        // EnTT entities must keep track of their ID during serialization
-        json_obj["id"] = id;
         final_array.push_back(std::move(json_obj));
     }
     out = final_array;
@@ -170,6 +183,8 @@ storage.Registry.emplace<t>(entity, component); \
 
         storage.AddEntity(id, entity);
     }
+
+    storage.ValidOrders();
 }
 
 #endif //SHEEP_GOES_DEVILE_ENTITY_STORAGE_H

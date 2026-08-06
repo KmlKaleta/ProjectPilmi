@@ -1,7 +1,7 @@
-﻿{
-  "Play": "Graj",
-  "Settings": "Opcje",
-  "Credits": "Autorzy",
-  "Exit": "Wyjdź",
-  "Back": "Wstecz"
+{
+    "Back": "Wstecz",
+    "Credits": "Autorzy",
+    "Exit": "Wyjdź",
+    "Play": "Graj",
+    "Settings": "Opcje"
 }

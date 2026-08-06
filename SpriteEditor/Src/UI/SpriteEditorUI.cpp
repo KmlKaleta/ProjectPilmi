@@ -5,6 +5,7 @@
 #include "SpriteEditorUI.h"
 #include "imgui.h"
 #include "ImGuiExtensions.h"
+#include "ResolveComponent.hpp"
 #include "../SpritesExplorer.h"
 #include "../SpriteEditor.h"
 #include "misc/cpp/imgui_stdlib.h"

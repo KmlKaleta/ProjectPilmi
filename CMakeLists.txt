@@ -8,4 +8,4 @@ add_subdirectory(App)
 add_subdirectory(EditorDependency)
 add_subdirectory(Editor)
 add_subdirectory(SpriteEditor)
-
+add_subdirectory(LocationEditor)

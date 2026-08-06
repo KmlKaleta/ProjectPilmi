@@ -100,38 +100,38 @@ void ImGui::DockingSetup()
 //     InputInt("Texture Y", &renderer->TexY);
 // }
 //
-// void ImGui::SpriteDataEdit(const char* label, SpriteData* spriteData)
-// {
-//     Text(label);
-//     DragFloat2("Pivot", &spriteData->Pivot.x);
-//     DragFloat("Scale", &spriteData->Scale);
-//
-//     int rowCount = static_cast<int>(spriteData->RowCounts.size());
-//     InputInt("Row count", &rowCount);
-//     if (rowCount < 1)
-//     {
-//         rowCount = 1;
-//     }
-//
-//     spriteData->RowCounts.resize(std::abs(rowCount));
-//     int max = 1;
-//     for (size_t i = 0; i < spriteData->RowCounts.size(); i++)
-//     {
-//         int& currentRowCount = spriteData->RowCounts[i];
-//
-//         if (currentRowCount >= max)
-//         {
-//             max = currentRowCount;
-//             spriteData->RowCountMax = currentRowCount;
-//         }
-//
-//         std::string r{"Row "};
-//         r += std::to_string(i);
-//         r += ':';
-//         InputInt(r.c_str(), &currentRowCount);
-//         if (currentRowCount < 1)
-//         {
-//             currentRowCount = 1;
-//         }
-//     }
-// }
+void ImGui::SpriteDataEdit(const char* label, SpriteData* spriteData)
+{
+    Text(label);
+    DragFloat2("Pivot", &spriteData->Pivot.x);
+    DragFloat("Scale", &spriteData->Scale);
+
+    int rowCount = static_cast<int>(spriteData->RowCounts.size());
+    InputInt("Row count", &rowCount);
+    if (rowCount < 1)
+    {
+        rowCount = 1;
+    }
+
+    spriteData->RowCounts.resize(std::abs(rowCount));
+    int max = 1;
+    for (size_t i = 0; i < spriteData->RowCounts.size(); i++)
+    {
+        int& currentRowCount = spriteData->RowCounts[i];
+
+        if (currentRowCount >= max)
+        {
+            max = currentRowCount;
+            spriteData->RowCountMax = currentRowCount;
+        }
+
+        std::string r{"Row "};
+        r += std::to_string(i);
+        r += ':';
+        InputInt(r.c_str(), &currentRowCount);
+        if (currentRowCount < 1)
+        {
+            currentRowCount = 1;
+        }
+    }
+}

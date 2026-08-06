@@ -9,8 +9,10 @@
 #include "JSON.h"
 #include "Renderer.h"
 #include "Fields/EntityRef.hpp"
+#include "Fields/Hide.hpp"
 #include "Fields/Range.hpp"
 #include "Fields/WorldPosition.hpp"
+#include "include/visit_struct/visit_struct.hpp"
 
 #define RequiredComponentNamesMacro(X) \
 X(TAG, TagComponent)
@@ -193,6 +195,15 @@ void from_json(const JSON& j, AnimatorComponent& component);
 
 struct ScaleToScreenTag{};
 
+struct MainMenuText
+{
+    Vector2 Position = {0, 0};
+    Range<float> Scale = Range(6.f, 96.f, 64.f);
+    Color Color = {0,0,0,255};
+};
+
+VISITABLE_STRUCT(MainMenuText, Position, Scale, Color);
+
 struct MainMenuComponent
 {
     enum class Panel
@@ -202,7 +213,11 @@ struct MainMenuComponent
         Credits
     };
 
-    Panel CurrentPanel = Panel::MainMenu;
+    Range<float> TitleScale = Range(0.1f, 5.f, 1.f);
+    Hide<Panel> CurrentPanel = Panel::MainMenu;
+    MainMenuText SheepText = {{0, 0}};
+    MainMenuText GoesText = {{-20, 30}};
+    MainMenuText DevileText = {{0, 60}};
 };
 
 void to_json(JSON& j, const MainMenuComponent& component);

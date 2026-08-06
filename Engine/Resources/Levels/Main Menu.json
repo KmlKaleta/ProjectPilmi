@@ -2,7 +2,59 @@
     "entities": [
         {
             "EntityId": 8347327407076900940,
-            "MainMenuComponent": {},
+            "MainMenuComponent": {
+                "devile": {
+                    "color": {
+                        "w": 1.0,
+                        "x": 1.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "position": {
+                        "x": 8.920000076293945,
+                        "y": 170.72000122070313
+                    },
+                    "scale": {
+                        "max": 96.0,
+                        "min": 6.0,
+                        "value": 78.0
+                    }
+                },
+                "goes": {
+                    "color": {
+                        "w": 1.0,
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "position": {
+                        "x": -12.0,
+                        "y": 131.36000061035156
+                    },
+                    "scale": {
+                        "max": 96.0,
+                        "min": 6.0,
+                        "value": 78.0
+                    }
+                },
+                "sheep": {
+                    "color": {
+                        "w": 1.0,
+                        "x": 0.0,
+                        "y": 0.0,
+                        "z": 0.0
+                    },
+                    "position": {
+                        "x": 10.0,
+                        "y": 97.5
+                    },
+                    "scale": {
+                        "max": 96.0,
+                        "min": 6.0,
+                        "value": 78.0
+                    }
+                }
+            },
             "OrderComponent": 0,
             "RendererComponent": {
                 "order": 0,
@@ -27,5 +79,5 @@
             "id": 0
         }
     ],
-    "id": 14570317446693507966
+    "id": 1
 }

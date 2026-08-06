@@ -18,7 +18,7 @@ namespace ImGui
     //
     // void RendererEdit(const char* label, Renderer* renderer, const SpriteManager& sprites);
     //
-    // void SpriteDataEdit(const char* label, SpriteData* spriteData);
+    void SpriteDataEdit(const char* label, SpriteData* spriteData);
 }
 
 #endif //SHEEP_GOES_DEVILE_IM_GUI_EXTENSIONS_H
