@@ -31,4 +31,17 @@ inline void from_json(const JSON& j, Vector4& vec)
     ReadJsonValue(vec.w, j, "w", 0.f);
 }
 
+inline void to_json(JSON& j, const Color& col)
+{
+    j = {{"r", col.r}, {"g", col.g}, {"b", col.b}, {"a", col.a}};
+}
+
+inline void from_json(const JSON& j, Color& col)
+{
+    ReadJsonValue(col.r, j, "r", static_cast<unsigned char>(0));
+    ReadJsonValue(col.g, j, "g", static_cast<unsigned char>(0));
+    ReadJsonValue(col.b, j, "b", static_cast<unsigned char>(0));
+    ReadJsonValue(col.a, j, "a", static_cast<unsigned char>(255));
+}
+
 #endif //SHEEP_GOES_DEVILE_RAYLIB_JSON_HPP

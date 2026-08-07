@@ -4,9 +4,9 @@
 
 #ifndef SHEEP_GOES_DEVILE_COMPONENTS_H
 #define SHEEP_GOES_DEVILE_COMPONENTS_H
+#include "JSON.h"
 #include "AnimationData.hpp"
 #include "UUID.hpp"
-#include "JSON.h"
 #include "Renderer.h"
 #include "Fields/EntityRef.hpp"
 #include "Fields/Hide.hpp"
@@ -83,6 +83,7 @@ enum class ComponentType
     COUNT
 };
 
+// @Component(REQUIRED)
 struct TagComponent
 {
     std::string Value;
@@ -96,9 +97,10 @@ bool operator==(const TagComponent& lhs, const TagComponent& rhs);
 
 bool operator!=(const TagComponent& lhs, const TagComponent& rhs);
 
+// @Component(UTILITY)
 struct OrderComponent
 {
-    uint32_t Value;
+    uint32_t Value = std::numeric_limits<uint32_t>::max();
 
     operator size_t() const
     {
@@ -110,6 +112,7 @@ void to_json(JSON& j, const OrderComponent& component);
 
 void from_json(const JSON& j, OrderComponent& component);
 
+// @Component(ADDITIONAL)
 struct ParallaxComponent
 {
     Range<float> Strength = Range<float>(0.1f, 2.0f, 1);
@@ -123,6 +126,7 @@ bool operator==(const ParallaxComponent& lhs, const ParallaxComponent& rhs);
 
 bool operator!=(const ParallaxComponent& lhs, const ParallaxComponent& rhs);
 
+// @Component(ADDITIONAL)
 struct RendererComponent
 {
     uint32_t LayerOrder = 0;
@@ -133,6 +137,7 @@ void to_json(JSON& j, const RendererComponent& component);
 
 void from_json(const JSON& j, RendererComponent& component);
 
+// @Component(UTILITY)
 struct EntityGroupComponent
 {
     std::vector<EntityRef> Entities;
@@ -142,6 +147,7 @@ void to_json(JSON&, const EntityGroupComponent&);
 
 void from_json(const JSON&, EntityGroupComponent&);
 
+// @Component(UTILITY)
 struct EntityGroupChildComponent
 {
     EntityRef Value;
@@ -151,6 +157,7 @@ void to_json(JSON&, const EntityGroupChildComponent&);
 
 void from_json(const JSON&, EntityGroupChildComponent&);
 
+// @Component(ADDITIONAL)
 struct MoveSpeedComponent
 {
     Range<float> Value = Range<float>(10.f, 2000.0f, 200);
@@ -160,6 +167,7 @@ void to_json(JSON& j, const MoveSpeedComponent& component);
 
 void from_json(const JSON& j, MoveSpeedComponent& component);
 
+// @Component(ADDITIONAL)
 struct PatrolComponent
 {
     WorldPosition From = {0, 0};
@@ -171,6 +179,7 @@ void to_json(JSON& j, const PatrolComponent& component);
 
 void from_json(const JSON& j, PatrolComponent& component);
 
+// @Component(ADDITIONAL)
 struct RoundComponent
 {
     WorldPosition Center;
@@ -182,8 +191,10 @@ void to_json(JSON& j, const RoundComponent& component);
 
 void from_json(const JSON& j, RoundComponent& component);
 
+// @Component(ADDITIONAL)
 struct AnimatorComponent
 {
+    //@Ignored
     AnimationData Data;
     int Animation{};
     Range<float> FrameTime = Range(0.01f, 1.f, 0.1f);
@@ -193,8 +204,10 @@ void to_json(JSON& j, const AnimatorComponent& component);
 
 void from_json(const JSON& j, AnimatorComponent& component);
 
+// @Component(TAG)
 struct ScaleToScreenTag{};
 
+// @Component(ADDITIONAL)
 struct MainMenuText
 {
     Vector2 Position = {0, 0};
@@ -204,6 +217,7 @@ struct MainMenuText
 
 VISITABLE_STRUCT(MainMenuText, Position, Scale, Color);
 
+// @Component(ADDITIONAL)
 struct MainMenuComponent
 {
     enum class Panel
@@ -224,6 +238,7 @@ void to_json(JSON& j, const MainMenuComponent& component);
 
 void from_json(const JSON& j, MainMenuComponent& component);
 
+// @Component(ADDITIONAL)
 struct TextComponent
 {
     enum class Alignment
