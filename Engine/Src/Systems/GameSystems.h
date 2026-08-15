@@ -12,6 +12,8 @@
 #include "RoundSystem.h"
 #include "ScaleToScreenSystem.h"
 #include "MainMenuSystem.h"
+#include "Physics/PhysicsSystem.h"
+#include "Physics/PlayerMovementSystem.h"
 
 #define GameSystemsMacro(X) \
     X(ParallaxSystem) \
@@ -20,13 +22,15 @@
     X(RoundSystem) \
     X(AnimationSystem) \
     X(ScaleToScreenSystem) \
-    X(MainMenuSystem)
+    X(MainMenuSystem) \
+    X(PlayerMovementSystem) \
+    X(PhysicsSystem)
 
 struct GameSystemsUpdateArgs;
 
 struct GameSystems
 {
-#define X(t) t t##Instance;
+#define X(t) t t##Instance{};
     GameSystemsMacro(X)
 #undef X
     void Update(GameSystemsUpdateArgs& args);

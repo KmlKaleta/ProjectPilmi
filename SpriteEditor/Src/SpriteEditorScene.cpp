@@ -38,6 +38,10 @@ void SpriteEditorScene::Update(SpritesExplorer& explorer, const SpriteEditor& ed
         const SpriteData& sprite = explorer.Paths[explorer.Ids[explorer.Selected]].Sprite;
         const int row = editor.Row % static_cast<int>(sprite.RowCounts.size());
         sprite.Render(editor.Position, editor.Column % sprite.RowCounts[row], row, false, editor.ScaleFactor);
+        if (editor.ShowCollider)
+        {
+            DrawRectangleLinesEx(sprite.GetBounds(editor.Position, editor.ScaleFactor), 1, DARKGREEN);
+        }
     }
 
     DrawLine(-500, 0, 500, 0, RED);

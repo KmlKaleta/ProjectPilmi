@@ -11,6 +11,7 @@
 #include "Systems/MainMenuSystem.h"
 #include "Systems/ParallaxSystem.h"
 #include "Systems/ScaleToScreenSystem.h"
+#include "PhysicsBoxVisualizationSystem.h"
 
 #define EditorSystemsMacro(X) \
     X(ParallaxSystem) \
@@ -18,7 +19,8 @@
     X(PatrolVisualizationSystem) \
     X(RoundVisualizationSystem) \
     X(ScaleToScreenSystem) \
-    X(MainMenuSystem)
+    X(MainMenuSystem) \
+    X(PhysicsBoxVisualizationSystem)
 
 struct GameSystemsUpdateArgs;
 

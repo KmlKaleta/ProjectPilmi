@@ -1,4 +1,5 @@
 #pragma once
+#include "JSON.h"
 
 struct AnimationData
 {
@@ -30,3 +31,19 @@ struct AnimationData
         Animation = animation;
     }
 };
+
+inline void to_json(JSON& j, const AnimationData& data)
+{
+    j["t"] = data.T;
+    j["t_max"] = data.TMax;
+    j["frame"] = data.Frame;
+    j["animation"] = data.Animation;
+}
+
+inline void from_json(const JSON& j, AnimationData& data)
+{
+    ReadJsonValue(data.T, j, "t", data.T);
+    ReadJsonValue(data.TMax, j, "t_max", data.TMax);
+    ReadJsonValue(data.Frame, j, "frame", data.Frame);
+    ReadJsonValue(data.Animation, j, "animation", data.Animation);
+}

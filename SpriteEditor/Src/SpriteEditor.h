@@ -13,6 +13,7 @@ struct SpriteEditor
     float ScaleFactor = 1.0f;
     int Row = 0;
     int Column = 0;
+    bool ShowCollider = false;
 
     UUID Ghosts[3] = {};
 };

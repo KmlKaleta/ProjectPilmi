@@ -10,6 +10,7 @@
 #include "../SpriteEditor.h"
 #include "misc/cpp/imgui_stdlib.h"
 #include "StringUtility.hpp"
+#include <raymath.h>
 
 void SpriteEditorUI::Draw(SpriteEditor& editor, SpritesExplorer& explorer) const
 {
@@ -48,10 +49,18 @@ void SpriteEditorUI::Draw(SpriteEditor& editor, SpritesExplorer& explorer) const
     ImGui::InputInt("Column:", &editor.Column, 1, 10);
     ImGui::DragFloat("Scale Factor:", &editor.ScaleFactor, 0.01f);
     editor.ScaleFactor = std::max(0.01f, editor.ScaleFactor);
+    if ((editor.ShowCollider = ImGui::CollapsingHeader("Default Collider")))
+    {
+        ImGui::DragFloat2("Offset", &selected.Sprite.DefaultCollider.Position.x);
+        ImGui::DragFloat2("Size", &selected.Sprite.DefaultCollider.Size.x);
+    }
+
     if (ImGui::Button("Apply scale"))
     {
         selected.Sprite.Pivot *= editor.ScaleFactor;
         selected.Sprite.Scale *= editor.ScaleFactor;
+        selected.Sprite.DefaultCollider.Position *= editor.ScaleFactor;
+        selected.Sprite.DefaultCollider.Size *= editor.ScaleFactor;
         editor.ScaleFactor = 1;
     }
 

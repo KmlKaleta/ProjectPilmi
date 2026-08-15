@@ -21,17 +21,7 @@ void Gameplay::Update(AssetManager& assetManager)
     Camera.offset = {static_cast<float>(GetScreenWidth()) / 2, static_cast<float>(GetScreenHeight()) / 2};
     BeginMode2D(Camera);
 
-    LevelData& level = assetManager.Levels.CurrentLevel();
-
-    const WorldScreenBounds bounds{Camera};
-
-    GameSystemsUpdateArgs args{
-        level.Entities.Registry,
-        GetFrameTime(),
-        GetScreenToWorld2D(GetMousePosition(), Camera),
-        assetManager,
-        bounds
-    };
+    GameSystemsUpdateArgs args(assetManager, Camera, true, true);
 
     Systems.Update(args);
 

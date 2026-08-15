@@ -3,7 +3,7 @@
         {
             "EntityId": 8347327407076900940,
             "MainMenuComponent": {
-                "devile": {
+                "devile_text": {
                     "color": {
                         "w": 1.0,
                         "x": 1.0,
@@ -20,7 +20,7 @@
                         "value": 78.0
                     }
                 },
-                "goes": {
+                "goes_text": {
                     "color": {
                         "w": 1.0,
                         "x": 0.0,
@@ -37,7 +37,7 @@
                         "value": 78.0
                     }
                 },
-                "sheep": {
+                "sheep_text": {
                     "color": {
                         "w": 1.0,
                         "x": 0.0,
@@ -53,12 +53,18 @@
                         "min": 6.0,
                         "value": 78.0
                     }
+                },
+                "title_scale": {
+                    "max": 5.0,
+                    "min": 0.10000000149011612,
+                    "value": 1.0
                 }
             },
-            "OrderComponent": 0,
+            "OrderComponent": {
+                "value": 0
+            },
             "RendererComponent": {
-                "order": 0,
-                "renderer": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 4,
@@ -71,12 +77,12 @@
                     "sprite": 12158023348458245399,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 0
             },
             "TagComponent": {
                 "value": "Menu screen"
-            },
-            "id": 0
+            }
         }
     ],
     "id": 1

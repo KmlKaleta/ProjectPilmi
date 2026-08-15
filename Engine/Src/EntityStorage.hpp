@@ -7,6 +7,7 @@
 #include <entt/entt.hpp>
 #include "JSON.h"
 #include "Components.h"
+#include "GeneratedComponents.h"
 #include "StringUtility.hpp"
 #include "UUIDFactory.hpp"
 

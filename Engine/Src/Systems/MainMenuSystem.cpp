@@ -5,6 +5,7 @@
 
 #include "Components.h"
 #include "GameSystemsUpdateArgs.h"
+#include <raymath.h>
 
 void DrawTextCentered(const Rectangle rect, const Font& font, const char* text, const float fontSize, const Color color)
 {
@@ -22,8 +23,16 @@ struct ButtonArgs
     const Sound& ClickSound;
 };
 
-bool Button(const Rectangle rect, const char* text, bool& isHovered, const ButtonArgs& args)
+bool Button(const Rectangle rect, const char* text, bool& isHovered, const ButtonArgs& args, const bool canCaptureMouse)
 {
+    if (!canCaptureMouse)
+    {
+        DrawRectangleRec(rect, {230, 230, 230, 255});
+        DrawTextCentered(rect, args.Font, text, args.FontSize, {25, 25, 25, 255});
+        isHovered = false;
+        return false;
+    }
+
     if (const bool isMouseOver = CheckCollisionPointRec(args.MouseWorldPosition, rect); !isMouseOver)
     {
         DrawRectangleRec(rect, {230, 230, 230, 255});
@@ -149,26 +158,30 @@ void MainMenuSystem::Update(GameSystemsUpdateArgs& args)
         {
             default:
             case MainMenuComponent::Panel::MainMenu:
-                if (Button(btnRect, args.Assets.Text.MainMenu.Play.c_str(), isHovered[0], buttonArgs))
+                if (Button(btnRect, args.Assets.Text.MainMenu.Play.c_str(), isHovered[0], buttonArgs,
+                           args.CanCaptureMouse))
                 {
                     args.Assets.Levels.Load(2137);;
                 }
 
                 btnRect.y += btnHeight + btnPadding;
 
-                if (Button(btnRect, args.Assets.Text.MainMenu.Settings.c_str(), isHovered[1], buttonArgs))
+                if (Button(btnRect, args.Assets.Text.MainMenu.Settings.c_str(), isHovered[1], buttonArgs,
+                           args.CanCaptureMouse))
                 {
                     SetMenuPanel(mainMenu, MainMenuComponent::Panel::Settings);
                 }
                 btnRect.y += btnHeight + btnPadding;
 
-                if (Button(btnRect, args.Assets.Text.MainMenu.Credits.c_str(), isHovered[2], buttonArgs))
+                if (Button(btnRect, args.Assets.Text.MainMenu.Credits.c_str(), isHovered[2], buttonArgs,
+                           args.CanCaptureMouse))
                 {
                     SetMenuPanel(mainMenu, MainMenuComponent::Panel::Credits);
                 }
                 btnRect.y += btnHeight + btnPadding;
 
-                if (Button(btnRect, args.Assets.Text.MainMenu.Exit.c_str(), isHovered[3], buttonArgs))
+                if (Button(btnRect, args.Assets.Text.MainMenu.Exit.c_str(), isHovered[3], buttonArgs,
+                           args.CanCaptureMouse))
                 {
                     CloseWindow();
                 }
@@ -185,7 +198,8 @@ void MainMenuSystem::Update(GameSystemsUpdateArgs& args)
                                          CurrentLanguage)].c_str(), fontSize, {25, 25, 25, 255});
                 }
 
-                if (Button({btnRect.x, btnRect.y, btnRect.height, btnRect.height}, "<", isHovered[4], buttonArgs))
+                if (Button({btnRect.x, btnRect.y, btnRect.height, btnRect.height}, "<", isHovered[4], buttonArgs,
+                           args.CanCaptureMouse))
                 {
                     const auto lang = static_cast<Language>(
                         std::abs(static_cast<int>(args.Assets.Text.CurrentLanguage) - 1) % static_cast<int>(
@@ -195,7 +209,7 @@ void MainMenuSystem::Update(GameSystemsUpdateArgs& args)
 
 
                 if (Button({btnRect.x + btnRect.width - btnRect.height, btnRect.y, btnRect.height, btnRect.height}, ">",
-                           isHovered[5], buttonArgs))
+                           isHovered[5], buttonArgs, args.CanCaptureMouse))
                 {
                     const auto lang = static_cast<Language>(
                         (static_cast<int>(args.Assets.Text.CurrentLanguage) + 1) % static_cast<int>(Language::COUNT));
@@ -203,7 +217,8 @@ void MainMenuSystem::Update(GameSystemsUpdateArgs& args)
                 }
 
                 btnRect.y += (btnHeight + btnPadding) * 3;
-                if (Button(btnRect, args.Assets.Text.MainMenu.Back.c_str(), isHovered[3], buttonArgs))
+                if (Button(btnRect, args.Assets.Text.MainMenu.Back.c_str(), isHovered[3], buttonArgs,
+                           args.CanCaptureMouse))
                 {
                     SetMenuPanel(mainMenu, MainMenuComponent::Panel::MainMenu);
                 }
@@ -212,7 +227,8 @@ void MainMenuSystem::Update(GameSystemsUpdateArgs& args)
                 DrawTextEx(font, "SoMakeAWish", {btnRect.x, btnRect.y}, fontSize, 1, {25, 25, 25, 255});
                 DrawTextEx(font, "Pilmincia", {btnRect.x, btnRect.y + 100 * scale}, fontSize, 1, {25, 25, 25, 255});
                 btnRect.y += (btnHeight + btnPadding) * 3;
-                if (Button(btnRect, args.Assets.Text.MainMenu.Back.c_str(), isHovered[3], buttonArgs))
+                if (Button(btnRect, args.Assets.Text.MainMenu.Back.c_str(), isHovered[3], buttonArgs,
+                           args.CanCaptureMouse))
                 {
                     SetMenuPanel(mainMenu, MainMenuComponent::Panel::MainMenu);
                 }

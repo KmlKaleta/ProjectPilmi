@@ -18,15 +18,16 @@ void EditorLevel::Init()
     Camera.zoom = 1;
 }
 
-void TransformEdition(EntityStorage& storage, const EntitySelection& selection, const WorldScreenBounds& screenBounds,
-                      const Camera2D& camera)
+void TransformEdition(EntityStorage& storage, const EntitySelection& selection, const Camera2D& camera)
 {
+    const WorldScreenBounds screenBounds{camera};
     if (selection.SelectedEntity == 0)
     {
         return;
     }
 
-    RendererComponent* renderer = storage.Registry.try_get<RendererComponent>(storage.GetEntity(selection.SelectedEntity));
+    RendererComponent* renderer = storage.Registry.try_get<RendererComponent>(
+        storage.GetEntity(selection.SelectedEntity));
     if (renderer == nullptr)
     {
         return;
@@ -93,14 +94,9 @@ void EditorLevel::Update(AssetManager& assetManager, const EntitySelection& sele
 
     LevelData& level = assetManager.Levels.CurrentLevel();
 
-    const WorldScreenBounds bounds{Camera};
-    GameSystemsUpdateArgs args{
-        level.Entities.Registry,
-        GetFrameTime(),
-        GetScreenToWorld2D(GetMousePosition(), Camera),
-        assetManager,
-        bounds
-    };
+    const ImGuiIO& io = ImGui::GetIO();
+
+    GameSystemsUpdateArgs args(assetManager, Camera, !io.WantCaptureMouse, !io.WantCaptureKeyboard);
 
     Systems.Update(args);
 
@@ -109,6 +105,6 @@ void EditorLevel::Update(AssetManager& assetManager, const EntitySelection& sele
         return;
     }
 
-    TransformEdition(level.Entities, selection, bounds, Camera);
+    TransformEdition(level.Entities, selection, Camera);
     EndMode2D();
 }

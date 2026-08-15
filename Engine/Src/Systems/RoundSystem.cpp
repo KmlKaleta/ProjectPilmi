@@ -5,6 +5,7 @@
 
 #include "Components.h"
 #include "GameSystemsUpdateArgs.h"
+#include <raymath.h>
 
 void RoundSystem::Update(GameSystemsUpdateArgs& args) const
 {
@@ -16,7 +17,7 @@ void RoundSystem::Update(GameSystemsUpdateArgs& args) const
         auto& [round, renderer] = tuple;
         const auto& moveSpeed = view.get<MoveSpeedComponent>(entity);
 
-        round.T += moveSpeed.Value.Get() / round.Radius.Get() * args.DeltaTime;
+        round.T.Value += moveSpeed.Value.Get() / round.Radius.Get() * args.DeltaTime;
 
         renderer.Data.Move(
             round.Center.GetRelative(args.ScreenBounds) -

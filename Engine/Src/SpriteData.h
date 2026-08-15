@@ -1,7 +1,6 @@
 #pragma once
-#include "RaylibJSON.hpp"
-#include <raymath.h>
 #include <vector>
+#include "Components.h"
 
 struct SpriteData
 {
@@ -10,6 +9,7 @@ struct SpriteData
     Vector2 Pivot = {};
     std::vector<int> RowCounts = {1};
     int RowCountMax = 1;
+    PhysicsBoxComponent DefaultCollider;
 
     SpriteData(SpriteData&&) = default;
 
@@ -22,6 +22,8 @@ struct SpriteData
 
     void Render(Vector2 position, Rectangle texCoords, float scale = 1,
                 Color tint = WHITE) const;
+
+    Rectangle GetRenderBounds(Vector2 position, float scale = 1) const;
 
     Rectangle GetBounds(Vector2 position, float scale = 1) const;
 

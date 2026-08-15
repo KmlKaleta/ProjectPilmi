@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 #include <filesystem>
+
+#include "Components.h"
 #include "SpriteData.h"
 #include "UUID.hpp"
 

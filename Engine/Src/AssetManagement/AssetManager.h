@@ -4,6 +4,7 @@
 #include "IconsManager.h"
 #include "LevelManager.h"
 #include "TextManager.h"
+#include "Random.hpp"
 
 struct AssetManager
 {
@@ -12,6 +13,7 @@ struct AssetManager
     SpriteManager Sprites;
     TextManager Text;
     AudioManager Audio;
+    Random Random;
 
     void LoadAll();
     // IconsManager Icons;

@@ -1,0 +1,326 @@
+{
+    "entities": [
+        {
+            "EntityId": 5166584592869778351,
+            "OrderComponent": {
+                "value": 3
+            },
+            "PhysicsBoxComponent": {
+                "position": {
+                    "x": 0.0,
+                    "y": 115.0
+                },
+                "size": {
+                    "x": 1000.0,
+                    "y": 116.0
+                }
+            },
+            "RendererComponent": {
+                "data": {
+                    "flip": false,
+                    "position": {
+                        "anchor": 7,
+                        "value": {
+                            "x": -450.0,
+                            "y": 450.0
+                        }
+                    },
+                    "scale": 0.5,
+                    "sprite": 2333685563216771788,
+                    "tex_x": 0,
+                    "tex_y": 0
+                },
+                "layer_order": 9999
+            },
+            "TagComponent": {
+                "value": "Platform"
+            }
+        },
+        {
+            "EntityId": 12909239335157014586,
+            "OrderComponent": {
+                "value": 4
+            },
+            "PhysicsBoxComponent": {
+                "position": {
+                    "x": 0.0,
+                    "y": 115.0
+                },
+                "size": {
+                    "x": 1000.0,
+                    "y": 116.0
+                }
+            },
+            "RendererComponent": {
+                "data": {
+                    "flip": false,
+                    "position": {
+                        "anchor": 7,
+                        "value": {
+                            "x": 0.0,
+                            "y": 300.0
+                        }
+                    },
+                    "scale": 0.5,
+                    "sprite": 2333685563216771788,
+                    "tex_x": 0,
+                    "tex_y": 0
+                },
+                "layer_order": 9999
+            },
+            "TagComponent": {
+                "value": "Platform"
+            }
+        },
+        {
+            "EntityId": 7584030571235246906,
+            "OrderComponent": {
+                "value": 5
+            },
+            "PhysicsBoxComponent": {
+                "position": {
+                    "x": 0.0,
+                    "y": 115.0
+                },
+                "size": {
+                    "x": 1000.0,
+                    "y": 116.0
+                }
+            },
+            "RendererComponent": {
+                "data": {
+                    "flip": false,
+                    "position": {
+                        "anchor": 7,
+                        "value": {
+                            "x": 1000.0,
+                            "y": 114.0
+                        }
+                    },
+                    "scale": 1.0,
+                    "sprite": 2333685563216771788,
+                    "tex_x": 0,
+                    "tex_y": 0
+                },
+                "layer_order": 9999
+            },
+            "TagComponent": {
+                "value": "Ground"
+            }
+        },
+        {
+            "EntityId": 10703071609355633132,
+            "OrderComponent": {
+                "value": 8
+            },
+            "PhysicsBoxComponent": {
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "size": {
+                    "x": 47.0,
+                    "y": 106.0
+                }
+            },
+            "RendererComponent": {
+                "data": {
+                    "flip": true,
+                    "position": {
+                        "anchor": 7,
+                        "value": {
+                            "x": -1050.0,
+                            "y": 116.0
+                        }
+                    },
+                    "scale": 8.0,
+                    "sprite": 6627821916887444946,
+                    "tex_x": 0,
+                    "tex_y": 0
+                },
+                "layer_order": 8888
+            },
+            "TagComponent": {
+                "value": "Wall"
+            }
+        },
+        {
+            "EntityId": 8460018175187757166,
+            "OrderComponent": {
+                "value": 7
+            },
+            "PhysicsBoxComponent": {
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "size": {
+                    "x": 47.0,
+                    "y": 106.0
+                }
+            },
+            "RendererComponent": {
+                "data": {
+                    "flip": false,
+                    "position": {
+                        "anchor": 7,
+                        "value": {
+                            "x": 1100.0,
+                            "y": 116.0
+                        }
+                    },
+                    "scale": 8.0,
+                    "sprite": 6627821916887444946,
+                    "tex_x": 0,
+                    "tex_y": 0
+                },
+                "layer_order": 8888
+            },
+            "TagComponent": {
+                "value": "Wall"
+            }
+        },
+        {
+            "EntityId": 15627201818828897438,
+            "OrderComponent": {
+                "value": 2
+            },
+            "PhysicsBoxComponent": {
+                "position": {
+                    "x": 0.0,
+                    "y": 115.0
+                },
+                "size": {
+                    "x": 1000.0,
+                    "y": 116.0
+                }
+            },
+            "RendererComponent": {
+                "data": {
+                    "flip": false,
+                    "position": {
+                        "anchor": 7,
+                        "value": {
+                            "x": 450.0,
+                            "y": 510.0
+                        }
+                    },
+                    "scale": 0.5,
+                    "sprite": 2333685563216771788,
+                    "tex_x": 0,
+                    "tex_y": 0
+                },
+                "layer_order": 9999
+            },
+            "TagComponent": {
+                "value": "Platform"
+            }
+        },
+        {
+            "EntityId": 4522973312183446807,
+            "OrderComponent": {
+                "value": 6
+            },
+            "PhysicsBoxComponent": {
+                "position": {
+                    "x": 0.0,
+                    "y": 115.0
+                },
+                "size": {
+                    "x": 1000.0,
+                    "y": 116.0
+                }
+            },
+            "RendererComponent": {
+                "data": {
+                    "flip": false,
+                    "position": {
+                        "anchor": 7,
+                        "value": {
+                            "x": 0.0,
+                            "y": 114.0
+                        }
+                    },
+                    "scale": 1.0,
+                    "sprite": 2333685563216771788,
+                    "tex_x": 0,
+                    "tex_y": 0
+                },
+                "layer_order": 9999
+            },
+            "TagComponent": {
+                "value": "Ground"
+            }
+        },
+        {
+            "EntityId": 1229411614230905385,
+            "OrderComponent": {
+                "value": 1
+            },
+            "PhysicsBoxComponent": {
+                "position": {
+                    "x": 0.0,
+                    "y": 115.0
+                },
+                "size": {
+                    "x": 1000.0,
+                    "y": 116.0
+                }
+            },
+            "RendererComponent": {
+                "data": {
+                    "flip": false,
+                    "position": {
+                        "anchor": 7,
+                        "value": {
+                            "x": -1000.0,
+                            "y": 114.0
+                        }
+                    },
+                    "scale": 1.0,
+                    "sprite": 2333685563216771788,
+                    "tex_x": 0,
+                    "tex_y": 0
+                },
+                "layer_order": 9999
+            },
+            "TagComponent": {
+                "value": "Ground"
+            }
+        },
+        {
+            "EntityId": 12148915656331533065,
+            "OrderComponent": {
+                "value": 0
+            },
+            "ParallaxComponent": {
+                "strength": {
+                    "max": 2.0,
+                    "min": 0.10000000149011612,
+                    "value": 1.0
+                }
+            },
+            "RendererComponent": {
+                "data": {
+                    "flip": false,
+                    "position": {
+                        "anchor": 7,
+                        "value": {
+                            "x": 0.0,
+                            "y": 0.0
+                        }
+                    },
+                    "scale": 3.0,
+                    "sprite": 16239456127028044638,
+                    "tex_x": 0,
+                    "tex_y": 0
+                },
+                "layer_order": 0
+            },
+            "TagComponent": {
+                "value": "Background"
+            }
+        }
+    ],
+    "id": 10861273992076206294
+}

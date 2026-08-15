@@ -4,16 +4,6 @@
 #include "Components.h"
 #include "RaylibJSON.hpp"
 
-void to_json(JSON& j, const TagComponent& component)
-{
-    j["value"] = component.Value;
-}
-
-void from_json(const JSON& j, TagComponent& component)
-{
-    ReadJsonValue(component.Value, j, "value", std::string("No Name"));
-}
-
 bool operator==(const TagComponent& lhs, const TagComponent& rhs)
 {
     return lhs.Value == rhs.Value;
@@ -22,26 +12,6 @@ bool operator==(const TagComponent& lhs, const TagComponent& rhs)
 bool operator!=(const TagComponent& lhs, const TagComponent& rhs)
 {
     return !(lhs == rhs);
-}
-
-void to_json(JSON& j, const OrderComponent& component)
-{
-    j = component.Value;
-}
-
-void from_json(const JSON& j, OrderComponent& component)
-{
-    ReadJsonValue(component.Value, j, std::numeric_limits<uint32_t>::max());
-}
-
-void to_json(JSON& j, const ParallaxComponent& component)
-{
-    j["strength"] = component.Strength;
-}
-
-void from_json(const JSON& j, ParallaxComponent& component)
-{
-    ReadJsonValue(component.Strength, j, "strength", component.Strength);
 }
 
 bool operator==(const ParallaxComponent& lhs, const ParallaxComponent& rhs)
@@ -68,103 +38,6 @@ bool operator!=(const ParallaxComponent& lhs, const ParallaxComponent& rhs)
 //     Data.Position = pos;
 // }
 
-void to_json(JSON& j, const RendererComponent& component)
-{
-    j["order"] = component.LayerOrder;
-    j["renderer"] = component.Data;
-}
-
-void from_json(const JSON& j, RendererComponent& component)
-{
-    ReadJsonValue(component.LayerOrder, j, "order", component.LayerOrder);
-    ReadJsonValue(component.Data, j, "renderer", component.Data);
-}
-
-void to_json(JSON& j, const EntityGroupComponent& component)
-{
-    j = JSON::array();
-    for (const auto& [ID] : component.Entities)
-    {
-        j.emplace_back(ID);
-    }
-}
-
-void from_json(const JSON& j, EntityGroupComponent& component)
-{
-    if (!j.is_array())
-    {
-        return;
-    }
-
-    for (const auto& ID : j)
-    {
-        UUID id{};
-        from_json(ID, id);
-
-        if (id != 0)
-        {
-            component.Entities.emplace_back(id);
-        }
-    }
-}
-
-void to_json(JSON& j, const EntityGroupChildComponent& component)
-{
-    j = JSON::object();
-}
-
-void from_json(const JSON&, EntityGroupChildComponent&)
-{
-}
-
-void to_json(JSON& j, const MoveSpeedComponent& component)
-{
-    j = component.Value;
-}
-
-void from_json(const JSON& j, MoveSpeedComponent& component)
-{
-    ReadJsonValue(component.Value, j, component.Value);
-}
-
-void to_json(JSON& j, const PatrolComponent& component)
-{
-    j["from"] = component.From;
-    j["to"] = component.To;
-    j["reversed"] = component.Reversed;
-}
-
-void from_json(const JSON& j, PatrolComponent& component)
-{
-    ReadJsonValue(component.From, j, "from", component.From);
-    ReadJsonValue(component.To, j, "to", component.To);
-    ReadJsonValue(component.Reversed, j, "reversed", component.Reversed);
-}
-
-void to_json(JSON& j, const RoundComponent& component)
-{
-    j["position"] = component.Center;
-    j["radius"] = component.Radius;
-}
-
-void from_json(const JSON& j, RoundComponent& component)
-{
-    ReadJsonValue(component.Center, j, "position", component.Center);
-    ReadJsonValue(component.Radius, j, "radius", component.Radius);
-}
-
-void to_json(JSON& j, const AnimatorComponent& component)
-{
-    j["animation"] = component.Animation;
-    j["frame_time"] = component.FrameTime;
-}
-
-void from_json(const JSON& j, AnimatorComponent& component)
-{
-    ReadJsonValue(component.Animation, j, "animation", component.Animation);
-    ReadJsonValue(component.FrameTime, j, "frame_time", component.FrameTime);
-}
-
 void to_json(JSON& j, const MainMenuText& text)
 {
     j["position"] = text.Position;
@@ -172,41 +45,40 @@ void to_json(JSON& j, const MainMenuText& text)
     j["color"] = ColorNormalize(text.Color);
 }
 
-void to_json(JSON& j, const MainMenuComponent& component)
-{
-    j["title_scale"] = component.TitleScale;
-    j["sheep"] = component.SheepText;
-    j["goes"] = component.GoesText;
-    j["devile"] = component.DevileText;
-}
-
 void from_json(const JSON& j, MainMenuText& text)
 {
     ReadJsonValue(text.Position, j, "position", text.Position);
     ReadJsonValue(text.Scale, j, "scale", text.Scale);
-    Vector4 col = ColorNormalize(BLACK);
-    ReadJsonValue(col, j, "color", col);
-    col.x = static_cast<float>(std::abs(static_cast<int>(col.x)) % 255);
-    col.y = static_cast<float>(std::abs(static_cast<int>(col.y)) % 255);
-    col.z = static_cast<float>(std::abs(static_cast<int>(col.z)) % 255);
-    col.w = static_cast<float>(std::abs(static_cast<int>(col.w)) % 255);
-    text.Color = ColorFromNormalized(col);
+    ReadJsonValue(text.Color, j, "color", text.Color);
 }
 
-void from_json(const JSON& j, MainMenuComponent& component)
+Rectangle PhysicsBoxComponent::GetRectangle(const Vector2 position, const float scale) const
 {
-    ReadJsonValue(component.TitleScale, j, "title_scale", component.TitleScale);
-    ReadJsonValue(component.SheepText, j, "sheep", component.SheepText);
-    ReadJsonValue(component.GoesText, j, "goes", component.GoesText);
-    ReadJsonValue(component.DevileText, j, "devile", component.DevileText);
+        return {
+            position.x + (Position.x - Size.x / 2) * scale,
+            position.y + (Position.y - Size.y) * scale,
+            Size.x * scale,
+            Size.y * scale
+        };
 }
 
-void to_json(JSON& j, const TextComponent& component)
+void to_json(JSON& j, const Touch& touch)
 {
-    j = component.Value;
+    j["up"] = touch.GetUp();
+    j["left"] = touch.GetLeft();
+    j["right"] = touch.GetRight();
+    j["down"] = touch.GetDown();
 }
 
-void from_json(const JSON& j, TextComponent& component)
+void from_json(const JSON& j, Touch& touch)
 {
-    ReadJsonValue(component.Value, j, std::string("####"));
+    bool x = false;
+    ReadJsonValue(x, j, "up", false);
+    touch.SetUp(x);
+    ReadJsonValue(x, j, "left", false);
+    touch.SetLeft(x);
+    ReadJsonValue(x, j, "right", false);
+    touch.SetRight(x);
+    ReadJsonValue(x, j, "down", false);
+    touch.SetDown(x);
 }

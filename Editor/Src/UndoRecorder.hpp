@@ -14,9 +14,9 @@ void RecordTagAdd(EditorUndoRedo& undoRedo, entt::registry& storage, const entt:
 }
 
 template<typename T>
-void RecordComponentAdd(EditorUndoRedo& undoRedo, entt::registry& storage, const entt::entity entity, const UUID id)
+void RecordComponentAdd(EditorUndoRedo& undoRedo, const T& component, entt::registry& storage, const entt::entity entity, const UUID id)
 {
-    storage.emplace<T>(entity);
+    storage.emplace<T>(entity, component);
     undoRedo.AddAction(AddComponentPayload<T>{id});
 }
 

@@ -15,3 +15,11 @@ Makefile
 settings/
 saves/
 Arts/
+
+# Python Virtual Environment
+.venv/
+venv/
+
+# Python cache (temporary files)
+**/__pycache__/
+*.pyc

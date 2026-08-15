@@ -10,7 +10,7 @@ set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build Raylib as static libraries" FORCE)
 #basically this will change the RESOURCES_PATH to be the local path
 #! ! ! ! ! ! !
 #delete the out folder after changing if visual studio doesn't recognize the change
-set(PRODUCTION_BUILD OFF CACHE BOOL "Production build")
+set(PRODUCTION_BUILD ON CACHE BOOL "Production build")
 
 add_subdirectory(ThirdParty/raylib-6.0)
 add_subdirectory(ThirdParty/json-3.12.0)
@@ -25,7 +25,8 @@ find_package(Python3 REQUIRED COMPONENTS Interpreter)
 # 1. Create a custom target to execute the script
 add_custom_target(RunCodegen ALL
         COMMAND Python3::Interpreter "${CMAKE_CURRENT_SOURCE_DIR}/Src/componentgen.py"
-        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+        COMMAND Python3::Interpreter "${CMAKE_CURRENT_SOURCE_DIR}/Src/spriteenumgen.py"
+        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Src"
         COMMENT "Executing Python C++ source code generator..."
         VERBATIM
 )
@@ -34,7 +35,8 @@ add_custom_target(RunCodegen ALL
 # This guarantees GeneratedComponents.h exists before file(GLOB_RECURSE) runs.
 execute_process(
         COMMAND Python3::Interpreter "${CMAKE_CURRENT_SOURCE_DIR}/Src/componentgen.py"
-        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+        COMMAND Python3::Interpreter "${CMAKE_CURRENT_SOURCE_DIR}/Src/spriteenumgen.py"
+        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/Src"
 )
 # ==============================================================================
 

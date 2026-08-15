@@ -2,6 +2,8 @@
 // Created by Kamil on 09.06.2026.
 //
 #include "SpriteData.h"
+#include "GeneratedComponents.h"
+#include "raymath.h"
 
 void SpriteData::Render(const Vector2 position, const int x, const int y, const bool flip, const float scale,
                         const Color tint) const
@@ -21,7 +23,7 @@ void SpriteData::Render(const Vector2 position, const Rectangle texCoords, const
                    Pivot * scale, 0, tint);
 }
 
-Rectangle SpriteData::GetBounds(const Vector2 position, const float scale) const
+Rectangle SpriteData::GetRenderBounds(const Vector2 position, const float scale) const
 {
     const float width = static_cast<float>(Tex.width) / static_cast<float>(RowCountMax) * Scale * scale;
     const float height = static_cast<float>(Tex.height) / static_cast<float>(RowCounts.size()) * Scale * scale;
@@ -32,6 +34,11 @@ Rectangle SpriteData::GetBounds(const Vector2 position, const float scale) const
         width,
         height
     };
+}
+
+Rectangle SpriteData::GetBounds(const Vector2 position, const float scale) const
+{
+    return DefaultCollider.GetRectangle(position, scale);
 }
 
 SpriteData SpriteData::FromTextureCenter(const Texture2D& texture, const int x, const int y)
@@ -57,6 +64,7 @@ void to_json(JSON& j, const SpriteData& sprite)
     j["pivot"] = sprite.Pivot;
     j["row_counts"] = sprite.RowCounts;
     j["row_count_max"] = sprite.RowCountMax;
+    j["default_collider"] = sprite.DefaultCollider;
 }
 
 void from_json(const JSON& j, SpriteData& sprite)
@@ -78,4 +86,5 @@ void from_json(const JSON& j, SpriteData& sprite)
     {
         row = std::clamp(row, 1, sprite.RowCountMax);
     }
+    ReadJsonValue(sprite.DefaultCollider, j, "default_collider", {});
 }

@@ -15,11 +15,11 @@ void AnimationSystem::Update(GameSystemsUpdateArgs& args) const
         const auto& tuple = view.get<AnimatorComponent, RendererComponent>(entity);
         auto& [animator, renderer] = tuple;
 
-        animator.Data.TMax = animator.FrameTime.Get();
-        animator.Data.SetAnimation(animator.Animation);
-        animator.Data.Update(args.DeltaTime,
+        animator.Data.Value.TMax = animator.FrameTime.Get();
+        animator.Data.Value.SetAnimation(animator.Animation);
+        animator.Data.Value.Update(args.DeltaTime,
                              args.Assets.Sprites.FromId(renderer.Data.Sprite).RowCounts[animator.Animation]);
-        renderer.Data.TexX = animator.Data.Frame;
+        renderer.Data.TexX = animator.Data.Value.Frame;
         renderer.Data.TexY = animator.Animation;
     }
 }

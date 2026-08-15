@@ -38,10 +38,10 @@ inline void to_json(JSON& j, const Color& col)
 
 inline void from_json(const JSON& j, Color& col)
 {
-    ReadJsonValue(col.r, j, "r", static_cast<unsigned char>(0));
-    ReadJsonValue(col.g, j, "g", static_cast<unsigned char>(0));
-    ReadJsonValue(col.b, j, "b", static_cast<unsigned char>(0));
-    ReadJsonValue(col.a, j, "a", static_cast<unsigned char>(255));
+    ReadJsonValue(col.r, j, "r", col.r);
+    ReadJsonValue(col.g, j, "g", col.g);
+    ReadJsonValue(col.b, j, "b", col.b);
+    ReadJsonValue(col.a, j, "a", col.a);
 }
 
 #endif //SHEEP_GOES_DEVILE_RAYLIB_JSON_HPP

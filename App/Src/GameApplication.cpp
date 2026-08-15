@@ -7,6 +7,7 @@ bool GameApplication::Init()
 {
     Assets.LoadAll();
     Gameplay.Init();
+    Assets.Levels.Load(1);
     return true;
 }
 

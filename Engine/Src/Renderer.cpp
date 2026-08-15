@@ -3,6 +3,7 @@
 //
 #include "Renderer.h"
 #include "SpriteManager.h"
+#include "raymath.h"
 
 void Renderer::Render(const WorldScreenBounds& screenBounds, const SpriteManager& sprites) const
 {
@@ -19,16 +20,25 @@ void Renderer::Render(const SpriteManager& sprites, const Vector2& positionOverr
 Rectangle Renderer::GetBounds(const WorldScreenBounds& screenBounds, const SpriteManager& sprites) const
 {
     const SpriteData sprite = sprites.FromId(Sprite);
-    return sprite.GetBounds(Position.GetRelative(screenBounds), LocalScale);
+    return sprite.GetRenderBounds(Position.GetRelative(screenBounds), LocalScale);
 }
 
 void Renderer::Move(const Vector2 direction, const float speed)
 {
     Position.Value += direction * speed;
-    Flip = direction.x < 0;
+
+    if (direction.x < 0)
+    {
+        Flip = true;
+    }
+
+    if (direction.x > 0)
+    {
+        Flip = false;
+    }
 }
 
-void Renderer::Move(Vector2 position, const WorldScreenBounds& screenBounds)
+void Renderer::Move(const Vector2 position, const WorldScreenBounds& screenBounds)
 {
     const Vector2 lastPosition = Position.GetRelative(screenBounds);
     const Vector2 newPosition = Position.ToRelative(position, screenBounds);

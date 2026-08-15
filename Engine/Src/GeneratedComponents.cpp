@@ -3,6 +3,9 @@
 // ==========================================================
 #include "GeneratedComponents.h"
 
+// ==========================================================
+// TAG COMPONENT
+// ==========================================================
 void to_json(JSON& j, const TagComponent& component)
 {
 	j["value"] = component.Value;
@@ -13,7 +16,9 @@ void from_json(const JSON& j, TagComponent& component)
 	ReadJsonValue(component.Value, j, "value", component.Value);
 }
 
-
+// ==========================================================
+// ORDER COMPONENT
+// ==========================================================
 void to_json(JSON& j, const OrderComponent& component)
 {
 	j["value"] = component.Value;
@@ -24,7 +29,9 @@ void from_json(const JSON& j, OrderComponent& component)
 	ReadJsonValue(component.Value, j, "value", component.Value);
 }
 
-
+// ==========================================================
+// PARALLAX COMPONENT
+// ==========================================================
 void to_json(JSON& j, const ParallaxComponent& component)
 {
 	j["strength"] = component.Strength;
@@ -35,7 +42,9 @@ void from_json(const JSON& j, ParallaxComponent& component)
 	ReadJsonValue(component.Strength, j, "strength", component.Strength);
 }
 
-
+// ==========================================================
+// RENDERER COMPONENT
+// ==========================================================
 void to_json(JSON& j, const RendererComponent& component)
 {
 	j["layer_order"] = component.LayerOrder;
@@ -48,7 +57,9 @@ void from_json(const JSON& j, RendererComponent& component)
 	ReadJsonValue(component.Data, j, "data", component.Data);
 }
 
-
+// ==========================================================
+// ENTITY GROUP COMPONENT
+// ==========================================================
 void to_json(JSON& j, const EntityGroupComponent& component)
 {
 	j["entities"] = component.Entities;
@@ -59,7 +70,9 @@ void from_json(const JSON& j, EntityGroupComponent& component)
 	ReadJsonValue(component.Entities, j, "entities", component.Entities);
 }
 
-
+// ==========================================================
+// ENTITY GROUP CHILD COMPONENT
+// ==========================================================
 void to_json(JSON& j, const EntityGroupChildComponent& component)
 {
 	j["value"] = component.Value;
@@ -70,7 +83,9 @@ void from_json(const JSON& j, EntityGroupChildComponent& component)
 	ReadJsonValue(component.Value, j, "value", component.Value);
 }
 
-
+// ==========================================================
+// MOVE SPEED COMPONENT
+// ==========================================================
 void to_json(JSON& j, const MoveSpeedComponent& component)
 {
 	j["value"] = component.Value;
@@ -81,7 +96,9 @@ void from_json(const JSON& j, MoveSpeedComponent& component)
 	ReadJsonValue(component.Value, j, "value", component.Value);
 }
 
-
+// ==========================================================
+// PATROL COMPONENT
+// ==========================================================
 void to_json(JSON& j, const PatrolComponent& component)
 {
 	j["from"] = component.From;
@@ -96,7 +113,9 @@ void from_json(const JSON& j, PatrolComponent& component)
 	ReadJsonValue(component.Reversed, j, "reversed", component.Reversed);
 }
 
-
+// ==========================================================
+// ROUND COMPONENT
+// ==========================================================
 void to_json(JSON& j, const RoundComponent& component)
 {
 	j["center"] = component.Center;
@@ -111,39 +130,29 @@ void from_json(const JSON& j, RoundComponent& component)
 	ReadJsonValue(component.T, j, "t", component.T);
 }
 
-
+// ==========================================================
+// ANIMATOR COMPONENT
+// ==========================================================
 void to_json(JSON& j, const AnimatorComponent& component)
 {
+	j["data"] = component.Data;
 	j["animation"] = component.Animation;
 	j["frame_time"] = component.FrameTime;
 }
 
 void from_json(const JSON& j, AnimatorComponent& component)
 {
+	ReadJsonValue(component.Data, j, "data", component.Data);
 	ReadJsonValue(component.Animation, j, "animation", component.Animation);
 	ReadJsonValue(component.FrameTime, j, "frame_time", component.FrameTime);
 }
 
-
-void to_json(JSON& j, const MainMenuText& component)
-{
-	j["position"] = component.Position;
-	j["scale"] = component.Scale;
-	j["color"] = component.Color;
-}
-
-void from_json(const JSON& j, MainMenuText& component)
-{
-	ReadJsonValue(component.Position, j, "position", component.Position);
-	ReadJsonValue(component.Scale, j, "scale", component.Scale);
-	ReadJsonValue(component.Color, j, "color", component.Color);
-}
-
-
+// ==========================================================
+// MAIN MENU COMPONENT
+// ==========================================================
 void to_json(JSON& j, const MainMenuComponent& component)
 {
 	j["title_scale"] = component.TitleScale;
-	j["current_panel"] = component.CurrentPanel;
 	j["sheep_text"] = component.SheepText;
 	j["goes_text"] = component.GoesText;
 	j["devile_text"] = component.DevileText;
@@ -152,13 +161,14 @@ void to_json(JSON& j, const MainMenuComponent& component)
 void from_json(const JSON& j, MainMenuComponent& component)
 {
 	ReadJsonValue(component.TitleScale, j, "title_scale", component.TitleScale);
-	ReadJsonValue(component.CurrentPanel, j, "current_panel", component.CurrentPanel);
 	ReadJsonValue(component.SheepText, j, "sheep_text", component.SheepText);
 	ReadJsonValue(component.GoesText, j, "goes_text", component.GoesText);
 	ReadJsonValue(component.DevileText, j, "devile_text", component.DevileText);
 }
 
-
+// ==========================================================
+// TEXT COMPONENT
+// ==========================================================
 void to_json(JSON& j, const TextComponent& component)
 {
 	j["position"] = component.Position;
@@ -173,4 +183,35 @@ void from_json(const JSON& j, TextComponent& component)
 	ReadJsonValue(component.Value, j, "value", component.Value);
 }
 
+// ==========================================================
+// PHYSICS BOX COMPONENT
+// ==========================================================
+void to_json(JSON& j, const PhysicsBoxComponent& component)
+{
+	j["position"] = component.Position;
+	j["size"] = component.Size;
+}
+
+void from_json(const JSON& j, PhysicsBoxComponent& component)
+{
+	ReadJsonValue(component.Position, j, "position", component.Position);
+	ReadJsonValue(component.Size, j, "size", component.Size);
+}
+
+// ==========================================================
+// PHYSICS BODY COMPONENT
+// ==========================================================
+void to_json(JSON& j, const PhysicsBodyComponent& component)
+{
+	j["touch"] = component.Touch;
+	j["velocity"] = component.Velocity;
+	j["mass"] = component.Mass;
+}
+
+void from_json(const JSON& j, PhysicsBodyComponent& component)
+{
+	ReadJsonValue(component.Touch, j, "touch", component.Touch);
+	ReadJsonValue(component.Velocity, j, "velocity", component.Velocity);
+	ReadJsonValue(component.Mass, j, "mass", component.Mass);
+}
 

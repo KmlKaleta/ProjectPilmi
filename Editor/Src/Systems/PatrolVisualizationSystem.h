@@ -6,7 +6,6 @@
 #define SHEEP_GOES_DEVILE_PATROL_VISUALIZATION_SYSTEM_H
 
 struct GameSystemsUpdateArgs;
-struct WorldScreenBounds;
 
 struct PatrolVisualizationSystem
 {

@@ -1,11 +1,125 @@
 {
     "entities": [
         {
-            "EntityId": 3194538424126320421,
-            "OrderComponent": 25,
+            "EntityId": 16310526988377847150,
+            "OrderComponent": {
+                "value": 29
+            },
+            "PhysicsBoxComponent": {
+                "position": {
+                    "x": 0.0,
+                    "y": 114.0
+                },
+                "size": {
+                    "x": 1000.0,
+                    "y": 114.0
+                }
+            },
             "RendererComponent": {
-                "order": 2,
-                "renderer": {
+                "data": {
+                    "flip": false,
+                    "position": {
+                        "anchor": 7,
+                        "value": {
+                            "x": 0.0,
+                            "y": 700.0
+                        }
+                    },
+                    "scale": 2.099998950958252,
+                    "sprite": 2333685563216771788,
+                    "tex_x": 0,
+                    "tex_y": 0
+                },
+                "layer_order": 999
+            },
+            "TagComponent": {
+                "value": "Cell"
+            }
+        },
+        {
+            "AnimatorComponent": {
+                "animation": 0,
+                "data": {
+                    "animation": 0,
+                    "frame": 0,
+                    "t": 0.0,
+                    "t_max": 0.10000000149011612
+                },
+                "frame_time": {
+                    "max": 1.0,
+                    "min": 0.009999999776482582,
+                    "value": 0.10000000149011612
+                }
+            },
+            "EntityId": 14542228909290753476,
+            "MoveSpeedComponent": {
+                "value": {
+                    "max": 2000.0,
+                    "min": 10.0,
+                    "value": 500.0
+                }
+            },
+            "OrderComponent": {
+                "value": 26
+            },
+            "PhysicsBodyComponent": {
+                "mass": {
+                    "max": 1000.0,
+                    "min": 1.0,
+                    "value": 90.0
+                },
+                "touch": {
+                    "down": false,
+                    "left": false,
+                    "right": false,
+                    "up": false
+                },
+                "velocity": {
+                    "x": 0.0,
+                    "y": 0.0
+                }
+            },
+            "PhysicsBoxComponent": {
+                "position": {
+                    "x": -3.0,
+                    "y": 0.0
+                },
+                "size": {
+                    "x": 67.6500015258789,
+                    "y": 92.7300033569336
+                }
+            },
+            "RendererComponent": {
+                "data": {
+                    "flip": false,
+                    "position": {
+                        "anchor": 7,
+                        "value": {
+                            "x": 0.0,
+                            "y": 114.0
+                        }
+                    },
+                    "scale": 1.0,
+                    "sprite": 15898488116535732747,
+                    "tex_x": 0,
+                    "tex_y": 0
+                },
+                "layer_order": 400
+            },
+            "TagComponent": {
+                "value": "Player"
+            },
+            "tags": [
+                "PlayerControllableTag"
+            ]
+        },
+        {
+            "EntityId": 3194538424126320421,
+            "OrderComponent": {
+                "value": 25
+            },
+            "RendererComponent": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 7,
@@ -18,19 +132,20 @@
                     "sprite": 13929246925859671961,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 2
             },
             "TagComponent": {
                 "value": "Goat1"
-            },
-            "id": 25
+            }
         },
         {
             "EntityId": 8332325169213932553,
-            "OrderComponent": 24,
+            "OrderComponent": {
+                "value": 24
+            },
             "RendererComponent": {
-                "order": 2,
-                "renderer": {
+                "data": {
                     "flip": true,
                     "position": {
                         "anchor": 7,
@@ -43,19 +158,20 @@
                     "sprite": 6627821916887444946,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 2
             },
             "TagComponent": {
                 "value": "Goat2"
-            },
-            "id": 24
+            }
         },
         {
             "EntityId": 8636863830063748776,
-            "OrderComponent": 23,
+            "OrderComponent": {
+                "value": 23
+            },
             "RendererComponent": {
-                "order": 1,
-                "renderer": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 7,
@@ -68,19 +184,20 @@
                     "sprite": 11610819148870425494,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 1
             },
             "TagComponent": {
                 "value": "The devil"
-            },
-            "id": 23
+            }
         },
         {
             "EntityId": 14775634243550462691,
-            "OrderComponent": 12,
+            "OrderComponent": {
+                "value": 22
+            },
             "RendererComponent": {
-                "order": 99,
-                "renderer": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 7,
@@ -93,19 +210,20 @@
                     "sprite": 15898488116535732747,
                     "tex_x": 0,
                     "tex_y": 1
-                }
+                },
+                "layer_order": 99
             },
             "TagComponent": {
                 "value": "Biscup"
-            },
-            "id": 22
+            }
         },
         {
             "EntityId": 13571686283567225279,
-            "OrderComponent": 13,
+            "OrderComponent": {
+                "value": 21
+            },
             "RendererComponent": {
-                "order": 99,
-                "renderer": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 7,
@@ -118,16 +236,22 @@
                     "sprite": 451370562053028975,
                     "tex_x": 0,
                     "tex_y": 1
-                }
+                },
+                "layer_order": 99
             },
             "TagComponent": {
                 "value": "Nun"
-            },
-            "id": 21
+            }
         },
         {
             "AnimatorComponent": {
                 "animation": 0,
+                "data": {
+                    "animation": 0,
+                    "frame": 0,
+                    "t": 0.0,
+                    "t_max": 0.10000000149011612
+                },
                 "frame_time": {
                     "max": 1.0,
                     "min": 0.009999999776482582,
@@ -136,11 +260,15 @@
             },
             "EntityId": 16149596302774310829,
             "MoveSpeedComponent": {
-                "max": 2000.0,
-                "min": 10.0,
-                "value": 125.0
+                "value": {
+                    "max": 2000.0,
+                    "min": 10.0,
+                    "value": 125.0
+                }
             },
-            "OrderComponent": 14,
+            "OrderComponent": {
+                "value": 20
+            },
             "PatrolComponent": {
                 "from": {
                     "anchor": 7,
@@ -159,8 +287,7 @@
                 }
             },
             "RendererComponent": {
-                "order": 99,
-                "renderer": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 7,
@@ -173,16 +300,22 @@
                     "sprite": 15898488116535732747,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 99
             },
             "TagComponent": {
                 "value": "BiscupMoving"
-            },
-            "id": 20
+            }
         },
         {
             "AnimatorComponent": {
                 "animation": 0,
+                "data": {
+                    "animation": 0,
+                    "frame": 0,
+                    "t": 0.0,
+                    "t_max": 0.10000000149011612
+                },
                 "frame_time": {
                     "max": 1.0,
                     "min": 0.009999999776482582,
@@ -191,11 +324,15 @@
             },
             "EntityId": 15948705740383163627,
             "MoveSpeedComponent": {
-                "max": 2000.0,
-                "min": 10.0,
-                "value": 200.0
+                "value": {
+                    "max": 2000.0,
+                    "min": 10.0,
+                    "value": 200.0
+                }
             },
-            "OrderComponent": 15,
+            "OrderComponent": {
+                "value": 19
+            },
             "PatrolComponent": {
                 "from": {
                     "anchor": 7,
@@ -214,8 +351,7 @@
                 }
             },
             "RendererComponent": {
-                "order": 99,
-                "renderer": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 7,
@@ -228,16 +364,22 @@
                     "sprite": 451370562053028975,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 99
             },
             "TagComponent": {
                 "value": "NunMoving"
-            },
-            "id": 19
+            }
         },
         {
             "AnimatorComponent": {
                 "animation": 0,
+                "data": {
+                    "animation": 0,
+                    "frame": 0,
+                    "t": 0.0,
+                    "t_max": 0.10000000149011612
+                },
                 "frame_time": {
                     "max": 1.0,
                     "min": 0.009999999776482582,
@@ -246,11 +388,15 @@
             },
             "EntityId": 3165323602187798200,
             "MoveSpeedComponent": {
-                "max": 2000.0,
-                "min": 10.0,
-                "value": 350.0
+                "value": {
+                    "max": 2000.0,
+                    "min": 10.0,
+                    "value": 350.0
+                }
             },
-            "OrderComponent": 16,
+            "OrderComponent": {
+                "value": 18
+            },
             "PatrolComponent": {
                 "from": {
                     "anchor": 7,
@@ -269,8 +415,7 @@
                 }
             },
             "RendererComponent": {
-                "order": 99,
-                "renderer": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 7,
@@ -283,16 +428,22 @@
                     "sprite": 5996614717713736678,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 99
             },
             "TagComponent": {
                 "value": "WarriorMoving"
-            },
-            "id": 18
+            }
         },
         {
             "AnimatorComponent": {
                 "animation": 0,
+                "data": {
+                    "animation": 0,
+                    "frame": 0,
+                    "t": 0.0,
+                    "t_max": 0.10000000149011612
+                },
                 "frame_time": {
                     "max": 1.0,
                     "min": 0.009999999776482582,
@@ -301,11 +452,15 @@
             },
             "EntityId": 8819166234787403782,
             "MoveSpeedComponent": {
-                "max": 2000.0,
-                "min": 10.0,
-                "value": 200.0
+                "value": {
+                    "max": 2000.0,
+                    "min": 10.0,
+                    "value": 200.0
+                }
             },
-            "OrderComponent": 17,
+            "OrderComponent": {
+                "value": 17
+            },
             "PatrolComponent": {
                 "from": {
                     "anchor": 7,
@@ -324,8 +479,7 @@
                 }
             },
             "RendererComponent": {
-                "order": 99,
-                "renderer": {
+                "data": {
                     "flip": true,
                     "position": {
                         "anchor": 7,
@@ -338,19 +492,20 @@
                     "sprite": 7389731335850396888,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 99
             },
             "TagComponent": {
                 "value": "LadyMoving"
-            },
-            "id": 17
+            }
         },
         {
             "EntityId": 1517653807307780539,
-            "OrderComponent": 2,
+            "OrderComponent": {
+                "value": 16
+            },
             "RendererComponent": {
-                "order": 3,
-                "renderer": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 7,
@@ -363,16 +518,22 @@
                     "sprite": 7613845110139607196,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 3
             },
             "TagComponent": {
                 "value": "Flower"
-            },
-            "id": 16
+            }
         },
         {
             "AnimatorComponent": {
                 "animation": 0,
+                "data": {
+                    "animation": 0,
+                    "frame": 0,
+                    "t": 0.0,
+                    "t_max": 0.10000000149011612
+                },
                 "frame_time": {
                     "max": 1.0,
                     "min": 0.009999999776482582,
@@ -381,14 +542,17 @@
             },
             "EntityId": 4738958559888729203,
             "MoveSpeedComponent": {
-                "max": 2000.0,
-                "min": 10.0,
-                "value": 1500.0
+                "value": {
+                    "max": 2000.0,
+                    "min": 10.0,
+                    "value": 1500.0
+                }
             },
-            "OrderComponent": 23,
+            "OrderComponent": {
+                "value": 15
+            },
             "RendererComponent": {
-                "order": 98,
-                "renderer": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 7,
@@ -401,10 +565,11 @@
                     "sprite": 7389731335850396888,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 98
             },
             "RoundComponent": {
-                "position": {
+                "center": {
                     "anchor": 7,
                     "value": {
                         "x": -401.0,
@@ -415,16 +580,22 @@
                     "max": 5000.0,
                     "min": 10.0,
                     "value": 150.0
-                }
+                },
+                "t": 0.0
             },
             "TagComponent": {
                 "value": "Round2"
-            },
-            "id": 15
+            }
         },
         {
             "AnimatorComponent": {
                 "animation": 1,
+                "data": {
+                    "animation": 0,
+                    "frame": 0,
+                    "t": 0.0,
+                    "t_max": 0.10000000149011612
+                },
                 "frame_time": {
                     "max": 1.0,
                     "min": 0.009999999776482582,
@@ -433,14 +604,17 @@
             },
             "EntityId": 17137571563716818361,
             "MoveSpeedComponent": {
-                "max": 2000.0,
-                "min": 10.0,
-                "value": 500.0
+                "value": {
+                    "max": 2000.0,
+                    "min": 10.0,
+                    "value": 500.0
+                }
             },
-            "OrderComponent": 24,
+            "OrderComponent": {
+                "value": 14
+            },
             "RendererComponent": {
-                "order": 98,
-                "renderer": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 7,
@@ -453,10 +627,11 @@
                     "sprite": 5996614717713736678,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 98
             },
             "RoundComponent": {
-                "position": {
+                "center": {
                     "anchor": 7,
                     "value": {
                         "x": 0.0,
@@ -467,19 +642,20 @@
                     "max": 5000.0,
                     "min": 10.0,
                     "value": 250.0
-                }
+                },
+                "t": 0.0
             },
             "TagComponent": {
                 "value": "Round3"
-            },
-            "id": 14
+            }
         },
         {
             "EntityId": 4713375506689932762,
-            "OrderComponent": 11,
+            "OrderComponent": {
+                "value": 13
+            },
             "RendererComponent": {
-                "order": 99,
-                "renderer": {
+                "data": {
                     "flip": true,
                     "position": {
                         "anchor": 7,
@@ -492,19 +668,30 @@
                     "sprite": 7389731335850396888,
                     "tex_x": 0,
                     "tex_y": 1
-                }
+                },
+                "layer_order": 99
             },
             "TagComponent": {
                 "value": "Lady"
-            },
-            "id": 13
+            }
         },
         {
             "EntityId": 12249899974001661267,
-            "OrderComponent": 27,
+            "OrderComponent": {
+                "value": 12
+            },
+            "PhysicsBoxComponent": {
+                "position": {
+                    "x": 0.0,
+                    "y": 114.0
+                },
+                "size": {
+                    "x": 1000.0,
+                    "y": 114.0
+                }
+            },
             "RendererComponent": {
-                "order": 999,
-                "renderer": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 7,
@@ -517,16 +704,18 @@
                     "sprite": 2333685563216771788,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 999
             },
             "TagComponent": {
                 "value": "Ground"
-            },
-            "id": 12
+            }
         },
         {
             "EntityId": 3097041161961511724,
-            "OrderComponent": 26,
+            "OrderComponent": {
+                "value": 11
+            },
             "ParallaxComponent": {
                 "strength": {
                     "max": 1.0,
@@ -535,8 +724,7 @@
                 }
             },
             "RendererComponent": {
-                "order": 0,
-                "renderer": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 4,
@@ -549,16 +737,22 @@
                     "sprite": 7072379239301553486,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 0
             },
             "TagComponent": {
                 "value": "Sky"
-            },
-            "id": 11
+            }
         },
         {
             "AnimatorComponent": {
                 "animation": 0,
+                "data": {
+                    "animation": 0,
+                    "frame": 0,
+                    "t": 0.0,
+                    "t_max": 0.10000000149011612
+                },
                 "frame_time": {
                     "max": 1.0,
                     "min": 0.009999999776482582,
@@ -567,14 +761,17 @@
             },
             "EntityId": 13382363062333593375,
             "MoveSpeedComponent": {
-                "max": 2000.0,
-                "min": 10.0,
-                "value": 100.0
+                "value": {
+                    "max": 2000.0,
+                    "min": 10.0,
+                    "value": 100.0
+                }
             },
-            "OrderComponent": 22,
+            "OrderComponent": {
+                "value": 10
+            },
             "RendererComponent": {
-                "order": 98,
-                "renderer": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 7,
@@ -587,10 +784,11 @@
                     "sprite": 7389731335850396888,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 98
             },
             "RoundComponent": {
-                "position": {
+                "center": {
                     "anchor": 7,
                     "value": {
                         "x": 4.0,
@@ -601,16 +799,22 @@
                     "max": 5000.0,
                     "min": 10.0,
                     "value": 400.0
-                }
+                },
+                "t": 0.0
             },
             "TagComponent": {
                 "value": "Round1"
-            },
-            "id": 10
+            }
         },
         {
             "AnimatorComponent": {
                 "animation": 0,
+                "data": {
+                    "animation": 0,
+                    "frame": 0,
+                    "t": 0.0,
+                    "t_max": 0.10000000149011612
+                },
                 "frame_time": {
                     "max": 1.0,
                     "min": 0.009999999776482582,
@@ -618,10 +822,11 @@
                 }
             },
             "EntityId": 3581156078041922799,
-            "OrderComponent": 10,
+            "OrderComponent": {
+                "value": 9
+            },
             "RendererComponent": {
-                "order": 99,
-                "renderer": {
+                "data": {
                     "flip": true,
                     "position": {
                         "anchor": 7,
@@ -634,19 +839,20 @@
                     "sprite": 1823744527168627006,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 99
             },
             "TagComponent": {
                 "value": "Hero"
-            },
-            "id": 9
+            }
         },
         {
             "EntityId": 6037846577302110926,
-            "OrderComponent": 8,
+            "OrderComponent": {
+                "value": 8
+            },
             "RendererComponent": {
-                "order": 150,
-                "renderer": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 7,
@@ -659,19 +865,20 @@
                     "sprite": 17930921003739762144,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 150
             },
             "TagComponent": {
                 "value": "Tree"
-            },
-            "id": 8
+            }
         },
         {
             "EntityId": 2857985132750060986,
-            "OrderComponent": 5,
+            "OrderComponent": {
+                "value": 7
+            },
             "RendererComponent": {
-                "order": 10,
-                "renderer": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 7,
@@ -684,19 +891,30 @@
                     "sprite": 16458946972688209028,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 10
             },
             "TagComponent": {
                 "value": "Tree2"
-            },
-            "id": 7
+            }
         },
         {
             "EntityId": 13738810667560381812,
-            "OrderComponent": 4,
+            "OrderComponent": {
+                "value": 6
+            },
+            "PhysicsBoxComponent": {
+                "position": {
+                    "x": 0.0,
+                    "y": 114.0
+                },
+                "size": {
+                    "x": 1000.0,
+                    "y": 114.0
+                }
+            },
             "RendererComponent": {
-                "order": 999,
-                "renderer": {
+                "data": {
                     "flip": true,
                     "position": {
                         "anchor": 7,
@@ -709,19 +927,30 @@
                     "sprite": 2333685563216771788,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 999
             },
             "TagComponent": {
                 "value": "Ground2"
-            },
-            "id": 6
+            }
         },
         {
             "EntityId": 5769965105443795308,
-            "OrderComponent": 3,
+            "OrderComponent": {
+                "value": 5
+            },
+            "PhysicsBoxComponent": {
+                "position": {
+                    "x": 0.0,
+                    "y": 114.0
+                },
+                "size": {
+                    "x": 1000.0,
+                    "y": 114.0
+                }
+            },
             "RendererComponent": {
-                "order": 999,
-                "renderer": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 7,
@@ -734,19 +963,20 @@
                     "sprite": 2333685563216771788,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 999
             },
             "TagComponent": {
                 "value": "Ground3"
-            },
-            "id": 5
+            }
         },
         {
             "EntityId": 18102051958710878993,
-            "OrderComponent": 1,
+            "OrderComponent": {
+                "value": 4
+            },
             "RendererComponent": {
-                "order": 3,
-                "renderer": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 7,
@@ -759,19 +989,20 @@
                     "sprite": 7613845110139607196,
                     "tex_x": 2,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 3
             },
             "TagComponent": {
                 "value": "Flower"
-            },
-            "id": 4
+            }
         },
         {
             "EntityId": 14271247969031198724,
-            "OrderComponent": 0,
+            "OrderComponent": {
+                "value": 3
+            },
             "RendererComponent": {
-                "order": 100,
-                "renderer": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 7,
@@ -784,19 +1015,20 @@
                     "sprite": 7613845110139607196,
                     "tex_x": 1,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 100
             },
             "TagComponent": {
                 "value": "Floawer2"
-            },
-            "id": 3
+            }
         },
         {
             "EntityId": 4972823713367996044,
-            "OrderComponent": 7,
+            "OrderComponent": {
+                "value": 2
+            },
             "RendererComponent": {
-                "order": 150,
-                "renderer": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 7,
@@ -809,19 +1041,20 @@
                     "sprite": 16458946972688209028,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 150
             },
             "TagComponent": {
                 "value": "Tree2"
-            },
-            "id": 2
+            }
         },
         {
             "EntityId": 6147296924475402143,
-            "OrderComponent": 6,
+            "OrderComponent": {
+                "value": 1
+            },
             "RendererComponent": {
-                "order": 150,
-                "renderer": {
+                "data": {
                     "flip": true,
                     "position": {
                         "anchor": 7,
@@ -834,19 +1067,20 @@
                     "sprite": 16458946972688209028,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 150
             },
             "TagComponent": {
                 "value": "Tree2"
-            },
-            "id": 1
+            }
         },
         {
             "EntityId": 15473164693857790270,
-            "OrderComponent": 9,
+            "OrderComponent": {
+                "value": 0
+            },
             "RendererComponent": {
-                "order": 3,
-                "renderer": {
+                "data": {
                     "flip": false,
                     "position": {
                         "anchor": 7,
@@ -859,12 +1093,84 @@
                     "sprite": 17930921003739762144,
                     "tex_x": 0,
                     "tex_y": 0
-                }
+                },
+                "layer_order": 3
             },
             "TagComponent": {
                 "value": "Tree"
+            }
+        },
+        {
+            "EntityId": 2724127594499309555,
+            "OrderComponent": {
+                "value": 27
             },
-            "id": 0
+            "PhysicsBoxComponent": {
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "size": {
+                    "x": 50.0,
+                    "y": 106.0
+                }
+            },
+            "RendererComponent": {
+                "data": {
+                    "flip": true,
+                    "position": {
+                        "anchor": 7,
+                        "value": {
+                            "x": -1000.0,
+                            "y": 114.0
+                        }
+                    },
+                    "scale": 2.0,
+                    "sprite": 6627821916887444946,
+                    "tex_x": 0,
+                    "tex_y": 0
+                },
+                "layer_order": 60
+            },
+            "TagComponent": {
+                "value": "Wall"
+            }
+        },
+        {
+            "EntityId": 1233597501999374516,
+            "OrderComponent": {
+                "value": 28
+            },
+            "PhysicsBoxComponent": {
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0
+                },
+                "size": {
+                    "x": 50.0,
+                    "y": 106.0
+                }
+            },
+            "RendererComponent": {
+                "data": {
+                    "flip": false,
+                    "position": {
+                        "anchor": 7,
+                        "value": {
+                            "x": 1000.0,
+                            "y": 114.0
+                        }
+                    },
+                    "scale": 2.0,
+                    "sprite": 6627821916887444946,
+                    "tex_x": 0,
+                    "tex_y": 0
+                },
+                "layer_order": 60
+            },
+            "TagComponent": {
+                "value": "Wall2"
+            }
         }
     ],
     "id": 2137
